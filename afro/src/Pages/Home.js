@@ -32,11 +32,12 @@ flex-wrap: no-wrap;
 overflow-x: auto;
 width: 90%;
 margin: 0 5%;
-background-color: rgba(139, 69, 19, 255);
+
 
     .Scard {
         flex: 0 0 18%;
         margin: 0 1%;
+        background-color: rgba(139, 69, 19, 255);
       
      div {
          position:relative;
@@ -63,11 +64,12 @@ const MovieList = styled.div`
   flex-wrap: wrap;
   width: 90%;
   margin: 0 5%;
-  background-color: rgba(139, 69, 19, 255);
+  
   padding: 20px 0;
    .MovieCard {
+    background-color: rgba(139, 69, 19, 255);
     width: 18%;
-    margin: 0 1%;
+    margin: 10px 1%;
   
  div {
      position:relative;
