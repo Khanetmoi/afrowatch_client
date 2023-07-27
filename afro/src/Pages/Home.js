@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import comingTo from '../Images/comingTo.jpg'
 import disney from '../Images/disney.jpg'
 import logo from '../Images/logo.png'
+import afrowatch from '../Images/afrowatch.png'
 import rwanda from '../Images/rwanda.jpg'
 
 
@@ -72,12 +73,12 @@ margin: 0 5%;
 
 
     .Scard {
-        // flex: 0 0 23%;
-        // margin: 0 1%;
+        flex: 0 0 12%;
+        margin: 0 .5%;
         background-color: rgba(139, 69, 19, 255);
         color: white;
         // height: 40vh;
-        width: 60%;
+        // width: 60%;
         aspect-ratio: 16:9;
       
      div {
@@ -106,35 +107,110 @@ margin: 0 5%;
 
 
 const MovieList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
   width: 90%;
   margin: 0 5%;
-  
-  
   padding: 20px 0;
-   .MovieCard {
-    background-color: rgba(139, 69, 19, 255);
-    width: 18%;
-    margin: 10px 1%;
-    color: white;
-  
- div {
-     position:relative;
-    img {
-        width: 100%;
-    }
 
-    button {
-      position: absolute;
-      top: 30%;
-      left: 30%;
-      width: 40%;
-      aspect-ratio: 1;
-      background-color: rgba(0,0,0, 0.5);
-      color: white;
-    }
+//    .MovieCard {
+//     background-color: rgba(139, 69, 19, 255);
+//     width: 18%;
+//     margin: 10px 1%;
+//     color: white;
+  
+//  div {
+//      position:relative;
+//     img {
+//         width: 100%;
+//     }
+
+//     button {
+//       position: absolute;
+//       top: 30%;
+//       left: 30%;
+//       width: 40%;
+//       aspect-ratio: 1;
+//       background-color: rgba(0,0,0, 0.5);
+//       color: white;
+//     }
+
+  #Popular {
+    display: flex;
+    justify-content: center;
+    flex-wrap: no-wrap;
+    overflow-x: auto;
+    width: 90%;
+      .MovieCard {
+
+        flex: 0 0 12%;
+        margin: 0 .5%;
+        background-color: rgba(139, 69, 19, 255);
+        color: white;
+        // height: 40vh;
+        // width: 60%;
+        aspect-ratio: 16:9;
+      
+     div {
+         position:relative;
+        //  height: 70vh;
+        img {
+            width: 100%;
+            height: 40vh;
+            // height: 100%;
+            
+        }
+
+        button {
+          position: absolute;
+          top: 50%;
+          left: 45%;
+          width: 10%;
+          aspect-ratio: 1;
+          background-color: rgba(0,0,0, 0.5);
+          color: white;
+          border-radius: 50%;
+        }
+      }
+  }
 `;
+const Popular = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: no-wrap;
+  overflow-x: auto;
+  width: 90%;
+    .MovieCard {
+
+      flex: 0 0 12%;
+      margin: 0 .5%;
+      background-color: rgba(139, 69, 19, 255);
+      color: white;
+      // height: 40vh;
+      // width: 60%;
+      aspect-ratio: 16:9;
+    
+   div {
+       position:relative;
+      //  height: 70vh;
+      img {
+          width: 100%;
+          height: 40vh;
+          // height: 100%;
+          
+      }
+
+      button {
+        position: absolute;
+        top: 50%;
+        left: 45%;
+        width: 10%;
+        aspect-ratio: 1;
+        background-color: rgba(0,0,0, 0.5);
+        color: white;
+        border-radius: 50%;
+      }
+    `;
 const Home = ()=>{
     return (
         <>
@@ -147,7 +223,7 @@ const Home = ()=>{
         </Navigation>
         
         <Intro>
-          <AfroLogo src={logo} alt="Afro lofo"/>
+          <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
           <div>
           <SearchBar type="text" placeholder="Search..."/>
@@ -155,37 +231,11 @@ const Home = ()=>{
           </div>
           
         </Intro>
-        {/* Sponsored */}
-        <h2 className="title">Sponsored</h2>
+        <MovieList>
+        <section id="sponsored">
+        <h2 className="title">Featured</h2>
         <Sponsored>
-          {/* <div className='Scard'>
-          <div>
-            <img src={comingTo} alt="poster.mp4"/>
-            <button>Play</button>
-          </div>
-
-          <h2>expendable</h2>
-          <h3>2022 . 60 mn</h3>
-          </div> */}
-          {/* <div className='Scard'>
-          <div>
-            <img src={comingTo} alt="poster.mp4"/>
-            <button>Play</button>
-          </div>
-
-          <h2>expendable</h2>
-          <h3>2022 . 60 mn</h3>
-          </div> */}
           <div className='Scard'>
-          <div>
-            <img src={comingTo} alt="poster.mp4"/>
-            <button>Play</button>
-          </div>
-
-          <h2>expendable</h2>
-          <h3>2022 . 60 mn</h3>
-          </div>
-          {/* <div className='Scard'>
           <div>
             <img src={comingTo} alt="poster.mp4"/>
             <button>Play</button>
@@ -202,8 +252,35 @@ const Home = ()=>{
 
           <h2>expendable</h2>
           <h3>2022 . 60 mn</h3>
-          </div> */}
-          {/* <div className='Scard'>
+          </div>
+          <div className='Scard'>
+          <div>
+            <img src={comingTo} alt="poster.mp4"/>
+            <button>Play</button>
+          </div>
+
+          <h2>expendable</h2>
+          <h3>2022 . 60 mn</h3>
+          </div>
+          <div className='Scard'>
+          <div>
+            <img src={comingTo} alt="poster.mp4"/>
+            <button>Play</button>
+          </div>
+
+          <h2>expendable</h2>
+          <h3>2022 . 60 mn</h3>
+          </div>
+          <div className='Scard'>
+          <div>
+            <img src={comingTo} alt="poster.mp4"/>
+            <button>Play</button>
+          </div>
+
+          <h2>expendable</h2>
+          <h3>2022 . 60 mn</h3>
+          </div>
+          <div className='Scard'>
           <div>
             <img src={comingTo} alt="poster.mp4"/>
             <button>Play</button>
@@ -220,10 +297,12 @@ const Home = ()=>{
 
           <h2>expendable</h2>
           <h3>2023 . 60 mn</h3>
-          </div> */}
+          </div>
         </Sponsored>
-        <h2 className="title">Movie List </h2>
-        <MovieList>
+        </section>
+        <section id="Popular">
+        <h2 className="title">Popular Movies </h2>
+        <Popular>
             <div className="MovieCard">
                <div>
                  <img src={disney} alt="picture13.mp4"/>
@@ -296,6 +375,11 @@ const Home = ()=>{
                  <h2>Expendable</h2>
                 <h3>2022 . 60 mn</h3>
             </div>
+            </Popular>
+            </section>
+
+            <section id="new">
+              <h2>New Movies</h2>
             <div className="MovieCard">
                <div>
                  <img src={disney} alt="picture6.mp4"/>
@@ -359,6 +443,17 @@ const Home = ()=>{
                  <h2>Expendable</h2>
                 <h3>2022 . 60 mn</h3>
             </div>
+            <div className="MovieCard">
+               <div>
+                 <img src={disney} alt="movie2.mp4"/>
+                 <button>Play</button>
+                </div>
+
+                 <h2>Expendable</h2>
+                <h3>2022 . 60 mn</h3>
+            </div>
+        
+        </section>
         </MovieList>
         <footer>
             <ul>
