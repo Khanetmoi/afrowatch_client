@@ -1,21 +1,25 @@
 body {
-  background-color: #4CAF50;
+  /* background-color: black; */
+  background-color: #4D774E;
+  
 }
 
 .title {
-  margin: 20px 50%;
+  display: flex;
+  justify-content: center;
 }
 
 footer {
   background-color: rgba(139, 69, 19, 255);
   color: white;
-  font-size: 35px;
+  font-size: 20px;
   margin: 0;
   padding: 0;
 }
 
 footer ul {
   display: flex;
+  flex-wrap: wrap;
   /* justify-content: space-between; */
   list-style-type: none;
 }
