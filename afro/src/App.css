@@ -1,12 +1,12 @@
 body {
-  /* background-color: black; */
-  background-color: #4D774E;
+  background-color: rgba(128, 128, 0, 1);
+  /* background-color: #4D774E; */
   
 }
 
 .title {
-  display: flex;
-  justify-content: flex-start;
+   color: white;
+   font-size: 40px;
 }
 
 footer {
