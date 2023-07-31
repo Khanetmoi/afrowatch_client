@@ -385,9 +385,45 @@ const NavItem = styled.li`
 
 
 const Home = ()=>{
+  const [categoryTitle, setCategoryTitle] = useState("Home Page");
+  const [tab, setTab] = useState("Home")
+  const [categories, setCategories] = useState([
+    <option key={1}>Popular</option>,
+    <option key={2}>New Movies</option>,
+    <option key={3}>Editor choice</option>,
+    <option key={4}>Viewers choice</option>,
+    <option key={5}>Film of the week</option>,
+  ]);
+  
   const handleItemClick = (item) => {
-    // Handle the click event for each item here
-    console.log(item);
+  if(item === "Home")
+   {
+    setTab("Home")
+    setCategories("Home")
+    setCategoryTitle("Home Page")
+   }
+   else if(item === "Movie"){
+    setTab("Movie")
+    setCategories([
+      <option key={1}>Action</option>,
+      <option key={1}>Comedy</option>,
+      <option key={1}>Drama</option>,
+      <option key={1}>Sci-Fi</option>,
+      <option key={1}>Fantasy</option>,])
+      setCategoryTitle("Movie")
+    
+   }
+   else if(item === "show"){
+    setTab("show")
+    setCategories([
+      <option key={1}>Action</option>,
+      <option key={1}>Comedy</option>,
+      <option key={1}>Drama</option>,
+      <option key={1}>Sci-Fi</option>,
+      <option key={1}>Fantasy</option>,])
+      setCategoryTitle("Show")
+    
+   }
   };
 
   // const NavBar = () => {
@@ -404,36 +440,36 @@ const Home = ()=>{
   ];
 
   const genres = [
-    'Action',
-    'Comedy',
-    'Drama',
-    'Sci-Fi',
-    'Fantasy',
-    'Adventure',
-    'Romance',
-    'Thriller',
-    'Horror',
-    'Superhero',
-    'Animation',
-    'Family',
-    'Mystery',
-    'Crime',
-    'Historical',
-    'Sports',
-    'Biographical',
-    'Psychological',
-    'Suspense',
-    'Time Travel',
-    'Documentary',
-    'War',
-    'Musical',
-    'Western',
-    'Coming of Age',
-    'Dystopian',
-    'Disaster',
-    'Spy/Espionage',
-    'Martial Arts',
-    'Supernatural',
+    <option key={1}>Action</option>,
+    <option key={1}>Comedy</option>,
+    <option key={1}>Drama</option>,
+    <option key={1}>Sci-Fi</option>,
+    <option key={1}>Fantasy</option>,
+    // 'Adventure',
+    // 'Romance',
+    // 'Thriller',
+    // 'Horror',
+    // 'Superhero',
+    // 'Animation',
+    // 'Family',
+    // 'Mystery',
+    // 'Crime',
+    // 'Historical',
+    // 'Sports',
+    // 'Biographical',
+    // 'Psychological',
+    // 'Suspense',
+    // 'Time Travel',
+    // 'Documentary',
+    // 'War',
+    // 'Musical',
+    // 'Western',
+    // 'Coming of Age',
+    // 'Dystopian',
+    // 'Disaster',
+    // 'Spy/Espionage',
+    // 'Martial Arts',
+    // 'Supernatural',
   ];
   
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -448,7 +484,142 @@ const Home = ()=>{
     setCurrentSlide((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides);
   };
   
-  const sponsoredMovies = [
+  const show = [
+    {
+      Class: 'Scard',
+      imgSrc: comingTo,
+      alter: 'Movie Poster',
+      title: 'Avengers',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'expendable',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'creators',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'godly',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'death',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'karma',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'shavir',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'chalissa',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+
+  ]
+
+  const movie = [
+    {
+      Class: 'Scard',
+      imgSrc: comingTo,
+      alter: 'Movie Poster',
+      title: 'Avengers',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'expendable',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'creators',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'godly',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'death',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'karma',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'shavir',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+    {
+      Class: 'Scard',
+      imgSrc:  comingTo,
+      alter: 'Movie Poster',
+      title: 'chalissa',
+      year: 2023,
+      hours: 2, // Duration of the movie in hours
+    },
+
+  ]
+  const shome = [
     {
       Class: 'Scard',
       imgSrc: comingTo,
@@ -563,7 +734,7 @@ const Home = ()=>{
 
         <section>
           <div className='flex'>
-          <h2 className="title">Popular</h2>
+          <h2 className="title">{categoryTitle}</h2>
           <div className='flex1'>
           <select>
             {home.map((option) => option)}
@@ -576,10 +747,44 @@ const Home = ()=>{
         <Category>
         <button className='left_arrow'>Left</button>
         {
-            sponsoredMovies.map((sMovies,index)=>{
-              return <Card key={index} Class={sMovies.Class} imgSrc={sMovies.imgSrc} alter={sMovies.alter} title={sMovies.title} year={sMovies.year} hours = {sMovies.hours}></Card>
-            })
-          }
+  tab === 'Home'
+    ? shome.map((sMovies, index) => (
+        <Card
+          key={index}
+          Class={sMovies.Class}
+          imgSrc={sMovies.imgSrc}
+          alter={sMovies.alter}
+          title={sMovies.title}
+          year={sMovies.year}
+          hours={sMovies.hours}
+        ></Card>
+      ))
+    : tab === 'Movie'
+    ? movie.map((sMovies, index) => (
+      <Card
+        key={index}
+        Class={sMovies.Class}
+        imgSrc={sMovies.imgSrc}
+        alter={sMovies.alter}
+        title={sMovies.title}
+        year={sMovies.year}
+        hours={sMovies.hours}
+      ></Card>
+    ))
+  : tab === 'show'
+    ? show.map((sMovies, index) => (
+      <Card
+        key={index}
+        Class={sMovies.Class}
+        imgSrc={sMovies.imgSrc}
+        alter={sMovies.alter}
+        title={sMovies.title}
+        year={sMovies.year}
+        hours={sMovies.hours}
+      ></Card>
+    ))
+  : null
+}
         <button className='right_arrow'>Right</button>
         </Category>
         </section>
