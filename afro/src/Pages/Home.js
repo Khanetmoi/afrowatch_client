@@ -388,7 +388,23 @@ const Home = ()=>{
       title: 'Avengers',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -397,7 +413,23 @@ const Home = ()=>{
       title: 'expendable',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -406,7 +438,23 @@ const Home = ()=>{
       title: 'creators',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -415,7 +463,23 @@ const Home = ()=>{
       title: 'godly',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -424,7 +488,23 @@ const Home = ()=>{
       title: 'death',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -433,7 +513,23 @@ const Home = ()=>{
       title: 'karma',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -442,7 +538,23 @@ const Home = ()=>{
       title: 'shavir',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -451,7 +563,22 @@ const Home = ()=>{
       title: 'chalissa',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
 
   ]
@@ -464,7 +591,23 @@ const Home = ()=>{
       title: 'Avengers',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -473,7 +616,23 @@ const Home = ()=>{
       title: 'expendable',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -482,7 +641,23 @@ const Home = ()=>{
       title: 'creators',
       year: 2023,
       hours: 2, // Duration of the movie in hours
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -491,7 +666,23 @@ const Home = ()=>{
       title: 'godly',
       year: 2023,
       hours: 2, 
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -500,7 +691,23 @@ const Home = ()=>{
       title: 'death',
       year: 2023,
       hours: 2, 
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -509,7 +716,23 @@ const Home = ()=>{
       title: 'karma',
       year: 2023,
       hours: 2,
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -518,7 +741,23 @@ const Home = ()=>{
       title: 'shavir',
       year: 2023,
       hours: 2, 
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -527,7 +766,23 @@ const Home = ()=>{
       title: 'chalissa',
       year: 2023,
       hours: 2, 
-      category: "Comedy"
+      category: "Comedy",
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
 
   ]
@@ -540,7 +795,22 @@ const Home = ()=>{
       year: 2023,
       hours: 2,
       category: "Action",
-      actuality: "Popular"
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -550,7 +820,22 @@ const Home = ()=>{
       year: 2023,
       hours: 2, // Duration of the movie in hours
       category: "Comedy",
-      actuality: "Popular"
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -560,7 +845,22 @@ const Home = ()=>{
       year: 2023,
       hours: 2, // Duration of the movie in hours
       category: "Drama",
-      actuality: "Popular"
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -570,7 +870,22 @@ const Home = ()=>{
       year: 2023,
       hours: 2, 
       category: "Drama",
-      actuality: "Popular"
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -580,7 +895,22 @@ const Home = ()=>{
       year: 2023,
       hours: 2,
       category: "Comedy",
-      actuality: "Popular"
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -591,6 +921,21 @@ const Home = ()=>{
       hours: 2,
       category: "Comedy",
       actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -600,7 +945,22 @@ const Home = ()=>{
       year: 2023,
       hours: 2,
       category: "Drama",
-      actuality: "Popular"
+      actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
     {
       Class: 'Scard',
@@ -611,6 +971,21 @@ const Home = ()=>{
       hours: 2,
       category: "Action",
       actuality: "Popular",
+
+      country:"dd" ,
+      rated: "dd",
+      genre: "dsi",
+      production: "hdhd",
+      hours: "jjd",
+      rating: "haja",
+      director: "jjj",
+      actors: "hsg",
+      boxoffice: "jjj",
+      description: "jshd",
+      video: "hdgf",
+      comments: "adad",
+      questions: "hafa",
+      episodes: "hahsj"
     },
 
   ]
@@ -855,7 +1230,6 @@ export const Nav = ({handleItemClick})=>{
 const Watch = ({ selectedCard }) => {
   return (
     <div>
-      <Nav />
       <div>
         {selectedCard ? (
           <div className="watch">
@@ -874,12 +1248,13 @@ const Watch = ({ selectedCard }) => {
               </div>
               <div className="suggestions">
                 <div className='comments'>
-                  {selectedCard.comments.map((comment) => (
+                  {/* {selectedCard.comments.map((comment) => (
                     <>
                       <h3>{comment.name}</h3>
                       <p>{comment.comment}</p>
                     </>
-                  ))}
+                  ))} */}
+                  <h2>comments</h2>
                 </div>
               </div>
             </div>
