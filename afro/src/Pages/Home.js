@@ -818,12 +818,13 @@ const Home = (props)=>{
   ]
 
   const baseUrlimage = "http://localhost/afrowatch_admin/server/movie_images/";
-
+  
+    const [watching , setWatching ] = useState(false)
     return (
         <div className='page'>
         
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged}/>
-        <div className='HomePage'>
+        {watching?<div className='HomePage'>
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
@@ -959,8 +960,8 @@ const Home = (props)=>{
       </FooterLinks>
     </FooterContainer>
     </div>
-    <Watch selectedCard={selectedCard}/>
-
+    :<Watch selectedCard={selectedCard}/>
+    }
         </div>
     )
 }
@@ -994,6 +995,7 @@ const Modal = (props)=>{
   }
   const handlePlayClick = () => {
     // Call the callback function passed from the parent component (e.g., Watch) and pass the 'viewMovie' data
+    props.setWatching('true')
     props.onPlayClick(viewMovie);
   };
   return (
