@@ -611,24 +611,8 @@ const Home = ()=>{
   ]
     return (
         <div className='page'>
-        <Navigation>
-        <img src={logo} alt="logo.png"/>
-        <ul>
-        <NavItem onClick={() => handleItemClick('Home')}>
-        <a href="#">Home</a>
-      </NavItem>
-      <NavItem onClick={() => handleItemClick('Movie')}>
-        <a href="#">Movie</a>
-      </NavItem>
-      <NavItem onClick={() => handleItemClick('Show')}>
-        <a href="#">Show</a>
-      </NavItem>
-        </ul>
-        <div>
-        <LoginButton>Log In</LoginButton>   
-        </div>
-        </Navigation>
         
+        <Nav handleItemClick={handleItemClick} />
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
@@ -688,11 +672,21 @@ const Home = ()=>{
         {selectedCard && (
         <Modal
           Class={selectedCard.Class}
-          imgSrc={selectedCard.imgSrc}
+          Poster={selectedCard.imgSrc}
           alter={selectedCard.alter}
-          title={selectedCard.title}
-          year={selectedCard.year}
+          Title={selectedCard.title}
+          Year={selectedCard.year}
           hours={selectedCard.hours}
+          Country = {selectedCard.country}
+          Rated= {selectedCard.rated}
+          Genre = {selectedCard.genre}
+          Production = {selectedCard.production}
+          Runtime = {selectedCard.hours}
+          imdbRating = {selectedCard.rating}
+          Director = {selectedCard.director}
+          Actors = {selectedCard.actors}
+          BoxOffice = {selectedCard.boxoffice}
+          Plot = {selectedCard.description}
           // Pass other necessary props from the selected card to the modal
           // e.g., category, actuality, etc.
           closePop={() => setSelectedCard(null)} // Function to close the modal
@@ -777,7 +771,7 @@ const Modal = (props)=>{
     <div className='show-expand'>
       
       <div className='show-content'>
-        <i class="show-close fas fa-times" onClick={props.closePop} ></i>
+        <i class="show-close fas fa-times" onClick={props.closePop} >X</i>
         
         <div className='show-poster'>
           <span className='show-poster-bg'>
@@ -809,9 +803,31 @@ const Modal = (props)=>{
             <p><strong>BoxOffice:</strong> {props.BoxOffice || 'N/A '}</p>
           </div>
         </div>
-        
+        <button onClick={props.closePop}>Play</button>
       </div>
+      
     </div>
   )
 }
 
+export const Nav = ({handleItemClick})=>{
+  return (
+    <Navigation>
+        <img src={logo} alt="logo.png"/>
+        <ul>
+        <NavItem onClick={() => handleItemClick('Home')}>
+        <a href="#">Home</a>
+      </NavItem>
+      <NavItem onClick={() => handleItemClick('Movie')}>
+        <a href="#">Movie</a>
+      </NavItem>
+      <NavItem onClick={() => handleItemClick('Show')}>
+        <a href="#">Show</a>
+      </NavItem>
+        </ul>
+        <div>
+        <LoginButton>Log In</LoginButton>   
+        </div>
+        </Navigation>
+  )
+}
