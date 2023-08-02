@@ -318,6 +318,11 @@ const Home = ()=>{
     }
   };
 
+  const handlePlayClick = (viewMovie) => {
+    // Now you can do whatever you want with the 'viewMovie' data.
+    // In this example, we will navigate to the Watch component.
+    
+  };
   const home = [
     <option key={1}>Popular</option>,
     <option key={2}>New Movies</option>,
@@ -613,6 +618,7 @@ const Home = ()=>{
         <div className='page'>
         
         <Nav handleItemClick={handleItemClick} />
+        <div className='HomePage'>
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
@@ -687,6 +693,7 @@ const Home = ()=>{
           Actors = {selectedCard.actors}
           BoxOffice = {selectedCard.boxoffice}
           Plot = {selectedCard.description}
+          onPlayClick={handlePlayClick}
           // Pass other necessary props from the selected card to the modal
           // e.g., category, actuality, etc.
           closePop={() => setSelectedCard(null)} // Function to close the modal
@@ -741,6 +748,9 @@ const Home = ()=>{
         </FooterLink>
       </FooterLinks>
     </FooterContainer>
+    </div>
+    <Watch selectedCard={selectedCard}/>
+
         </div>
     )
 }
@@ -767,8 +777,18 @@ const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
 };
 
 const Modal = (props)=>{
+  const viewMovie = {
+    video: props.movie,
+    comments: props.comments,
+    episodes: props.episodes
+  }
+  const handlePlayClick = () => {
+    // Call the callback function passed from the parent component (e.g., Watch) and pass the 'viewMovie' data
+    props.onPlayClick(viewMovie);
+  };
   return (
-    <div className='show-expand'>
+    
+      <div className='show-expand'>
       
       <div className='show-content'>
         <i class="show-close fas fa-times" onClick={props.closePop} >X</i>
@@ -803,7 +823,7 @@ const Modal = (props)=>{
             <p><strong>BoxOffice:</strong> {props.BoxOffice || 'N/A '}</p>
           </div>
         </div>
-        <button onClick={props.closePop}>Play</button>
+        <button onClick={handlePlayClick}>Play</button>
       </div>
       
     </div>
@@ -831,3 +851,43 @@ export const Nav = ({handleItemClick})=>{
         </Navigation>
   )
 }
+
+const Watch = ({ selectedCard }) => {
+  return (
+    <div>
+      <Nav />
+      <div>
+        {selectedCard ? (
+          <div className="watch">
+            <div className="Cinema">
+              <video>
+                <source src={selectedCard.video} type="video/mp4" />
+              </video>
+            </div>
+            <div className="comments-suggestions">
+              <div className="comments">
+                <ul>
+                  <li>Comments</li>
+                  <li>Questions</li>
+                  <li>Episodes</li>
+                </ul>
+              </div>
+              <div className="suggestions">
+                <div className='comments'>
+                  {selectedCard.comments.map((comment) => (
+                    <>
+                      <h3>{comment.name}</h3>
+                      <p>{comment.comment}</p>
+                    </>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>Page Not Found</div>
+        )}
+      </div>
+    </div>
+  );
+};
