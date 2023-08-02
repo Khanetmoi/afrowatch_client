@@ -37,11 +37,16 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Login = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.page("home")
     // Handle login here (e.g., form validation and API call)
   };
+
+  const gotoLogUp = ()=>{
+    props.page("log Up");
+  }
 
   return (
     <LoginContainer>
@@ -51,6 +56,7 @@ const Login = () => {
         <Input type="password" placeholder="Password" />
         <Button type="submit">Login</Button>
       </LoginForm>
+      <span>Don't have an account yet? <button onClick={() => gotoLogUp()}>Sign Up</button></span>
     </LoginContainer>
   );
 };
