@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LoginContainer = styled.div`
+const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@ const LoginContainer = styled.div`
   background-color: #4CAF50;
 `;
 
-const LoginForm = styled.form`
+const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,22 +37,23 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Login = () => {
+const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle login here (e.g., form validation and API call)
+    // Handle form submission here (e.g., form validation and API call)
   };
 
   return (
-    <LoginContainer>
-      <LoginForm onSubmit={handleSubmit}>
-        <h2>Login</h2>
+    <SignUpContainer>
+      <SignUpForm onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
+        <Input type="text" placeholder="Full Name" />
         <Input type="email" placeholder="Email" />
         <Input type="password" placeholder="Password" />
-        <Button type="submit">Login</Button>
-      </LoginForm>
-    </LoginContainer>
+        <Button type="submit">Sign Up</Button>
+      </SignUpForm>
+    </SignUpContainer>
   );
 };
 
-export default Login;
+export default SignUp;

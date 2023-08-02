@@ -28,11 +28,42 @@ footer ul li{
   margin: 20px;
 }
 
-.page {
-  position: absolute;
-}
-.show-content {
+body {
   position: relative;
+}
+
+.show-expand {
+  z-index: 100000;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+}
+
+.show-expand::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.show-expand::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+}
+
+.show-expand::-webkit-scrollbar-thumb {
+  background-color: #42275a;
+}
+
+.show-content {
+  /* position: absolute;
+  top: 50%;
+  left: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: center;

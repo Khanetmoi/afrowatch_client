@@ -9,6 +9,9 @@ import slides from './FakeApiData';
 
 
  const Navigation = styled.div`
+ position: sticky;
+  top: 0;
+  z-index: 100;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -267,7 +270,7 @@ const NavItem = styled.li`
 `;
 
 
-const Home = ()=>{
+const Home = (props)=>{
   const [selectedCard, setSelectedCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const selectRef = useRef();
@@ -380,6 +383,10 @@ const Home = ()=>{
   const handleCardClick = (sMovies) => {
     setSelectedCard(sMovies);
   };
+
+  const handleLogInClick = ()=>{
+    props.cpage("log In");
+  }
   const show = [
     {
       Class: 'Scard',
@@ -992,7 +999,7 @@ const Home = ()=>{
     return (
         <div className='page'>
         
-        <Nav handleItemClick={handleItemClick} />
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick}/>
         <div className='HomePage'>
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
@@ -1205,7 +1212,7 @@ const Modal = (props)=>{
   )
 }
 
-export const Nav = ({handleItemClick})=>{
+export const Nav = ({handleItemClick, handleLogInClick})=>{
   return (
     <Navigation>
         <img src={logo} alt="logo.png"/>
@@ -1221,7 +1228,7 @@ export const Nav = ({handleItemClick})=>{
       </NavItem>
         </ul>
         <div>
-        <LoginButton>Log In</LoginButton>   
+        <LoginButton onClick={() => handleLogInClick}>Log In</LoginButton>   
         </div>
         </Navigation>
   )
