@@ -1075,7 +1075,8 @@ const Watch = ({ selectedCard }) => {
           <div className="watch">
             <div className="Cinema">
               <video>
-                <source src={baseUrlMovie + selectedCard.movie_file} type="video/mp4" />
+                {/* <source src={baseUrlMovie + selectedCard.movie_file} type="video/mp4" /> */}
+                <source src="https://myworklm.com/Afrowatch_admin/server/movie_files/1.mp4" type="video/mp4" />
               </video>
             </div>
             <div className="comments-suggestions">
