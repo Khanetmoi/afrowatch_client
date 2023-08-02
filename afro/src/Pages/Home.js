@@ -270,6 +270,58 @@ const NavItem = styled.li`
 `;
 
 
+const WatchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Cinema = styled.div`
+  width: 100%;
+  height: 75vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const TabsContainer = styled.ul`
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  li.active {
+    background-color: #4caf50;
+    color: #fff;
+    border-color: transparent;
+  }
+`;
+
+const CommentsContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
 const Home = (props)=>{
 
   const [selectedCard, setSelectedCard] = useState(null);
@@ -332,18 +384,30 @@ const Home = (props)=>{
     if (tab === 'Home') {
       const filteredCards = userData.filter((sMovies) => sMovies.actuality === selectedCategory);
       setFilteredCards(filteredCards);
+      setWatching(false);
     } else if (tab === 'Movie') {
       const filteredCards = movie.filter((sMovies) => sMovies.category === selectedCategory);
       setFilteredCards(filteredCards);
+      setWatching(false);
     } else if (tab === 'Show') {
       const filteredCards = show.filter((sMovies) => sMovies.category === selectedCategory);
       setFilteredCards(filteredCards);
+      setWatching(false);
     }
   };
+
+  // const handlePlayClick = (viewMovie) => {
+  //   // Now you can do whatever you want with the 'viewMovie' data.
+  //   // In this example, we will navigate to the Watch component.
+    
+  // };
 
   const handlePlayClick = (viewMovie) => {
     // Now you can do whatever you want with the 'viewMovie' data.
     // In this example, we will navigate to the Watch component.
+    
+    setWatching(true);
+    // props.onPlayClick(viewMovie);
   };
 
   const home = [
@@ -824,7 +888,8 @@ const Home = (props)=>{
         <div className='page'>
         
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged}/>
-        {watching?<div className='HomePage'>
+        {watching?<Watch videoUrl ="https://myworklm.com/Afrowatch_admin/server/movie_files/1.mp4" />:
+        <div className='HomePage'>
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
@@ -904,6 +969,7 @@ const Home = (props)=>{
             BoxOffice = {selectedCard.boxoffice}
             Plot = {selectedCard.movie_description}
             onPlayClick={handlePlayClick}
+            watching={watching}
             // Pass other necessary props from the selected card to the modal
 
             // e.g., category, actuality, etc.
@@ -960,7 +1026,7 @@ const Home = (props)=>{
       </FooterLinks>
     </FooterContainer>
     </div>
-    :<Watch selectedCard={selectedCard}/>
+    
     }
         </div>
     )
@@ -993,9 +1059,14 @@ const Modal = (props)=>{
     comments: props.comments,
     episodes: props.episodes
   }
+  // const handlePlayClick = () => {
+  //   // // Call the callback function passed from the parent component (e.g., Watch) and pass the 'viewMovie' data
+  //   // props.watching()
+  //   // // props.onPlayClick(viewMovie);
+  //   // props.onPlayClick();
+    
+  // };
   const handlePlayClick = () => {
-    // Call the callback function passed from the parent component (e.g., Watch) and pass the 'viewMovie' data
-    props.setWatching('true')
     props.onPlayClick(viewMovie);
   };
   return (
@@ -1067,45 +1138,134 @@ export const Nav = ({handleItemClick, handleLogInClick, Islogged})=>{
   )
 }
 
-const Watch = ({ selectedCard }) => {
-  const baseUrlMovie = "http://localhost/afrowatch_admin/server/movie_files/";
+// const Watch = ({ selectedCard }) => {
+//   const [activeTab, setActiveTab] = useState('comments');
 
-  return (
-    <div>
-      <div>
-        {selectedCard ? (
-          <div className="watch">
-            <div className="Cinema">
-              <video>
-                {/* <source src={baseUrlMovie + selectedCard.movie_file} type="video/mp4" /> */}
-                <source src="https://myworklm.com/Afrowatch_admin/server/movie_files/1.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="comments-suggestions">
-              <div className="comments">
-                <ul>
-                  <li>Comments</li>
-                  <li>Questions</li>
-                  <li>Episodes</li>
-                </ul>
-              </div>
-              <div className="suggestions">
-                <div className='comments'>
-                  {/* {selectedCard.comments.map((comment) => (
-                    <>
-                      <h3>{comment.name}</h3>
-                      <p>{comment.comment}</p>
-                    </>
-                  ))} */}
-                  <h2>comments</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div>Page Not Found</div>
+//   const handleTabClick = (tab) => {
+//     setActiveTab(tab);
+//   };
+
+//   const baseUrlMovie = "http://localhost/afrowatch_admin/server/movie_files/";
+
+//   // Check if selectedCard is null or undefined before accessing its properties
+//   if (!selectedCard) {
+//     return <div>No video selected</div>;
+//   }
+
+//   return (
+//     <WatchContainer>
+//       <Cinema>
+//         <video controls>
+//           <source
+//             src={baseUrlMovie + selectedCard.movie_file}
+//             type="video/mp4"
+//           />
+//         </video>
+//       </Cinema>
+
+//       <TabsContainer>
+//         <li
+//           onClick={() => handleTabClick('comments')}
+//           className={activeTab === 'comments' ? 'active' : ''}
+//         >
+//           Comments
+//         </li>
+//         <li
+//           onClick={() => handleTabClick('questions')}
+//           className={activeTab === 'questions' ? 'active' : ''}
+//         >
+//           Questions
+//         </li>
+//         <li
+//           onClick={() => handleTabClick('episodes')}
+//           className={activeTab === 'episodes' ? 'active' : ''}
+//         >
+//           Episodes
+//         </li>
+//       </TabsContainer>
+
+//       {activeTab === 'comments' && (
+//         <CommentsContainer>
+//           {/* Render comments here */}
+//           <h2>Comments</h2>
+//         </CommentsContainer>
+//       )}
+
+//       {activeTab === 'questions' && (
+//         <CommentsContainer>
+//           {/* Render questions here */}
+//           <h2>Questions</h2>
+//         </CommentsContainer>
+//       )}
+
+//       {activeTab === 'episodes' && (
+//         <CommentsContainer>
+//           {/* Render episodes here */}
+//           <h2>Episodes</h2>
+//         </CommentsContainer>
+//       )}
+//     </WatchContainer>
+//   );
+// };
+
+
+const Watch = ({ videoUrl }) => {
+  const [activeTab, setActiveTab] = useState('comments');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  
+    return (
+      <WatchContainer>
+        <Cinema>
+          <video controls>
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        </Cinema>
+
+        <TabsContainer>
+          <li
+            onClick={() => handleTabClick('comments')}
+            className={activeTab === 'comments' ? 'active' : ''}
+          >
+            Comments
+          </li>
+          <li
+            onClick={() => handleTabClick('questions')}
+            className={activeTab === 'questions' ? 'active' : ''}
+          >
+            Questions
+          </li>
+          <li
+            onClick={() => handleTabClick('episodes')}
+            className={activeTab === 'episodes' ? 'active' : ''}
+          >
+            Episodes
+          </li>
+        </TabsContainer>
+
+        {activeTab === 'comments' && (
+          <CommentsContainer>
+            {/* Render comments here */}
+            <h2>Comments</h2>
+          </CommentsContainer>
         )}
-      </div>
-    </div>
-  );
+
+        {activeTab === 'questions' && (
+          <CommentsContainer>
+            {/* Render questions here */}
+            <h2>Questions</h2>
+          </CommentsContainer>
+        )}
+
+        {activeTab === 'episodes' && (
+          <CommentsContainer>
+            {/* Render episodes here */}
+            <h2>Episodes</h2>
+          </CommentsContainer>
+        )}
+      </WatchContainer>
+    );
 };
