@@ -1,5 +1,5 @@
 // Importing components at the top level (correct placement)
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import comingTo from '../Images/comingTo.jpg';
 import disney from '../Images/disney.jpg';
@@ -271,12 +271,15 @@ const NavItem = styled.li`
 
 
 const Home = (props)=>{
+
   const [selectedCard, setSelectedCard] = useState(null);
+  console.log('selected', selectedCard)
   const [selectedCategory, setSelectedCategory] = useState("");
   const selectRef = useRef();
   const [filteredCards, setFilteredCards] = useState([]);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
+
   const [categories, setCategories] = useState([
     <option key={1}>Popular</option>,
     <option key={2}>New Movies</option>,
@@ -305,12 +308,29 @@ const Home = (props)=>{
    }
   };
 
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    const getUserData = async() => {
+      try {
+        const reqData = await fetch("http://localhost/afrowatch_admin/api/movie/afrowatch_api_movie.php");
+        const resData = await reqData.json();
+        console.log(resData);
+        setUserData(resData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getUserData();
+  }, []);
+
   const handleCategoryChange = () => {
     const selectedCategory = selectRef.current.value;
     setSelectedCategory(selectedCategory);
     // Filter the cards based on the selected category
     if (tab === 'Home') {
-      const filteredCards = shome.filter((sMovies) => sMovies.actuality === selectedCategory);
+      const filteredCards = userData.filter((sMovies) => sMovies.actuality === selectedCategory);
       setFilteredCards(filteredCards);
     } else if (tab === 'Movie') {
       const filteredCards = movie.filter((sMovies) => sMovies.category === selectedCategory);
@@ -324,8 +344,8 @@ const Home = (props)=>{
   const handlePlayClick = (viewMovie) => {
     // Now you can do whatever you want with the 'viewMovie' data.
     // In this example, we will navigate to the Watch component.
-    
   };
+
   const home = [
     <option key={1}>Popular</option>,
     <option key={2}>New Movies</option>,
@@ -381,12 +401,14 @@ const Home = (props)=>{
   };
   
   const handleCardClick = (sMovies) => {
-    setSelectedCard(sMovies);
+    console.log('smovies', sMovies)
+    setSelectedCard({...sMovies});
   };
 
   const handleLogInClick = ()=>{
     props.cpage("log In");
   }
+
   const show = [
     {
       Class: 'Scard',
@@ -793,209 +815,9 @@ const Home = (props)=>{
     },
 
   ]
-  const shome = [
-    {
-      Class: 'Scard',
-      imgSrc: comingTo,
-      alter: 'Movie Poster',
-      title: 'Avengers',
-      year: 2023,
-      hours: 2,
-      category: "Action",
-      actuality: "Popular",
 
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'expendable',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
+  const baseUrlimage = "http://localhost/afrowatch_admin/server/movie_images/";
 
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'creators',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Drama",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'godly',
-      year: 2023,
-      hours: 2, 
-      category: "Drama",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'death',
-      year: 2023,
-      hours: 2,
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'karma',
-      year: 2023,
-      hours: 2,
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'shavir',
-      year: 2023,
-      hours: 2,
-      category: "Drama",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'chalissa',
-      year: 2023,
-      hours: 2,
-      category: "Action",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-
-  ]
     return (
         <div className='page'>
         
@@ -1041,46 +863,51 @@ const Home = (props)=>{
         
           <Category>
             <button>Left</button>
-            {filteredCards.map((sMovies, index) => (
-              <Card
-                key={index}
-                Class={sMovies.Class}
-                imgSrc={sMovies.imgSrc}
-                alter={sMovies.alter}
-                title={sMovies.title}
-                year={sMovies.year}
-                hours={sMovies.hours}
-                onClick={() => handleCardClick(sMovies)}
-              />
-            ))}
+            {
+              filteredCards.map((sMovies, index) => (
+                  <Card
+                    key={index}
+                    Class="Scard"
+                    imgSrc={baseUrlimage + sMovies.movie_image}
+                    alter={sMovies.movie_name}
+                    title={sMovies.movie_name}
+                    year={sMovies.movie_year_release}
+                    hours={sMovies.movie_length}
+                    onClick={() => handleCardClick(sMovies)}
+                  />
+                )
+              )
+            }
             <button>Right</button>
           </Category>
         </section>
         </MovieList>
+
         {selectedCard && (
-        <Modal
-          Class={selectedCard.Class}
-          Poster={selectedCard.imgSrc}
-          alter={selectedCard.alter}
-          Title={selectedCard.title}
-          Year={selectedCard.year}
-          hours={selectedCard.hours}
-          Country = {selectedCard.country}
-          Rated= {selectedCard.rated}
-          Genre = {selectedCard.genre}
-          Production = {selectedCard.production}
-          Runtime = {selectedCard.hours}
-          imdbRating = {selectedCard.rating}
-          Director = {selectedCard.director}
-          Actors = {selectedCard.actors}
-          BoxOffice = {selectedCard.boxoffice}
-          Plot = {selectedCard.description}
-          onPlayClick={handlePlayClick}
-          // Pass other necessary props from the selected card to the modal
-          // e.g., category, actuality, etc.
-          closePop={() => setSelectedCard(null)} // Function to close the modal
-        />
-      )}
+          <Modal
+            Class='Scard'
+            Poster={baseUrlimage +selectedCard.movie_image}
+            alter={selectedCard.movie_name}
+            Title={selectedCard.movie_name}
+            Year={selectedCard.movie_year_release}
+            hours={selectedCard.hours}
+            Country = {selectedCard.country}
+            Rated= {selectedCard.rated}
+            Genre = {selectedCard.movie_genre}
+            Production = {selectedCard.production}
+            Runtime = {selectedCard.movie_length}
+            imdbRating = {selectedCard.movie_rating}
+            Director = {selectedCard.movie_producer}
+            Actors = {selectedCard.movie_actor}
+            BoxOffice = {selectedCard.boxoffice}
+            Plot = {selectedCard.movie_description}
+            onPlayClick={handlePlayClick}
+            // Pass other necessary props from the selected card to the modal
+
+            // e.g., category, actuality, etc.
+            closePop={() => setSelectedCard(null)} // Function to close the modal
+          />
+        )}
         <FooterContainer>
       <FooterLinks>
         <FooterLink>
@@ -1141,10 +968,10 @@ const Home = (props)=>{
 export default Home;
 
 const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
-  console.log("Class:", Class);
-  console.log("imgSrc:", imgSrc);
-  console.log("alter:", alter);
-  console.log("title:", title)
+  //console.log("Class:", Class);
+  //console.log("imgSrc:", imgSrc);
+  //console.log("alter:", alter);
+  //console.log("title:", title)
   return (
     
     <div className={Class} onClick={onClick}>
@@ -1197,8 +1024,8 @@ const Modal = (props)=>{
           </div>
           
           <div class="show-credits">
-            <p><strong>Production:</strong> {props.Production}</p>
-            <p><strong>Runtime:</strong> {props.Runtime || 'N/A '}</p>
+            <p><strong>Production:</strong> {props.Production || 'N/A '}</p>
+            <p><strong>Runtime:</strong> {props.Runtime || 'N/A '} minutes</p>
             <p><strong>Rating:</strong> {props.imdbRating}</p>
             <p><strong>Director:</strong> {props.Director}</p>
             <p><strong>Actors:</strong> {props.Actors}</p>
@@ -1235,6 +1062,8 @@ export const Nav = ({handleItemClick, handleLogInClick})=>{
 }
 
 const Watch = ({ selectedCard }) => {
+  const baseUrlMovie = "http://localhost/afrowatch_admin/server/movie_files/";
+
   return (
     <div>
       <div>
@@ -1242,7 +1071,7 @@ const Watch = ({ selectedCard }) => {
           <div className="watch">
             <div className="Cinema">
               <video>
-                <source src={selectedCard.video} type="video/mp4" />
+                <source src={baseUrlMovie + selectedCard.movie_file} type="video/mp4" />
               </video>
             </div>
             <div className="comments-suggestions">
