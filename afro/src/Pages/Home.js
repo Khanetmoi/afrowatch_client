@@ -406,7 +406,8 @@ const Home = (props)=>{
   };
 
   const handleLogInClick = ()=>{
-    props.cpage("log In");
+    props.page("log In");
+    console.log("you clicked")
   }
 
   const show = [
@@ -821,7 +822,7 @@ const Home = (props)=>{
     return (
         <div className='page'>
         
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged}/>
         <div className='HomePage'>
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
@@ -1039,7 +1040,7 @@ const Modal = (props)=>{
   )
 }
 
-export const Nav = ({handleItemClick, handleLogInClick})=>{
+export const Nav = ({handleItemClick, handleLogInClick, Islogged})=>{
   return (
     <Navigation>
         <img src={logo} alt="logo.png"/>
@@ -1055,7 +1056,10 @@ export const Nav = ({handleItemClick, handleLogInClick})=>{
       </NavItem>
         </ul>
         <div>
-        <LoginButton onClick={() => handleLogInClick}>Log In</LoginButton>   
+          {
+            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+          }
+        
         </div>
         </Navigation>
   )

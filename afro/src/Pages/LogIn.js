@@ -37,22 +37,38 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle login here (e.g., form validation and API call)
+// ... (other imports and styles)
+
+const Login = (props) => {
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const email = event.target.elements.email.value;
+      const password = event.target.elements.password.value;
+  
+      // Save the email and password in the localStorage
+      localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
+  
+      props.page('home');
+      // Handle login here (e.g., form validation and API call)
+    };
+  
+    const gotoLogUp = () => {
+      props.page('log Up');
+    };
+  
+    return (
+      <LoginContainer>
+        <LoginForm onSubmit={handleSubmit}>
+          <h2>Login</h2>
+          <Input type="email" name="email" placeholder="Email" />
+          <Input type="password" name="password" placeholder="Password" />
+          <Button type="submit">Login</Button>
+        </LoginForm>
+        <span>
+          Don't have an account yet? <button onClick={() => gotoLogUp()}>Sign Up</button>
+        </span>
+      </LoginContainer>
+    );
   };
-
-  return (
-    <LoginContainer>
-      <LoginForm onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Button type="submit">Login</Button>
-      </LoginForm>
-    </LoginContainer>
-  );
-};
-
-export default Login;
+  
+  export default Login;
