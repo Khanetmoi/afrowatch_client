@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import  Nav  from './Pages/Home';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
+import Subscription from './Pages/Subscription'
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -42,6 +43,13 @@ const App = () => {
     return (
       <div>
         <SignUp page = {(cpage) => setCurrentPage(cpage)}/>
+      </div>
+    );
+  }
+  else if (currentPage === 'Subscription') {
+    return (
+      <div>
+        <Subscription page = {(cpage) => setCurrentPage(cpage)}/>
       </div>
     );
   }

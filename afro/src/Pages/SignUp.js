@@ -50,9 +50,10 @@ const CountryCodeOption = styled.option`
 `;
 
 
-const SignUp = () => {
+const SignUp = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
+    props.page('Subscription')
     // Handle form submission here (e.g., form validation and API call)
   };
 
