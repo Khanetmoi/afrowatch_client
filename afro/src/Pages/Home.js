@@ -365,7 +365,7 @@ const Home = (props)=>{
   useEffect(() => {
     const getUserData = async() => {
       try {
-        const reqData = await fetch("http://localhost/afrowatch_admin/api/movie/afrowatch_api_movie.php");
+        const reqData = await fetch("https://myworklm.com/afrowatch/api/movie/afrowatch_api_movie.php");
         const resData = await reqData.json();
         console.log(resData);
         setUserData(resData);
