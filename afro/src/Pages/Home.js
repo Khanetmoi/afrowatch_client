@@ -6,6 +6,10 @@ import disney from '../Images/disney.jpg';
 import logo from '../Images/logo.png';
 import afrowatch from '../Images/afrowatch.png';
 import slides from './FakeApiData';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slide from './Slide';
 
 
  const Navigation = styled.div`
@@ -454,15 +458,7 @@ const Home = (props)=>{
   
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  const totalSlides = slides.length;
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-  };
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides);
-  };
+ 
   
   const handleCardClick = (sMovies) => {
     console.log('smovies', sMovies)
@@ -474,6 +470,27 @@ const Home = (props)=>{
     console.log("you clicked")
   }
 
+  const slides = [{
+    image: comingTo,
+    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
+    alter: "poster"
+  },
+  {
+    image: comingTo,
+    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
+    alter: "poster"
+  },
+  {
+    image: comingTo,
+    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
+    alter: "poster"
+  },
+  {
+    image: comingTo,
+    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
+    alter: "poster"
+  },
+]
   const show = [
     {
       Class: 'Scard',
@@ -885,7 +902,17 @@ const Home = (props)=>{
 
   const baseUrlMovie = "http://localhost/afrowatch_admin/server/movie_files/";
   
-    const [watching , setWatching ] = useState(false)
+    const [watching , setWatching ] = useState(false);
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      centerMode: true,
+      centerPadding: '60px',
+    };
     return (
         <div className='page'>
         
@@ -904,16 +931,18 @@ const Home = (props)=>{
         <div>
         <FeaturedMovies>
         <h2 className="title">Featured</h2>
-      <SlideshowContainer>
-        {slides.map((slide, index) => (
+        <Slider {...settings}>
+        {/* {slides.map((slide, index) => (
           <React.Fragment key={index}>
             {index === currentSlide && slide}
           </React.Fragment>
-        ))}
-      </SlideshowContainer>
-      <button id="left" onClick={handlePrevSlide}></button>
-      <button id="play">Play {"Coming to america"}</button>
-      <button id="right" onClick={handleNextSlide}></button>
+          
+        ))} */}
+        {slides.map((slide)=>{
+
+           <Slide poster={slide.image} alter={slide.alter} video={slide.video}/>
+        })}
+        </Slider>
       </FeaturedMovies>
     </div>
         <MovieList>
