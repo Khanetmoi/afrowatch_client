@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SignUpContainer = styled.div`
@@ -51,8 +51,44 @@ const CountryCodeOption = styled.option`
 
 
 const SignUp = (props) => {
+
+  // const [formData, setFormData] = useState({
+  //   fullName: '',
+  //   email: '',
+  //   password: '',
+  //   phoneNumber: '',
+  //   countryCode: '',
+  // });
+
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // fetch('YOUR_API_ENDPOINT', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(formData),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     // Handle the API response as needed
+    //     console.log('API response:', data);
+    //   })
+    //   .catch((error) => {
+    //     // Handle errors
+    //     console.error('Error:', error);
+    //   });
+
     props.page('Subscription')
     // Handle form submission here (e.g., form validation and API call)
   };
@@ -104,13 +140,38 @@ const SignUp = (props) => {
     <SignUpContainer>
       <SignUpForm onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
-        <Input type="text" placeholder="Full Name" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Input type="tel" placeholder="Phone Number" />
+        <Input
+         type="text"
+          placeholder="Full Name"
+          //  value={formData.fullName}
+          //   onChange={handleInputChange} 
+           />
+        <Input
+         type="email"
+          placeholder="Email"
+          //  value={formData.email}
+          //   onChange={handleInputChange}
+             />
+        <Input
+         type="password"
+          placeholder="Password"
+          //  value={formData.password}
+          //   onChange={handleInputChange}
+            />
+        <Input
+         type="tel"
+          placeholder="Phone Number"
+          //  value={formData.phoneNumber}
+          //   onChange={handleInputChange}
+             />
         <div>
           <label htmlFor="countryCode">Country Code</label>
-          <CountryCodeSelect id="countryCode">
+          <CountryCodeSelect
+           id="countryCode"
+            name="countryCode"
+            //  value={formData.countryCode}
+            //   onChange={handleInputChange}
+              >
             {africanCountries.map((country) => (
               <CountryCodeOption key={country.code} value={country.code}>
                 {country.name}
