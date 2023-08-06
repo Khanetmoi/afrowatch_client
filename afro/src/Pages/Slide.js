@@ -1,7 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+import SLide from './styles'
 
 const Slide = (props)=>{
     return (
+      <SLide>
         <div className='SPcard'>
           <div>
             <img src={props.poster} alt={props.alter}/>
@@ -11,6 +14,7 @@ const Slide = (props)=>{
             </video>
           </div>
         </div>
+      </SLide>
     )
  }
 

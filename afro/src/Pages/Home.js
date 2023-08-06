@@ -907,7 +907,7 @@ const Home = (props)=>{
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 1,
+      slidesToShow: 3,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
@@ -939,8 +939,10 @@ const Home = (props)=>{
           
         ))} */}
         {slides.map((slide)=>{
-
-           <Slide poster={slide.image} alter={slide.alter} video={slide.video}/>
+          return(
+            <Slide poster={slide.image} alter={slide.alter} video={slide.video}/>
+          )
+           
         })}
         </Slider>
       </FeaturedMovies>

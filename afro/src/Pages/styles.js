@@ -1,21 +1,39 @@
 import styled from 'styled-components';
 
- const Slide = styled.div`
+
+const SLide = styled.div`
   flex: 0 0 calc(50% - 10px); /* Show 5 slides at a time with 10px spacing between them */
   margin: 0 5px;
+  
   /* Add your slide styles here */
-   .SPcard {
+  .SPcard {
+    position: relative; /* Needed for the aspect ratio trick */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */
+    overflow: hidden;
+
     div {
+      position: absolute; /* Position the content inside the parent div */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       display: flex;
       justify-content: center;
-       img{
-        width: 30%
-       }
-       video {
-        width: 100%;
-       }
+      wuidth: 45%;
+
+      img {
+        width: 30%;
+        height: 100%; /* Ensure the image takes the full height of the parent div */
+        object-fit: cover; /* Maintain the aspect ratio and cover the entire div */
+      }
+
+      video {
+        width: 50%;
+        height: 100%; /* Ensure the video takes the full height of the parent div */
+        object-fit: cover; /* Maintain the aspect ratio and cover the entire div */
+      }
     }
-   }
+  }
 `;
 
 export const Navigation = styled.div`
@@ -398,4 +416,4 @@ export const NavItem = styled.li`
 
 
 
-export default Slide
+export default SLide
