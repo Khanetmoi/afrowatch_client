@@ -327,13 +327,17 @@ const CommentsContainer = styled.div`
   border-radius: 5px;
 `;
 
+const SlideContainer = styled.div`
+  /* Slide styles */
+`;
+
 const Home = (props)=>{
 
   const [selectedCard, setSelectedCard] = useState(null);
   console.log('selected', selectedCard)
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Popular");
   const selectRef = useRef();
-  const [filteredCards, setFilteredCards] = useState([]);
+  const [filteredCards, setFilteredCards] = useState(["Popular"]);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
 
@@ -351,17 +355,20 @@ const Home = (props)=>{
     setTab("Home")
     setCategories(home)
     setCategoryTitle("Home Page")
+    props.page("home");
    }
    else if(item === "Movie"){
     setTab("Movie")
     setCategories(genres)
       setCategoryTitle("Movie")
+      props.page("home");
     
    }
    else if(item === "show"){
       setTab("show")
       setCategories(genres)
       setCategoryTitle("Show")
+      props.page("home");
    }
   };
 
@@ -916,6 +923,27 @@ const Home = (props)=>{
       // variableWidth: true, /* Enable variableWidth to make the slides take up their own width */
       afterChange: (current) => setCurrentSlide(current),
     };
+    var setting = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      centerMode: true,
+      centerPadding: '0', /* Set centerPadding to '0' to avoid extra padding on the sides */
+      // variableWidth: true, /* Enable variableWidth to make the slides take up their own width */
+      afterChange: (current) => setCurrentSlide(current),
+    };
+    const [movieList, setMovieList] = useState(['Popular']);
+    const handleAddSection = () => {
+      setMovieList((prevList) => [...prevList, selectedCategory]);
+    };
+  
+    // Function to remove a section from the movieList
+    const handleRemoveSection = () => {
+      setMovieList((prevList) => prevList.filter((category) => category !== selectedCategory));
+    };
     return (
         <div className='page'>
         
@@ -949,23 +977,28 @@ const Home = (props)=>{
       </FeaturedMovies>
     </div>
         <MovieList>
-
-        <section>
+        {movieList.map((category, index) => (
+        <section key={index}>
           <div className='flex'>
-          <h2 className="title">{selectedCategory}</h2>
-          <div className='flex1'>
-          <select ref={selectRef} onChange={() => handleCategoryChange()}>
-            {categories.map((option) => option)}
-          </select>
-          <button>add Card</button>
-          <button>remove Card</button>
+            <h2 className="title">{category}</h2>
+            <div className='flex1'>
+              <select ref={selectRef} onChange={handleCategoryChange}>
+                {categories.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <button onClick={handleAddSection}>add Card</button>
+              <button onClick={handleRemoveSection}>remove Card</button>
+            </div>
           </div>
-          </div>
-        
           <Category>
-            <button>Left</button>
+          <Slider {...setting}>
             {
               filteredCards.map((sMovies, index) => (
+                <SlideContainer key={index}>
+                 
                   <Card
                     key={index}
                     Class="Scard"
@@ -976,12 +1009,15 @@ const Home = (props)=>{
                     hours={sMovies.movie_length}
                     onClick={() => handleCardClick(sMovies)}
                   />
+                  </SlideContainer>
                 )
               )
             }
-            <button>Right</button>
+            </Slider>
           </Category>
-        </section>
+          </section>
+      ))}
+
         </MovieList>
 
         {selectedCard && (
@@ -1070,10 +1106,7 @@ const Home = (props)=>{
 export default Home;
 
 const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
-  //console.log("Class:", Class);
-  //console.log("imgSrc:", imgSrc);
-  //console.log("alter:", alter);
-  //console.log("title:", title)
+  
   return (
     
     <div className={Class} onClick={onClick}>
@@ -1175,7 +1208,7 @@ const Modal = (props)=>{
 const Nav = ({handleItemClick, handleLogInClick, Islogged, logo})=>{
   return (
     <Navigation>
-        <img src={logo} alt="logo.png"/>
+        <img src={logo} alt="logo.png" onClick={handleItemClick('Home')}/>
         <ul>
         <NavItem onClick={() => handleItemClick('Home')}>
         <a href="#">Home</a>

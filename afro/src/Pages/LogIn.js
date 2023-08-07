@@ -7,7 +7,7 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #4CAF50;
+  background-color: rgba(128, 128, 0, 1);
 `;
 
 const LoginForm = styled.form`
@@ -29,7 +29,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #4CAF50;
+  background-color: rgba(255, 128, 0, 1);
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -101,7 +101,7 @@ const Login = (props) => {
           <Button type="submit">Login</Button>
         </LoginForm>
         <span>
-          Don't have an account yet? <button onClick={() => gotoLogUp()}>Sign Up</button>
+          Don't have an account yet? <button onClick={() => gotoLogUp()} background-color={`rgba(255, 128, 0, 1)`}>Sign Up</button>
         </span>
       </LoginContainer>
     );

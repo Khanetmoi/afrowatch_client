@@ -22,7 +22,7 @@ const categoriesData = [
   ];
 
 const SubscriptionContainer = styled.div`
-  background-color: green;
+  background-color: rgba(128, 128, 0, 1);
   padding: 20px;
 `;
 
@@ -119,7 +119,7 @@ const Subscription = () => {
         {categoriesData.map((category, index) => (
           <GridItem 
           key={index}
-           color={'lightgreen'}
+           color={`rgba(255, 128, 0, 1)`}
            >
             <CategoryTitle>{category.title}</CategoryTitle>
             {category.elements.map((element, elementIdx) => (

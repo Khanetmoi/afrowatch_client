@@ -7,7 +7,7 @@ const SignUpContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #4CAF50;
+  background-color: rgba(128, 128, 0, 1);
 `;
 
 const SignUpForm = styled.form`
@@ -29,12 +29,13 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #4CAF50;
+  background-color: rgba(255, 128, 0, 1);
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 5px;
 `;
 
 const CountryCodeSelect = styled.select`
@@ -72,6 +73,20 @@ const SignUp = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Form validation
+    if (
+      formData.firstName.trim() === '' ||
+      formData.lastName.trim() === '' ||
+      formData.email.trim() === '' ||
+      formData.password.trim() === '' ||
+      formData.phoneNumber.trim() === '' ||
+      formData.countryCode.trim() === ''
+    ) {
+      // Handle empty form fields here (e.g., show error message, disable submit, etc.)
+      console.error('Please fill in all fields.');
+      return;
+    }
 
     fetch('https://myworklm.com/afrowatch/api/user/afrowatch_api_user_signup.php', {
       method: 'POST',
@@ -169,14 +184,7 @@ const SignUp = (props) => {
            value={formData.password}
             onChange={handleInputChange}
             />
-        <Input
-         type="tel"
-          placeholder="Phone Number"
-          name="phoneNumber"
-           value={formData.phoneNumber}
-            onChange={handleInputChange}
-             />
-        <div>
+            <div>
           <label htmlFor="countryCode">Country Code</label>
           <CountryCodeSelect
            id="countryCode"
@@ -191,6 +199,14 @@ const SignUp = (props) => {
             ))}
           </CountryCodeSelect>
         </div>
+        <Input
+         type="tel"
+          placeholder="Phone Number"
+          name="phoneNumber"
+           value={formData.phoneNumber}
+            onChange={handleInputChange}
+             />
+        
         <Button type="submit">Sign Up</Button>
       </SignUpForm>
       <div>
