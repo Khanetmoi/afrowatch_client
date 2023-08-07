@@ -6,7 +6,7 @@ const Slide = (props)=>{
       <SLide>
         <div className='SPcard'>
           <div>
-            <img src={props.poster} alt={props.alter}/>
+            <img src={props.poster} alt={props.alter} onClick={props.read}/>
             <video controls>
               <source src="https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4" type="video/mp4"/>
               <source src={props.video} type="video/mp4"/>

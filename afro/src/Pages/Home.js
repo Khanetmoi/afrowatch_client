@@ -383,7 +383,10 @@ const Home = (props)=>{
     getUserData();
 
   }, []);
-
+  const returnHome = ()=>{
+    props.page("home");
+    console.log("return home")
+   } 
   // useEffect(() => {
   //   const currentFeaturedCard = userData.filter((slide) => slide.movie_actuality === 'Featured');
 
@@ -400,7 +403,7 @@ const Home = (props)=>{
   console.log("featuredCard:", featuredCard);
 
   const handleCategoryChange = () => {
-    
+   
 
     const selectedCategory = selectRef.current.value;
     setSelectedCategory(selectedCategory);
@@ -919,10 +922,13 @@ const Home = (props)=>{
       // variableWidth: true, /* Enable variableWidth to make the slides take up their own width */
       afterChange: (current) => setCurrentSlide(current),
     };
+    const handleSlideClick = (selectedCard) => {
+      setSelectedCard(selectedCard); // Set the selected card in the state
+    };
     return (
         <div className='page'>
         
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged} logo={logo}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged} logo={logo} returnHome={returnHome}/>
         {watching?<Watch selectedCard={selectedCard} />:
         <div className='HomePage'>
         <Intro>
@@ -948,6 +954,7 @@ const Home = (props)=>{
               video={baseUrlTrailler + slide.movie_trailler_file}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
+              read={() => handleCardClick(slide)}
             /> 
             )
           })} 
@@ -960,6 +967,7 @@ const Home = (props)=>{
               video={baseUrlTrailler + slide.movie_trailler_file}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
+              read={() => handleCardClick(slide)}
             /> 
             )
           })} 
@@ -1113,13 +1121,6 @@ const Modal = (props)=>{
     comments: props.comments,
     episodes: props.episodes
   }
-  // const handlePlayClick = () => {
-  //   // // Call the callback function passed from the parent component (e.g., Watch) and pass the 'viewMovie' data
-  //   // props.watching()
-  //   // // props.onPlayClick(viewMovie);
-  //   // props.onPlayClick();
-    
-  // };
   const handlePlayClick = () => {
     props.onPlayClick(viewMovie);
   };
@@ -1192,10 +1193,10 @@ const Modal = (props)=>{
 //   )
 // }
 
-const Nav = ({handleItemClick, handleLogInClick, Islogged, logo})=>{
+const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
   return (
     <Navigation>
-        <img src={logo} alt="logo.png"/>
+        <img src={logo} alt="logo.png" onClick={returnHome}/>
         <ul>
         <NavItem onClick={() => handleItemClick('Home')}>
         <a href="#">Home</a>
