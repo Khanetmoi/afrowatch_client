@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const LoginContainer = styled.div`
@@ -40,11 +40,47 @@ const Button = styled.button`
 // ... (other imports and styles)
 
 const Login = (props) => {
-    const handleSubmit = (event) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsernameChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      const email = event.target.elements.email.value;
-      const password = event.target.elements.password.value;
+
+      
+
+      try {
+        // Make an API request to fetch user credentials
+        const response = await fetch('https://myworklm.com/afrowatch/api/user/afrowatch_api_user_login.php');
+        const data = await response.json();
   
+        const match = data.some((user) => {
+          return user.user_mail === email && user.user_password === password;
+        });
+  
+        if (match) {
+          console.log('Login successful');
+          // Call the props.logged function to indicate successful login
+          props.logged(true);
+        } else {
+          console.log('Invalid username or password');
+          // Handle invalid login attempt here
+        }
+      } catch (error) {
+        console.error('Error fetching user credentials:', error);
+        // Handle error here
+      }
+  
+      // Reset the form
+      setEmail('');
+      setPassword('');
       // Save the email and password in the localStorage
       localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
   
