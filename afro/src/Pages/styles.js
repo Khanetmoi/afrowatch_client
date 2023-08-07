@@ -2,24 +2,38 @@ import styled from 'styled-components';
 
 
 const SLide = styled.div`
-  flex: 0 0 calc(50% - 10px); /* Show 5 slides at a time with 10px spacing between them */
-  margin: 0 5px;
+
+// transition: all 0.3s ease;
+//   opacity: 0.5;
+//   transform: translateX(-20%);
+//   z-index: 1;
+
+  // &.slick-center {
+  //   opacity: 1;
+  //   transform: scale(1.1);
+  //   z-index: 2;
+  // }
+
+
+  // flex: 0 0 calc(50% - 10px); /* Show 5 slides at a time with 10px spacing between them */
+  position: relative;
+  //  margin: 0 20px;
+  padding: 0;
   
-  /* Add your slide styles here */
   .SPcard {
-    position: relative; /* Needed for the aspect ratio trick */
-    padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */
+    position: relative;
+    padding-bottom: 56.25%;
     overflow: hidden;
 
     div {
-      position: absolute; /* Position the content inside the parent div */
+      position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       display: flex;
       justify-content: center;
-      wuidth: 45%;
+    
 
       img {
         width: 30%;
@@ -413,6 +427,7 @@ export const NavItem = styled.li`
 
   /* You can add more styles as needed */
 `;
+
 
 
 

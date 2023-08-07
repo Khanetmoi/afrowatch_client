@@ -2,10 +2,13 @@ import React, { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home';
-import  Nav  from './Pages/Home';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 import Subscription from './Pages/Subscription'
+import logo from './Images/logo.png'
+import LoginButton  from './Pages/styles';
+import Navigation from './Pages/styles';
+import styled from 'styled-components';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -24,13 +27,19 @@ const App = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+  const handleItemClick = (item) => {
+    setCurrentPage('home')
+    };
 
+    const handleLogInClick = ()=>{
+      setCurrentPage("log In");
+      console.log("you clicked")
+    }
   // Render different pages based on the 'currentPage' state
   if (currentPage === 'home') {
     return (
       <div>
         <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} />
-        <button onClick={() => handlePageChange('about')}>Go to About Page</button>
       </div>
     );
   } else if (currentPage === 'log In') {
@@ -49,6 +58,20 @@ const App = () => {
   else if (currentPage === 'Subscription') {
     return (
       <div>
+        <Navig>
+        {
+     
+          <Navigation>
+          <img src={logo} alt="logo.png"  onClick={handleItemClick}/>
+          <div>
+            {
+              isLoggedIn?<button>Profile</button>:<LoginButton onClick={handleLogInClick}>Log In</LoginButton>
+            }
+          </div>
+          </Navigation>
+    
+  }
+        </Navig>
         <Subscription page = {(cpage) => setCurrentPage(cpage)}/>
       </div>
     );
@@ -63,3 +86,6 @@ const App = () => {
 };
 
 export default App;
+
+
+const Navig = styled.div``

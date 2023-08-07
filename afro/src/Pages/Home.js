@@ -9,6 +9,7 @@ import slides from './FakeApiData';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import Nav from './Nav';
 import Slide from './Slide';
 
 
@@ -907,16 +908,18 @@ const Home = (props)=>{
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 2,
-      slidesToScroll: 2,
+      slidesToShow: 3,
+      slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
-      centerPadding: '60px',
+      centerPadding: '0', /* Set centerPadding to '0' to avoid extra padding on the sides */
+      // variableWidth: true, /* Enable variableWidth to make the slides take up their own width */
+      afterChange: (current) => setCurrentSlide(current),
     };
     return (
         <div className='page'>
         
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged} logo={logo}/>
         {watching?<Watch selectedCard={selectedCard} />:
         <div className='HomePage'>
         <Intro>
@@ -932,17 +935,15 @@ const Home = (props)=>{
         <FeaturedMovies>
         <h2 className="title">Featured</h2>
         <Slider {...settings}>
-        {/* {slides.map((slide, index) => (
-          <React.Fragment key={index}>
-            {index === currentSlide && slide}
-          </React.Fragment>
-          
-        ))} */}
-        {slides.map((slide)=>{
+        {slides.map((slide, index)=>{
           return(
-            <Slide poster={slide.image} alter={slide.alter} video={slide.video}/>
+            <Slide
+             poster={slide.image}
+              alter={slide.alter}
+               video={slide.video}
+                className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                 key={index}/>
           )
-           
         })}
         </Slider>
       </FeaturedMovies>
@@ -1146,7 +1147,32 @@ const Modal = (props)=>{
   )
 }
 
-export const Nav = ({handleItemClick, handleLogInClick, Islogged})=>{
+// export const Nav = ({handleItemClick, handleLogInClick, Islogged})=>{
+//   return (
+//     <Navigation>
+//         <img src={logo} alt="logo.png"/>
+//         <ul>
+//         <NavItem onClick={() => handleItemClick('Home')}>
+//         <a href="#">Home</a>
+//       </NavItem>
+//       <NavItem onClick={() => handleItemClick('Movie')}>
+//         <a href="#">Movie</a>
+//       </NavItem>
+//       <NavItem onClick={() => handleItemClick('Show')}>
+//         <a href="#">Show</a>
+//       </NavItem>
+//         </ul>
+//         <div>
+//           {
+//             Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+//           }
+        
+//         </div>
+//         </Navigation>
+//   )
+// }
+
+const Nav = ({handleItemClick, handleLogInClick, Islogged, logo})=>{
   return (
     <Navigation>
         <img src={logo} alt="logo.png"/>
@@ -1170,8 +1196,6 @@ export const Nav = ({handleItemClick, handleLogInClick, Islogged})=>{
         </Navigation>
   )
 }
-
-
 
 
 
