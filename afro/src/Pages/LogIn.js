@@ -58,10 +58,10 @@ const Login = (props) => {
 
       try {
         // Make an API request to fetch user credentials
-        const response = await fetch('https://myworklm.com/afrowatch/api/user/afrowatch_api_user_login.php');
+        const response = await fetch('https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_login.php');
         const data = await response.json();
   
-        const match = data.some((user) => {
+        const match = data.map((user) => {
           return user.user_mail === email && user.user_password === password;
         });
   
@@ -81,6 +81,7 @@ const Login = (props) => {
       // Reset the form
       setEmail('');
       setPassword('');
+      
       // Save the email and password in the localStorage
       localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
   

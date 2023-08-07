@@ -73,7 +73,7 @@ const SignUp = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch('https://myworklm.com/afrowatch/api/user/afrowatch_api_user_signup.php', {
+    fetch('https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_signup.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

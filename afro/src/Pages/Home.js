@@ -334,6 +334,7 @@ const Home = (props)=>{
   const [selectedCategory, setSelectedCategory] = useState("");
   const selectRef = useRef();
   const [filteredCards, setFilteredCards] = useState([]);
+  //const [featuredCard, setFeaturedCard] = useState([]);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
 
@@ -366,11 +367,11 @@ const Home = (props)=>{
   };
 
   const [userData, setUserData] = useState([]);
-
+  //const [featuredCard, setFeaturedCard] = useState([])
   useEffect(() => {
     const getUserData = async() => {
       try {
-        const reqData = await fetch("https://myworklm.com/afrowatch/api/movie/afrowatch_api_movie.php");
+        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie.php");
         const resData = await reqData.json();
         console.log(resData);
         setUserData(resData);
@@ -378,16 +379,35 @@ const Home = (props)=>{
         console.error(error);
       }
     };
-
+    
     getUserData();
+
   }, []);
 
+  // useEffect(() => {
+  //   const currentFeaturedCard = userData.filter((slide) => slide.movie_actuality === 'Featured');
+
+  //   setFeaturedCard([...currentFeaturedCard])
+  // console.log("userData in use effect:", userData);
+  // console.log("currentFeaturedCard in use effect:", currentFeaturedCard);
+
+  // }, [userData])
+  
+  //if(userData.length !== 0){
+    const featuredCard = userData?.filter((slide) => slide.movie_actuality === 'Featured');
+  //}
+  console.log("userData length:", userData.length);
+  console.log("featuredCard:", featuredCard);
+
   const handleCategoryChange = () => {
+    
+
     const selectedCategory = selectRef.current.value;
     setSelectedCategory(selectedCategory);
     // Filter the cards based on the selected category
+
     if (tab === 'Home') {
-      const filteredCards = userData.filter((sMovies) => sMovies.actuality === selectedCategory);
+      const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === selectedCategory);
       setFilteredCards(filteredCards);
       setWatching(false);
     } else if (tab === 'Movie') {
@@ -471,27 +491,6 @@ const Home = (props)=>{
     console.log("you clicked")
   }
 
-  const slides = [{
-    image: comingTo,
-    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
-    alter: "poster"
-  },
-  {
-    image: comingTo,
-    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
-    alter: "poster"
-  },
-  {
-    image: comingTo,
-    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
-    alter: "poster"
-  },
-  {
-    image: comingTo,
-    video: "https://app.sipconsult.net/afrowatch/EXTRACTION%202%20_%20Official%20Trailer%20_%20Netflix.mp4",
-    alter: "poster"
-  },
-]
   const show = [
     {
       Class: 'Scard',
@@ -899,16 +898,20 @@ const Home = (props)=>{
 
   ]
 
-  const baseUrlimage = "http://localhost/afrowatch_admin/server/movie_images/";
+  console.log('ghj: ' + featuredCard);
 
-  const baseUrlMovie = "http://localhost/afrowatch_admin/server/movie_files/";
+  const baseUrlimage = "https://myworklm.com/Afrowatch_admin/server/movie_images/";
+
+  const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
+
+  const baseUrlTrailler = "https://myworklm.com/Afrowatch_admin/server/trailer_files/";
   
     const [watching , setWatching ] = useState(false);
     var settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
+      slidesToShow: 1,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
@@ -934,18 +937,35 @@ const Home = (props)=>{
         <div>
         <FeaturedMovies>
         <h2 className="title">Featured</h2>
-        <Slider {...settings}>
-        {slides.map((slide, index)=>{
+        {
+          featuredCard.length >1?<Slider {...settings}> 
+         {featuredCard?.map((slide, index)=>{
+          console.log("slide", slide)
           return(
             <Slide
-             poster={slide.image}
-              alter={slide.alter}
-               video={slide.video}
-                className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-                 key={index}/>
-          )
-        })}
-        </Slider>
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          console.log("slide", slide)
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
       </FeaturedMovies>
     </div>
         <MovieList>
