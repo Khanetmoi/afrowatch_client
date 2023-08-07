@@ -52,42 +52,43 @@ const CountryCodeOption = styled.option`
 
 const SignUp = (props) => {
 
-  // const [formData, setFormData] = useState({
-  //   fullName: '',
-  //   email: '',
-  //   password: '',
-  //   phoneNumber: '',
-  //   countryCode: '',
-  // });
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    countryCode: '',
+  });
 
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  // };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // fetch('YOUR_API_ENDPOINT', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     // Handle the API response as needed
-    //     console.log('API response:', data);
-    //   })
-    //   .catch((error) => {
-    //     // Handle errors
-    //     console.error('Error:', error);
-    //   });
+    fetch('https://myworklm.com/afrowatch/api/user/afrowatch_api_user_signup.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the API response as needed
+        console.log('API response:', data);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error('Error:', error);
+      });
 
     props.page('Subscription')
     // Handle form submission here (e.g., form validation and API call)
@@ -142,35 +143,46 @@ const SignUp = (props) => {
         <h2>Sign Up</h2>
         <Input
          type="text"
-          placeholder="Full Name"
-          //  value={formData.fullName}
-          //   onChange={handleInputChange} 
+          placeholder="First Name"
+          name="firstName"
+           value={formData.firstName}
+            onChange={handleInputChange} 
+           />
+           <Input
+         type="text"
+          placeholder="Last Name"
+          name="lastName"
+           value={formData.lastName}
+            onChange={handleInputChange} 
            />
         <Input
          type="email"
           placeholder="Email"
-          //  value={formData.email}
-          //   onChange={handleInputChange}
+          name="email"
+           value={formData.email}
+            onChange={handleInputChange}
              />
         <Input
          type="password"
           placeholder="Password"
-          //  value={formData.password}
-          //   onChange={handleInputChange}
+          name="password"
+           value={formData.password}
+            onChange={handleInputChange}
             />
         <Input
          type="tel"
           placeholder="Phone Number"
-          //  value={formData.phoneNumber}
-          //   onChange={handleInputChange}
+          name="phoneNumber"
+           value={formData.phoneNumber}
+            onChange={handleInputChange}
              />
         <div>
           <label htmlFor="countryCode">Country Code</label>
           <CountryCodeSelect
            id="countryCode"
             name="countryCode"
-            //  value={formData.countryCode}
-            //   onChange={handleInputChange}
+             value={formData.countryCode}
+              onChange={handleInputChange}
               >
             {africanCountries.map((country) => (
               <CountryCodeOption key={country.code} value={country.code}>

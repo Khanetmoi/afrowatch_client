@@ -42,30 +42,41 @@ const Button = styled.button`
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-    const handleSubmit = (event) => {
+
+  const handleUsernameChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      const setEmail = event.target.elements.email.value;
-      const setPassword = event.target.elements.password.value;
-      // try {
-      //   // Make an API request to fetch user credentials
-      //   const response = await fetch('https://myworklm.com/afrowatch/api/afrowatch_api_admin.php');
-      //   const data = await response.json();
+
+      
+
+      try {
+        // Make an API request to fetch user credentials
+        const response = await fetch('https://myworklm.com/afrowatch/api/user/afrowatch_api_user_login.php');
+        const data = await response.json();
   
-      //   // Check if the username and password match any of the fetched objects
-      //   const match = data.some((user) => {
-      //     return user.admin_mail === username && user.admin_password === password;
-      //   });
+        const match = data.some((user) => {
+          return user.user_mail === email && user.user_password === password;
+        });
   
-        if (email==="google@gmail.com" && password==="1234") {
-          console.log('Username:', email);
-          console.log('Password:', password);
+        if (match) {
+          console.log('Login successful');
+          // Call the props.logged function to indicate successful login
           props.logged(true);
         } else {
           console.log('Invalid username or password');
+          // Handle invalid login attempt here
         }
-      // } catch (error) {
-      //   console.error('Error fetching user credentials:', error);
-      // }
+      } catch (error) {
+        console.error('Error fetching user credentials:', error);
+        // Handle error here
+      }
   
       // Reset the form
       setEmail('');
