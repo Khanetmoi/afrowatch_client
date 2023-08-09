@@ -9,20 +9,22 @@ import slides from './FakeApiData';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { FaBeer, BsSearch } from 'react-icons/bs';
+import { CgProfile } from 'react-icons/cg';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 // import Nav from './Nav';
 import Slide from './Slide';
 
 
  const Navigation = styled.div`
  position: sticky;
-  top: 0;
-  z-index: 100;
+top: 0;
+z-index: 100;
 display: flex;
 justify-content: space-between;
 align-items: center;
 background-color: rgba(255, 128, 0, 1);
 color: white;
-width: 95%;
 padding: 1rem 2.5%;
 font-size: 20px;
    ul {
@@ -35,7 +37,50 @@ font-size: 20px;
         margin: 0 2rem;
       }
    }
+
+   .mobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .mobile {
+      display: block; 
+    }
+    .Desktop {
+      display: none; 
+    }
+
+    img {
+      width: 33px;
+    }
+  }
 `;
+
+
+const NavItems = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+
+  @media (max-width: 768px) {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(255, 128, 0, 1);
+    width: 100%;
+    padding: 1rem;
+    transition: transform 0.3s ease-in-out;
+
+    &.active {
+      transform: translateY(0);
+    }
+  }
+`;
+
 const LoginButton = styled.div`
   padding: 8px 16px;
   color: #fff;
@@ -63,18 +108,19 @@ width: 33%;
   font-size: 25px;
   @media (max-width: 768px) {
     margin: 5%;
-    font-size: 15px;
+    font-size: 10px;
+    width: 30px;
   }
  }
 `;
 
 const SearchBar = styled.input`
-width: 40vw;
+width: 20vw;
 height: 5vh;
-border-radius: 20%;
+border-radius: 50px;
 
 @media (max-width: 768px) {
-  width: 80vw;
+  width: 10vw;
 }
  
 `;
@@ -84,23 +130,15 @@ height: 5vh;
 border-radius: 50%;
 `;
  const Category = styled.div`
-display: flex;
-justify-content: space-between;
-flex-wrap: no-wrap;
-overflow-x: auto;
-.left_arrow {
-  // height: 50%;
-}
 
+border-radius: 10px;
+// background-color:  blue;
+width: 5%;
     .Scard {
-        // flex: 0 0 12%;
-        width: 12%;
-        // height: 12%;
-        margin: 0 .5%;
-        // background-color: #874C3C;
         color: white;
-        border-radius: 20% 20% 0 0;
-
+       
+        
+        
         @media (max-width: 768px) {
           flex: 0 0 50%
         }
@@ -126,9 +164,12 @@ overflow-x: auto;
      div {
          position:relative;
         img {
-            width: 100%;
-            height: 60%;
+            width: 30%;
             border-radius: 20px;
+
+            @media (max-width: 768px) {
+              width: 90%;
+            }
             
         }
 
@@ -153,17 +194,12 @@ const MovieList = styled.div`
   padding: 20px 0;
 
   section {
+    background-color: rgba(255, 128, 0, 1);
     margin: 20px 0;
-    // border: 10px solid black;
-    //  padding: 10px;
     .flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
-       
-      .flex1 {
-
-      }
     }
   }
 
@@ -213,6 +249,21 @@ const SlideshowContainer = styled.div`
   scroll-behavior: smooth;
 `;
 
+const Mobile = styled.div`
+background-color: orange;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-center: center;
+  .menuDisplay {
+    display: none;
+  }
+
+  &.active .menuDisplay {
+    display: block;
+  }
+  
+`;
 
 const FeaturedMovies = styled.div`
   position: relative;
@@ -263,15 +314,14 @@ const FeaturedMovies = styled.div`
    }
 `;
 const NavItem = styled.li`
-  /* Your styles for each navigation item here */
-  display: inline-block;
   margin-right: 20px;
-   a {
+  a {
     color: white;
-   }
-  
+  }
 
-  /* You can add more styles as needed */
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
 `;
 
 
@@ -386,19 +436,8 @@ const Home = (props)=>{
   const returnHome = ()=>{
     props.page("home");
     console.log("return home")
-   } 
-  // useEffect(() => {
-  //   const currentFeaturedCard = userData.filter((slide) => slide.movie_actuality === 'Featured');
-
-  //   setFeaturedCard([...currentFeaturedCard])
-  // console.log("userData in use effect:", userData);
-  // console.log("currentFeaturedCard in use effect:", currentFeaturedCard);
-
-  // }, [userData])
-  
-  //if(userData.length !== 0){
+   }
     const featuredCard = userData?.filter((slide) => slide.movie_actuality === 'Featured');
-  //}
   console.log("userData length:", userData.length);
   console.log("featuredCard:", featuredCard);
 
@@ -424,18 +463,10 @@ const Home = (props)=>{
     }
   };
 
-  // const handlePlayClick = (viewMovie) => {
-  //   // Now you can do whatever you want with the 'viewMovie' data.
-  //   // In this example, we will navigate to the Watch component.
-    
-  // };
 
   const handlePlayClick = (viewMovie) => {
-    // Now you can do whatever you want with the 'viewMovie' data.
-    // In this example, we will navigate to the Watch component.
     
     setWatching(true);
-    // props.onPlayClick(viewMovie);
   };
 
   const home = [
@@ -501,7 +532,7 @@ const Home = (props)=>{
       alter: 'Movie Poster',
       title: 'Avengers',
       year: 2023,
-      hours: 2, // Duration of the movie in hours
+      hours: 2, 
       category: "Comedy",
       actuality: "Popular",
 
@@ -526,7 +557,7 @@ const Home = (props)=>{
       alter: 'Movie Poster',
       title: 'expendable',
       year: 2023,
-      hours: 2, // Duration of the movie in hours
+      hours: 2, 
       category: "Comedy",
       actuality: "Popular",
 
@@ -914,13 +945,68 @@ const Home = (props)=>{
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 1,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      // centerMode: true,
+      centerPadding: '0',
+      afterChange: (current) => setCurrentSlide(current),
+      responsive: [
+        {
+          breakpoint: 1024, // Screen width 1024px and above
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 768, // Screen width 768px and above
+          settings: {
+            slidesToShow: 1,
+            arrows: false,
+          },
+        },
+        {
+          breakpoint: 480, // Screen width 480px and above
+          settings: {
+            slidesToShow: 1,
+            arrows: false,
+          },
+        },
+      ],
+    };
+    var setting = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 2,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
-      centerPadding: '0', /* Set centerPadding to '0' to avoid extra padding on the sides */
-      // variableWidth: true, /* Enable variableWidth to make the slides take up their own width */
+      centerPadding: '0',
+      arrows: true,
       afterChange: (current) => setCurrentSlide(current),
+      responsive: [
+        {
+          breakpoint: 1024, // Screen width 1024px and above
+          setting: {
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 768, // Screen width 768px and above
+          setting: {
+            slidesToShow: 2,
+            arrows: false,
+          },
+        },
+        {
+          breakpoint: 480, // Screen width 480px and above
+          setting: {
+            slidesToShow: 2,
+            arrows: false,
+          },
+        },
+      ],
     };
     const handleSlideClick = (selectedCard) => {
       setSelectedCard(selectedCard); // Set the selected card in the state
@@ -934,10 +1020,7 @@ const Home = (props)=>{
         <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
-          <div>
-          <SearchBar type="text" placeholder="Search..."/>
-          <SearchButton>search</SearchButton>
-          </div>
+          
         </Intro>
         
         <div>
@@ -966,7 +1049,7 @@ const Home = (props)=>{
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-              key={index}
+              key={index*2}
               read={() => handleCardClick(slide)}
             /> 
             )
@@ -977,23 +1060,23 @@ const Home = (props)=>{
       </FeaturedMovies>
     </div>
         <MovieList>
-
-        <section>
+         
+          <section>
           <div className='flex'>
           <h2 className="title">{selectedCategory}</h2>
           <div className='flex1'>
           <select ref={selectRef} onChange={() => handleCategoryChange()}>
             {categories.map((option) => option)}
           </select>
-          <button>add Card</button>
-          <button>remove Card</button>
+          <AiOutlineMinus className='minus'/>
+          <AiOutlinePlus className='plus'/>
           </div>
           </div>
-        
-          <Category>
-            <button>Left</button>
+          {
+          featuredCard.length >1?<Slider {...setting}>
             {
-              filteredCards.map((sMovies, index) => (
+        filteredCards.map((sMovies, index) => (
+          <Category>
                   <Card
                     key={index}
                     Class="Scard"
@@ -1004,12 +1087,30 @@ const Home = (props)=>{
                     hours={sMovies.movie_length}
                     onClick={() => handleCardClick(sMovies)}
                   />
-                )
-              )
-            }
-            <button>Right</button>
           </Category>
+          ))
+        }
+         </Slider>: <div>
+          <h1>hello</h1>
+          {filteredCards.map((sMovies, index) => (
+          <Category>
+                  <Card
+                    key={index}
+                    Class="Scard"
+                    imgSrc={baseUrlimage + sMovies.movie_image}
+                    alter={sMovies.movie_name}
+                    title={sMovies.movie_name}
+                    year={sMovies.movie_year_release}
+                    hours={sMovies.movie_length}
+                    onClick={() => handleCardClick(sMovies)}
+                  />
+          </Category>
+          ))
+         }
+         </div>
+        }
         </section>
+         
         </MovieList>
 
         {selectedCard && (
@@ -1032,9 +1133,6 @@ const Home = (props)=>{
             Plot = {selectedCard.movie_description}
             onPlayClick={handlePlayClick}
             watching={watching}
-            // Pass other necessary props from the selected card to the modal
-
-            // e.g., category, actuality, etc.
             closePop={() => setSelectedCard(null)} // Function to close the modal
           />
         )}
@@ -1064,7 +1162,7 @@ const Home = (props)=>{
         <FooterLink>
           <a href="#">Terms of Use</a>
         </FooterLink>
-        <FooterLink>
+        {/* <FooterLink>
           <a href="#">Privacy</a>
         </FooterLink>
         <FooterLink>
@@ -1084,7 +1182,7 @@ const Home = (props)=>{
         </FooterLink>
         <FooterLink>
           <a href="#">Only on Afrowatch</a>
-        </FooterLink>
+        </FooterLink> */}
       </FooterLinks>
     </FooterContainer>
     </div>
@@ -1098,10 +1196,6 @@ const Home = (props)=>{
 export default Home;
 
 const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
-  //console.log("Class:", Class);
-  //console.log("imgSrc:", imgSrc);
-  //console.log("alter:", alter);
-  //console.log("title:", title)
   return (
     
     <div className={Class} onClick={onClick}>
@@ -1109,8 +1203,8 @@ const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
             <img src={imgSrc} alt={alter}/>
           </div>
 
-          <h2>{title}</h2>
-          <h3>{year} . {hours} mn</h3>
+          {/* <h2>{title}</h2>
+          <h3>{year} . {hours} mn</h3> */}
           </div>
   )
 };
@@ -1168,53 +1262,74 @@ const Modal = (props)=>{
   )
 }
 
-// export const Nav = ({handleItemClick, handleLogInClick, Islogged})=>{
-//   return (
-//     <Navigation>
-//         <img src={logo} alt="logo.png"/>
-//         <ul>
-//         <NavItem onClick={() => handleItemClick('Home')}>
-//         <a href="#">Home</a>
-//       </NavItem>
-//       <NavItem onClick={() => handleItemClick('Movie')}>
-//         <a href="#">Movie</a>
-//       </NavItem>
-//       <NavItem onClick={() => handleItemClick('Show')}>
-//         <a href="#">Show</a>
-//       </NavItem>
-//         </ul>
-//         <div>
-//           {
-//             Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
-//           }
-        
-//         </div>
-//         </Navigation>
-//   )
-// }
+const HamburgerButton = styled.button`
+  display: none;
+  background-color: orange;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
 
 const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
+  const [navActive, setNavActive] = useState(false);
+
+  const toggleNav = () => {
+    console.log(navActive); 
+    setNavActive(!navActive);
+  };
+
   return (
+    <div>
     <Navigation>
         <img src={logo} alt="logo.png" onClick={returnHome}/>
-        <ul>
-        <NavItem onClick={() => handleItemClick('Home')}>
+        <div>
+        <ul className='Desktop'>
+        <div>
+          <SearchBar type="text" placeholder="Search..."/>
+          <BsSearch />
+          {/* <SearchButton></SearchButton> */}
+          </div>
+        <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
         <a href="#">Home</a>
       </NavItem>
-      <NavItem onClick={() => handleItemClick('Movie')}>
+      <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
         <a href="#">Movie</a>
       </NavItem>
-      <NavItem onClick={() => handleItemClick('Show')}>
+      <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
         <a href="#">Show</a>
       </NavItem>
         </ul>
-        <div>
+        <div className='Desktop'>
+          {
+            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+          }
+        </div>
+        </div>
+        <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
+        </Navigation>
+        <Mobile className={`mobile ${navActive ? 'active' : ''}`}>
+            
+            <div>
+            <ul className={`menuDisplay ${navActive ? 'active' : ''}`}>
+              <NavItem onClick={() => handleItemClick('Home')}>
+                 <a href="#">Home</a>
+              </NavItem>
+              <NavItem onClick={() => handleItemClick('Movie')}>
+                 <a href="#">Movie</a>
+              </NavItem>
+              <NavItem onClick={() => handleItemClick('Show')}>
+                 <a href="#">Show</a>
+              </NavItem>
+            </ul>
+        <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
             Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         
         </div>
-        </Navigation>
+        </div>
+        </Mobile>
+        </div>
   )
 }
 
@@ -1289,65 +1404,3 @@ const Watch = ({ selectedCard }) => {
     </WatchContainer>
   );
 };
-
-
-// const Watch = ({ videoUrl }) => {
-//   const [activeTab, setActiveTab] = useState('comments');
-
-//   const handleTabClick = (tab) => {
-//     setActiveTab(tab);
-//   };
-
-  
-//     return (
-//       <WatchContainer>
-//         <Cinema>
-//           <video controls>
-//             <source src={videoUrl} type="video/mp4" />
-//           </video>
-//         </Cinema>
-
-//         <TabsContainer>
-//           <li
-//             onClick={() => handleTabClick('comments')}
-//             className={activeTab === 'comments' ? 'active' : ''}
-//           >
-//             Comments
-//           </li>
-//           <li
-//             onClick={() => handleTabClick('questions')}
-//             className={activeTab === 'questions' ? 'active' : ''}
-//           >
-//             Questions
-//           </li>
-//           <li
-//             onClick={() => handleTabClick('episodes')}
-//             className={activeTab === 'episodes' ? 'active' : ''}
-//           >
-//             Episodes
-//           </li>
-//         </TabsContainer>
-
-//         {activeTab === 'comments' && (
-//           <CommentsContainer>
-//             {/* Render comments here */}
-//             <h2>Comments</h2>
-//           </CommentsContainer>
-//         )}
-
-//         {activeTab === 'questions' && (
-//           <CommentsContainer>
-//             {/* Render questions here */}
-//             <h2>Questions</h2>
-//           </CommentsContainer>
-//         )}
-
-//         {activeTab === 'episodes' && (
-//           <CommentsContainer>
-//             {/* Render episodes here */}
-//             <h2>Episodes</h2>
-//           </CommentsContainer>
-//         )}
-//       </WatchContainer>
-//     );
-// };npm

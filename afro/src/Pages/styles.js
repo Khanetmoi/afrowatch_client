@@ -3,27 +3,15 @@ import styled from 'styled-components';
 
 const SLide = styled.div`
 
-// transition: all 0.3s ease;
-//   opacity: 0.5;
-//   transform: translateX(-20%);
-//   z-index: 1;
-
-  // &.slick-center {
-  //   opacity: 1;
-  //   transform: scale(1.1);
-  //   z-index: 2;
-  // }
-
-
-  // flex: 0 0 calc(50% - 10px); /* Show 5 slides at a time with 10px spacing between them */
   position: relative;
-  //  margin: 0 20px;
   padding: 0;
+  border-radius: 20px;
   
   .SPcard {
     position: relative;
     padding-bottom: 56.25%;
     overflow: hidden;
+    
 
     div {
       position: absolute;
@@ -33,18 +21,21 @@ const SLide = styled.div`
       bottom: 0;
       display: flex;
       justify-content: center;
+      border-radius: 20px;
     
 
       img {
         width: 30%;
         height: 100%; /* Ensure the image takes the full height of the parent div */
         object-fit: cover; /* Maintain the aspect ratio and cover the entire div */
+        border-radius: 20px 0px 0px 20px;
       }
 
       video {
         width: 50%;
-        height: 100%; /* Ensure the video takes the full height of the parent div */
-        object-fit: cover; /* Maintain the aspect ratio and cover the entire div */
+        height: 100%;
+        object-fit: cover; 
+        border-radius: 0px 20px 20px 0px;
       }
     }
   }
@@ -123,18 +114,12 @@ display: flex;
 justify-content: space-between;
 flex-wrap: no-wrap;
 overflow-x: auto;
-.left_arrow {
-  // height: 50%;
-}
 
     .Scard {
-        // flex: 0 0 12%;
         width: 12%;
-        // height: 12%;
         margin: 0 .5%;
-        // background-color: #874C3C;
         color: white;
-        border-radius: 20% 20% 0 0;
+        // border-radius: 50px;
 
         @media (max-width: 768px) {
           flex: 0 0 50%
@@ -145,7 +130,7 @@ overflow-x: auto;
            padding: 0;
            font-size: 25px;
            @media (max-width: 768px) {
-            font-size: 15px;;
+            font-size: 10px;;
           }
         }
 
