@@ -100,6 +100,13 @@ justify-content: center;
 align-items: center;
 margin: 2rem 0;
 
+  h3 {
+    @media (max-width: 768px) {
+      margin: 10px;
+      font-size: 10px;
+    }
+  }
+
 `;
 
 const AfroLogo =  styled.img`
@@ -108,7 +115,7 @@ width: 33%;
   font-size: 25px;
   @media (max-width: 768px) {
     margin: 5%;
-    font-size: 10px;
+    font-size: 25px;
     width: 30px;
   }
  }
@@ -196,10 +203,18 @@ const MovieList = styled.div`
   section {
     background-color: rgba(255, 128, 0, 1);
     margin: 20px 0;
+    padding: 0 15px 0 15px;
+    border-radius: 10px;
     .flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      .flex1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
   }
 
@@ -433,9 +448,13 @@ const Home = (props)=>{
     getUserData();
 
   }, []);
+
+
   const returnHome = ()=>{
     props.page("home");
     console.log("return home")
+    setWatching('true');
+    console.log(watching)
    }
     const featuredCard = userData?.filter((slide) => slide.movie_actuality === 'Featured');
   console.log("userData length:", userData.length);
@@ -452,20 +471,22 @@ const Home = (props)=>{
       const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === selectedCategory);
       setFilteredCards(filteredCards);
       setWatching(false);
+      // setSelectedCategory('Popular');
     } else if (tab === 'Movie') {
       const filteredCards = movie.filter((sMovies) => sMovies.category === selectedCategory);
       setFilteredCards(filteredCards);
       setWatching(false);
+      // setSelectedCategory('Action');
     } else if (tab === 'Show') {
       const filteredCards = show.filter((sMovies) => sMovies.category === selectedCategory);
       setFilteredCards(filteredCards);
       setWatching(false);
+      // setSelectedCategory('Action');
     }
   };
 
 
   const handlePlayClick = (viewMovie) => {
-    
     setWatching(true);
   };
 
@@ -948,7 +969,8 @@ const Home = (props)=>{
       slidesToShow: 2,
       slidesToScroll: 1,
       swipeToSlide: true,
-      // centerMode: true,
+      centerMode: true,
+      // variableWidth: true,
       centerPadding: '0',
       afterChange: (current) => setCurrentSlide(current),
       responsive: [
@@ -985,6 +1007,7 @@ const Home = (props)=>{
       centerPadding: '0',
       arrows: true,
       afterChange: (current) => setCurrentSlide(current),
+      // variableWidth: true,
       responsive: [
         {
           breakpoint: 1024, // Screen width 1024px and above
@@ -1091,7 +1114,6 @@ const Home = (props)=>{
           ))
         }
          </Slider>: <div>
-          <h1>hello</h1>
           {filteredCards.map((sMovies, index) => (
           <Category>
                   <Card
@@ -1342,11 +1364,11 @@ const Watch = ({ selectedCard }) => {
     setActiveTab(tab);
   };
 
-  const baseUrlMovie = "http://localhost/afrowatch_admin/server/movie_files/";
+  const baseUrlMovie = "https://myworklm.com/afrowatch_admin/server/movie_files/";
 
   // Check if selectedCard is null or undefined before accessing its properties
   if (!selectedCard) {
-    return <div>No video selected</div>;
+     return <div>No video selected</div>;
   }
 
   return (
