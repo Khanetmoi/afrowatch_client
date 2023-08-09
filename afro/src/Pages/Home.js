@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaBeer, BsSearch } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
+import { LiaSignInAltSolid } from 'react-icons/lia';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 // import Nav from './Nav';
 import Slide from './Slide';
@@ -27,6 +28,9 @@ background-color: rgba(255, 128, 0, 1);
 color: white;
 padding: 1rem 2.5%;
 font-size: 20px;
+div {
+  display: flex;
+}
    ul {
     display: flex;
     justify-content: space-between;
@@ -87,6 +91,9 @@ const LoginButton = styled.div`
   border: 2px solid white;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #FFC857;
@@ -462,6 +469,9 @@ const Home = (props)=>{
 
   const handleCategoryChange = () => {
    
+    const newSelectedCategory = selectRef.current.value;
+  setSelectedCategory(newSelectedCategory);
+
 
     const selectedCategory = selectRef.current.value;
     setSelectedCategory(selectedCategory);
@@ -534,7 +544,14 @@ const Home = (props)=>{
   
   const [currentSlide, setCurrentSlide] = useState(0);
   
- 
+  const selectedCategoryRef = useRef(""); 
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      selectedCategoryRef.current = categories[0]; 
+      setSelectedCategory(selectedCategoryRef.current); 
+    }
+  }, [categories]);
   
   const handleCardClick = (sMovies) => {
     console.log('smovies', sMovies)
@@ -1345,7 +1362,7 @@ const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
@@ -1364,7 +1381,7 @@ const Watch = ({ selectedCard }) => {
     setActiveTab(tab);
   };
 
-  const baseUrlMovie = "https://myworklm.com/afrowatch_admin/server/movie_files/";
+  const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
 
   // Check if selectedCard is null or undefined before accessing its properties
   if (!selectedCard) {
@@ -1379,6 +1396,9 @@ const Watch = ({ selectedCard }) => {
             src={baseUrlMovie + selectedCard.movie_file}
             type="video/mp4"
           />
+          <source
+            src={baseUrlMovie + selectedCard.movie_file} 
+            type="video/ogg"/>
         </video>
       </Cinema>
 

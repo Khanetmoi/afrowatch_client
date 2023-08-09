@@ -45,12 +45,40 @@ const App = () => {
   } else if (currentPage === 'log In') {
     return (
       <div>
+        <Navig>
+        {
+     
+          <Navigation>
+          <img src={logo} alt="logo.png"  onClick={handleItemClick}/>
+          <div>
+            {
+              isLoggedIn?<button>Profile</button>:<LoginButton onClick={handleLogInClick}>Log In</LoginButton>
+            }
+          </div>
+          </Navigation>
+    
+        }
+        </Navig>
         <LogIn page = {(cpage) => setCurrentPage(cpage)}/>
       </div>
     );
   }else if (currentPage === 'log Up') {
     return (
       <div>
+        <Navig>
+        {
+     
+          <Navigation>
+          <img src={logo} alt="logo.png"  onClick={handleItemClick}/>
+          <div>
+            {
+              isLoggedIn?<button>Profile</button>:<LoginButton onClick={handleLogInClick}>Log In</LoginButton>
+            }
+          </div>
+          </Navigation>
+    
+        }
+        </Navig>
         <SignUp page = {(cpage) => setCurrentPage(cpage)}/>
       </div>
     );
@@ -70,7 +98,7 @@ const App = () => {
           </div>
           </Navigation>
     
-  }
+        }
         </Navig>
         <Subscription page = {(cpage) => setCurrentPage(cpage)}/>
       </div>

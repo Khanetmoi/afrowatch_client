@@ -1,7 +1,12 @@
 body {
   background-color: rgba(128, 128, 0, 1);
   /* background-color: #4D774E; */
-  
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .title {
