@@ -178,7 +178,7 @@ width: 5%;
      div {
          position:relative;
         img {
-            width: 30%;
+            width: 90%;
             border-radius: 20px;
 
             @media (max-width: 768px) {
@@ -467,34 +467,58 @@ const Home = (props)=>{
   console.log("userData length:", userData.length);
   console.log("featuredCard:", featuredCard);
 
-  const handleCategoryChange = () => {
+  // const handleCategoryChange = () => {
    
-    const newSelectedCategory = selectRef.current.value;
-  setSelectedCategory(newSelectedCategory);
+  //   const newSelectedCategory = selectRef.current.value;
+  // setSelectedCategory(newSelectedCategory);
 
 
-    const selectedCategory = selectRef.current.value;
-    setSelectedCategory(selectedCategory);
-    // Filter the cards based on the selected category
+  //   const selectedCategory = selectRef.current.value;
+  //   setSelectedCategory(selectedCategory);
+  //   // Filter the cards based on the selected category
 
+  //   if (tab === 'Home') {
+  //     const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === selectedCategory);
+  //     setFilteredCards(filteredCards);
+  //     setWatching(false);
+  //     // setSelectedCategory('Popular');
+  //   } else if (tab === 'Movie') {
+  //     const filteredCards = movie.filter((sMovies) => sMovies.category === selectedCategory);
+  //     setFilteredCards(filteredCards);
+  //     setWatching(false);
+  //     // setSelectedCategory('Action');
+  //   } else if (tab === 'Show') {
+  //     const filteredCards = show.filter((sMovies) => sMovies.category === selectedCategory);
+  //     setFilteredCards(filteredCards);
+  //     setWatching(false);
+  //     // setSelectedCategory('Action');
+  //   }
+  // };
+
+  const handleCategoryChange = (event, sectionIndex) => {
+    const newSelectedOption = event.target.value;
+  
+    const updatedSections = sections.map((section, index) =>
+      index === sectionIndex ? { ...section, selectedOption: newSelectedOption } : section
+    );
+    setSections(updatedSections);
+  
+    // Filter the cards based on the selected option for the section
     if (tab === 'Home') {
-      const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === selectedCategory);
+      const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === newSelectedOption);
       setFilteredCards(filteredCards);
       setWatching(false);
-      // setSelectedCategory('Popular');
     } else if (tab === 'Movie') {
-      const filteredCards = movie.filter((sMovies) => sMovies.category === selectedCategory);
+      const filteredCards = movie.filter((sMovies) => sMovies.category === newSelectedOption);
       setFilteredCards(filteredCards);
       setWatching(false);
-      // setSelectedCategory('Action');
     } else if (tab === 'Show') {
-      const filteredCards = show.filter((sMovies) => sMovies.category === selectedCategory);
+      const filteredCards = show.filter((sMovies) => sMovies.category === newSelectedOption);
       setFilteredCards(filteredCards);
       setWatching(false);
-      // setSelectedCategory('Action');
     }
   };
-
+  
 
   const handlePlayClick = (viewMovie) => {
     setWatching(true);
@@ -977,9 +1001,22 @@ const Home = (props)=>{
   const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
 
   const baseUrlTrailler = "https://myworklm.com/Afrowatch_admin/server/trailer_files/";
+
+  const [sections, setSections] = useState([0]); // Initialize with one section
+
+const addSection = () => {
+  setSections([...sections, sections.length]);
+};
+
+const removeSection = (sectionIndex) => {
+  if (sections.length > 1) {
+    const updatedSections = sections.filter((_, index) => index !== sectionIndex);
+    setSections(updatedSections);
+  }
+};
   
     const [watching , setWatching ] = useState(false);
-    var settings = {
+    var settings1 = {
       dots: true,
       infinite: true,
       speed: 500,
@@ -1013,11 +1050,11 @@ const Home = (props)=>{
         },
       ],
     };
-    var setting = {
+    var settings2 = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 2,
+      slidesToShow: 8,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
@@ -1028,22 +1065,20 @@ const Home = (props)=>{
       responsive: [
         {
           breakpoint: 1024, // Screen width 1024px and above
-          setting: {
-            slidesToShow: 3,
+          settings: {
+            slidesToShow: 6,
           },
         },
         {
           breakpoint: 768, // Screen width 768px and above
-          setting: {
-            slidesToShow: 2,
-            arrows: false,
+          settings: {
+            slidesToShow: 3,
           },
         },
         {
           breakpoint: 480, // Screen width 480px and above
-          setting: {
+          settings: {
             slidesToShow: 2,
-            arrows: false,
           },
         },
       ],
@@ -1067,7 +1102,7 @@ const Home = (props)=>{
         <FeaturedMovies>
         <h2 className="title">Featured</h2>
         {
-          featuredCard.length >1?<Slider {...settings}> 
+          featuredCard.length >1?<Slider {...settings1}> 
          {featuredCard?.map((slide, index)=>{
           console.log("slide", slide)
           return(
@@ -1100,20 +1135,20 @@ const Home = (props)=>{
       </FeaturedMovies>
     </div>
         <MovieList>
-         
-          <section>
+        {sections.map((sectionIndex) => (
+          <section key={sectionIndex}>
           <div className='flex'>
           <h2 className="title">{selectedCategory}</h2>
           <div className='flex1'>
-          <select ref={selectRef} onChange={() => handleCategoryChange()}>
+          <select ref={selectRef} onChange={(event) => handleCategoryChange(event, sectionIndex)}>
             {categories.map((option) => option)}
           </select>
-          <AiOutlineMinus className='minus'/>
-          <AiOutlinePlus className='plus'/>
+          <AiOutlineMinus className='minus' onClick={() => removeSection(sectionIndex)}/>
+          <AiOutlinePlus className='plus' onClick={addSection}/>
           </div>
           </div>
           {
-          featuredCard.length >1?<Slider {...setting}>
+          featuredCard.length >1?<Slider {...settings2}>
             {
         filteredCards.map((sMovies, index) => (
           <Category>
@@ -1149,7 +1184,7 @@ const Home = (props)=>{
          </div>
         }
         </section>
-         
+         ))}
         </MovieList>
 
         {selectedCard && (
