@@ -89,7 +89,7 @@ body {
   width: 100%;
   max-width: 800px;
   color: #fff;
-  background: linear-gradient(to left, #3ca55c, #56ab2f);
+  background: linear-gradient(to left,rgba(128, 128, 0, 1), #56ab2f);
   border-radius: 0.8em;
   box-shadow: rgba(0, 0, 0, 0.2) 0 30px 18px -24px;
   position: relative;

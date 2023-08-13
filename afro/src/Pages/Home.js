@@ -14,6 +14,8 @@ import { CgProfile } from 'react-icons/cg';
 import { LiaSignInAltSolid } from 'react-icons/lia';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 // import Nav from './Nav';
+import Comments from './Comments';
+import Questions from './Questions';
 import Slide from './Slide';
 
 
@@ -48,7 +50,13 @@ div {
 
   @media (max-width: 768px) {
     .mobile {
-      display: block; 
+      display: block;
+
+      .search {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
     .Desktop {
       display: none; 
@@ -134,7 +142,8 @@ height: 5vh;
 border-radius: 50px;
 
 @media (max-width: 768px) {
-  width: 10vw;
+  height: 2vh;
+  width: 50vw;
 }
  
 `;
@@ -401,6 +410,7 @@ const CommentsContainer = styled.div`
 
 const Home = (props)=>{
 
+  const defaultOption = 'Default Option';
   const [selectedCard, setSelectedCard] = useState(null);
   console.log('selected', selectedCard)
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -571,6 +581,7 @@ const Home = (props)=>{
   const selectedCategoryRef = useRef(""); 
 
   useEffect(() => {
+    
     if (categories.length > 0) {
       selectedCategoryRef.current = categories[0]; 
       setSelectedCategory(selectedCategoryRef.current); 
@@ -1135,10 +1146,10 @@ const removeSection = (sectionIndex) => {
       </FeaturedMovies>
     </div>
         <MovieList>
-        {sections.map((sectionIndex) => (
+        {sections.map((section, sectionIndex) => (
           <section key={sectionIndex}>
           <div className='flex'>
-          <h2 className="title">{selectedCategory}</h2>
+          <h2 className="title">{section.selectedOption}</h2>
           <div className='flex1'>
           <select ref={selectRef} onChange={(event) => handleCategoryChange(event, sectionIndex)}>
             {categories.map((option) => option)}
@@ -1148,7 +1159,7 @@ const removeSection = (sectionIndex) => {
           </div>
           </div>
           {
-          featuredCard.length >1?<Slider {...settings2}>
+          filteredCards.length >1?<Slider {...settings2}>
             {
         filteredCards.map((sMovies, index) => (
           <Category>
@@ -1379,6 +1390,11 @@ const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
           }
         </div>
         </div>
+        <div className='mobile search'>
+          <SearchBar type="text" placeholder="Search..."/>
+          <BsSearch />
+          {/* <SearchButton></SearchButton> */}
+          </div>
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
         </Navigation>
         <Mobile className={`mobile ${navActive ? 'active' : ''}`}>
@@ -1461,14 +1477,14 @@ const Watch = ({ selectedCard }) => {
       {activeTab === 'comments' && (
         <CommentsContainer>
           {/* Render comments here */}
-          <h2>Comments</h2>
+          <Comments/>
         </CommentsContainer>
       )}
 
       {activeTab === 'questions' && (
         <CommentsContainer>
           {/* Render questions here */}
-          <h2>Questions</h2>
+          <Questions/>
         </CommentsContainer>
       )}
 

@@ -6,8 +6,8 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #4CAF50;
+  min-height: 90vh;
+  background-color: rgba(128, 128, 0, 1);
 `;
 
 const LoginForm = styled.form`
@@ -43,6 +43,8 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [error, setError] = useState('');
+
   const handleUsernameChange = (event) => {
     setEmail(event.target.value);
   };
@@ -67,14 +69,18 @@ const Login = (props) => {
   
         if (match) {
           console.log('Login successful');
+          setError('Login successful')
           // Call the props.logged function to indicate successful login
           props.logged(true);
+          props.page('home');
         } else {
           console.log('Invalid username or password');
+          setError('Invalid username or password')
           // Handle invalid login attempt here
         }
       } catch (error) {
         console.error('Error fetching user credentials:', error);
+        setError('Error fetching user credentials')
         // Handle error here
       }
   
@@ -85,7 +91,7 @@ const Login = (props) => {
       // Save the email and password in the localStorage
       localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
   
-      props.page('home');
+      
       // Handle login here (e.g., form validation and API call)
     };
   
@@ -100,6 +106,7 @@ const Login = (props) => {
           <Input type="email" name="email" placeholder="Email" />
           <Input type="password" name="password" placeholder="Password" />
           <Button type="submit">Login</Button>
+          <p>{error}</p>
         </LoginForm>
         <span>
           Don't have an account yet? <button onClick={() => gotoLogUp()}>Sign Up</button>

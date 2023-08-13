@@ -7,7 +7,7 @@ const SignUpContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #4CAF50;
+  background-color: rgba(128, 128, 0, 1);
 `;
 
 const SignUpForm = styled.form`
