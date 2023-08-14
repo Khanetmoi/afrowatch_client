@@ -1116,8 +1116,8 @@ const removeSection = (sectionIndex) => {
         <FeaturedMovies>
         <h2 className="title">Popular</h2>
         {
-          featureZCard.length >1?<Slider {...settings1}> 
-         {featureZCard?.map((slide, index)=>{
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
           
           return(
             <Slide
@@ -1140,6 +1140,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1162,6 +1164,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1176,6 +1180,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1198,6 +1204,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1212,6 +1220,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1234,6 +1244,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1248,6 +1260,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1269,6 +1283,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1283,6 +1299,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1305,6 +1323,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1319,6 +1339,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1341,6 +1363,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1355,6 +1379,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1377,6 +1403,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1391,6 +1419,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1413,6 +1443,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1427,6 +1459,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1449,6 +1483,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1464,6 +1500,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1486,6 +1524,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1500,6 +1540,8 @@ const removeSection = (sectionIndex) => {
               poster={baseUrlimage + slide.movie_image}
               alter={slide.movie_name}
               video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
