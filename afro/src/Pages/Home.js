@@ -66,7 +66,7 @@ div {
       width: 33px;
     }
   }
-`;
+`
 
 
 const NavItems = styled.ul`
@@ -217,7 +217,7 @@ const MovieList = styled.div`
   padding: 20px 0;
 
   section {
-    background-color: rgba(255, 128, 0, 1);
+    // background-color: black;
     margin: 20px 0;
     padding: 0 15px 0 15px;
     border-radius: 10px;
@@ -239,7 +239,7 @@ const MovieList = styled.div`
 
  const FooterContainer = styled.footer`
   // background-color: #874C3C;
-  background-color: rgba(255, 128, 0, 1);
+  background-color: black;
   color: #fff;
   padding: 0px;
 `;
@@ -412,14 +412,16 @@ const Home = (props)=>{
 
   const defaultOption = 'Default Option';
   const [selectedCard, setSelectedCard] = useState(null);
-  console.log('selected', selectedCard)
+  // console.log('selected', selectedCard)
   const [selectedCategory, setSelectedCategory] = useState("");
   const selectRef = useRef();
   const [filteredCards, setFilteredCards] = useState([]);
   //const [featuredCard, setFeaturedCard] = useState([]);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
+  
 
+  console.log("is logged"+props.logged)
   const [categories, setCategories] = useState([
     <option key={1}>Popular</option>,
     <option key={2}>New Movies</option>,
@@ -455,7 +457,7 @@ const Home = (props)=>{
       try {
         const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie.php");
         const resData = await reqData.json();
-        console.log(resData);
+        // console.log(resData);
         setUserData(resData);
       } catch (error) {
         console.error(error);
@@ -467,15 +469,13 @@ const Home = (props)=>{
   }, []);
 
 
-  const returnHome = ()=>{
-    props.page("home");
-    console.log("return home")
-    setWatching('true');
-    console.log(watching)
-   }
+  
     const featuredCard = userData?.filter((slide) => slide.movie_actuality === 'Featured');
-  console.log("userData length:", userData.length);
-  console.log("featuredCard:", featuredCard);
+    const featuresCard = userData?.filter((slide) => slide.movie_actuality === 'Popular');
+    const featureZCard = userData?.filter((slide) => slide.movie_actuality === 'New Movies');
+    const featureACard = userData?.filter((slide) => slide.movie_actuality === 'New Movies');
+  // console.log("userData length:", userData.length);
+  // console.log("featuredCard:", featuredCard);
 
   // const handleCategoryChange = () => {
    
@@ -505,33 +505,37 @@ const Home = (props)=>{
   //   }
   // };
 
-  const handleCategoryChange = (event, sectionIndex) => {
-    const newSelectedOption = event.target.value;
+  const handleCategoryChange = () => {
+    // const newSelectedOption = event.target.value;
   
-    const updatedSections = sections.map((section, index) =>
-      index === sectionIndex ? { ...section, selectedOption: newSelectedOption } : section
-    );
-    setSections(updatedSections);
+    // const updatedSections = sections.map((section, index) =>
+    //   index === sectionIndex ? { ...section, selectedOption: newSelectedOption } : section
+    // );
+    // setSections(updatedSections);
   
     // Filter the cards based on the selected option for the section
     if (tab === 'Home') {
-      const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === newSelectedOption);
+      const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === 'Popular');
       setFilteredCards(filteredCards);
-      setWatching(false);
+      props.watch(false);
+      console.log("home" +props.watch)
     } else if (tab === 'Movie') {
-      const filteredCards = movie.filter((sMovies) => sMovies.category === newSelectedOption);
+      const filteredCards = movie.filter((sMovies) => sMovies.category === 'Action');
       setFilteredCards(filteredCards);
-      setWatching(false);
+      props.watch(false);
+      console.log("Movie" +props.watch)
     } else if (tab === 'Show') {
-      const filteredCards = show.filter((sMovies) => sMovies.category === newSelectedOption);
+      const filteredCards = show.filter((sMovies) => sMovies.category === 'Action');
       setFilteredCards(filteredCards);
-      setWatching(false);
+      props.watch(false);
+      console.log(props.watch)
     }
   };
   
 
-  const handlePlayClick = (viewMovie) => {
-    setWatching(true);
+  const handlePlayClick = () => {
+    props.watch(true);
+    console.log(props.watch)
   };
 
   const home = [
@@ -589,15 +593,15 @@ const Home = (props)=>{
   }, [categories]);
   
   const handleCardClick = (sMovies) => {
-    console.log('smovies', sMovies)
+   
     setSelectedCard({...sMovies});
   };
 
   const handleLogInClick = ()=>{
     props.page("log In");
-    console.log("you clicked")
+   
   }
-
+   const page = props.page;
   const show = [
     {
       Class: 'Scard',
@@ -1005,7 +1009,7 @@ const Home = (props)=>{
 
   ]
 
-  console.log('ghj: ' + featuredCard);
+
 
   const baseUrlimage = "https://myworklm.com/Afrowatch_admin/server/movie_images/";
 
@@ -1026,12 +1030,11 @@ const removeSection = (sectionIndex) => {
   }
 };
   
-    const [watching , setWatching ] = useState(false);
     var settings1 = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 2,
+      slidesToShow: 6,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
@@ -1048,14 +1051,14 @@ const removeSection = (sectionIndex) => {
         {
           breakpoint: 768, // Screen width 768px and above
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             arrows: false,
           },
         },
         {
           breakpoint: 480, // Screen width 480px and above
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             arrows: false,
           },
         },
@@ -1065,7 +1068,7 @@ const removeSection = (sectionIndex) => {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 8,
+      slidesToShow: 6,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerMode: true,
@@ -1100,22 +1103,60 @@ const removeSection = (sectionIndex) => {
     return (
         <div className='page'>
         
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged} logo={logo} returnHome={returnHome}/>
-        {watching?<Watch selectedCard={selectedCard} />:
+        {/* <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged} logo={logo} returnHome={returnHome}/> */}
+        {props.watchv?<Watch selectedCard={selectedCard} />:
         <div className='HomePage'>
-        <Intro>
+        {/* <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
           <h3>Welcome to afrowatch the best platform to watch African original creations</h3>
           
-        </Intro>
+        </Intro> */}
         
         <div>
         <FeaturedMovies>
-        <h2 className="title">Featured</h2>
+        <h2 className="title">Popular</h2>
         {
-          featuredCard.length >1?<Slider {...settings1}> 
-         {featuredCard?.map((slide, index)=>{
-          console.log("slide", slide)
+          featureZCard.length >1?<Slider {...settings1}> 
+         {featureZCard?.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Trending</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
           return(
             <Slide
               poster={baseUrlimage + slide.movie_image}
@@ -1124,11 +1165,84 @@ const removeSection = (sectionIndex) => {
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
+              page = { props.page}
             /> 
             )
           })} 
         </Slider>:<div> {featuredCard.map((slide, index)=>{
           console.log("slide", slide)
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Thriller</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Adventure</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+      
           return(
             <Slide
               poster={baseUrlimage + slide.movie_image}
@@ -1144,18 +1258,271 @@ const removeSection = (sectionIndex) => {
         }
         
       </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Crime scene</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+       
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+        
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Romantic</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Horror</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+       
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Comedy</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+    
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Adventure</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+        
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Reality Show</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              log = {props.logged}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+   
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Drama</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+    
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
     </div>
         <MovieList>
-        {sections.map((section, sectionIndex) => (
-          <section key={sectionIndex}>
+        {/* {sections.map((section, sectionIndex) => ( */}
+          <section >
           <div className='flex'>
-          <h2 className="title">{section.selectedOption}</h2>
+          {/* <h2 className="title">{selectedOption}</h2> */}
           <div className='flex1'>
-          <select ref={selectRef} onChange={(event) => handleCategoryChange(event, sectionIndex)}>
+          <select ref={selectRef} onChange={(event) => handleCategoryChange()}>
             {categories.map((option) => option)}
           </select>
-          <AiOutlineMinus className='minus' onClick={() => removeSection(sectionIndex)}/>
-          <AiOutlinePlus className='plus' onClick={addSection}/>
+          {/* <AiOutlineMinus className='minus' onClick={() => removeSection(sectionIndex)}/>
+          <AiOutlinePlus className='plus' onClick={addSection}/> */}
           </div>
           </div>
           {
@@ -1195,7 +1562,7 @@ const removeSection = (sectionIndex) => {
          </div>
         }
         </section>
-         ))}
+         {/* ))} */}
         </MovieList>
 
         {selectedCard && (
@@ -1217,7 +1584,7 @@ const removeSection = (sectionIndex) => {
             BoxOffice = {selectedCard.boxoffice}
             Plot = {selectedCard.movie_description}
             onPlayClick={handlePlayClick}
-            watching={watching}
+            // watching={true}
             closePop={() => setSelectedCard(null)} // Function to close the modal
           />
         )}
@@ -1288,8 +1655,8 @@ const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
             <img src={imgSrc} alt={alter}/>
           </div>
 
-          {/* <h2>{title}</h2>
-          <h3>{year} . {hours} mn</h3> */}
+          <h2>{title}</h2>
+          <h3>{year} . {hours} mn</h3>
           </div>
   )
 };
@@ -1311,7 +1678,7 @@ const Modal = (props)=>{
         <i class="show-close fas fa-times" onClick={props.closePop} >X</i>
         
         <div className='show-poster'>
-          <span className='show-poster-bg'>
+          <span className='show-poster-bg' onClick={handlePlayClick}>
             <img src={props.Poster !== 'N/A' ? props.Poster : 'https://via.placeholder.com/163x240/111217/FFFFFF/?text=No%20Image'} alt={props.Title} />
           </span>
           <span className='show-poster-main'>
@@ -1327,7 +1694,7 @@ const Modal = (props)=>{
             <li className="show-year">{props.Rated}</li>
             <li className="show-year">{props.Genre}</li>
           </ul>
-          <div class="show-plot">
+          <div className="show-plot">
             <p>{props.Plot}</p>
           </div>
           
@@ -1340,7 +1707,7 @@ const Modal = (props)=>{
             <p><strong>BoxOffice:</strong> {props.BoxOffice || 'N/A '}</p>
           </div>
         </div>
-        <button onClick={handlePlayClick}>Play</button>
+        {/* <button onClick={handlePlayClick}>Play</button> */}
       </div>
       
     </div>
@@ -1355,11 +1722,11 @@ const HamburgerButton = styled.button`
   }
 `;
 
-const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
+const Nav = ({handleItemClick, handleLogInClick, logged, logo, returnHome})=>{
   const [navActive, setNavActive] = useState(false);
 
   const toggleNav = () => {
-    console.log(navActive); 
+  
     setNavActive(!navActive);
   };
 
@@ -1386,7 +1753,7 @@ const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
         </ul>
         <div className='Desktop'>
           {
-            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            logged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         </div>
         </div>
@@ -1413,7 +1780,7 @@ const Nav = ({handleItemClick, handleLogInClick, Islogged, logo, returnHome})=>{
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            logged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
@@ -1457,18 +1824,21 @@ const Watch = ({ selectedCard }) => {
         <li
           onClick={() => handleTabClick('comments')}
           className={activeTab === 'comments' ? 'active' : ''}
+          style={{color: `white`}}
         >
           Comments
         </li>
         <li
           onClick={() => handleTabClick('questions')}
           className={activeTab === 'questions' ? 'active' : ''}
+          style={{color: `white`}}
         >
           Questions
         </li>
         <li
           onClick={() => handleTabClick('episodes')}
           className={activeTab === 'episodes' ? 'active' : ''}
+          style={{color: `white`}}
         >
           Episodes
         </li>

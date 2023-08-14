@@ -1,5 +1,8 @@
 body {
-  background-color: rgba(128, 128, 0, 1);
+  /* background-color: rgba(128, 128, 0, 1); */
+  background-color: hsla(278, 78%, 40%, 0.98);
+  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  hsl(219, 91%, 13%) 35%);
   /* background-color: #4D774E; */
 }
 
@@ -23,7 +26,7 @@ ul {
 
 select {
   /* background-color: rgba(255, 128, 0, 1); */
-  background-color: rgba(128, 128, 0, 1);
+  /* background-color: rgba(128, 128, 0, 1); */
 }
 
 footer {
@@ -89,7 +92,9 @@ body {
   width: 100%;
   max-width: 800px;
   color: #fff;
-  background: linear-gradient(to left,rgba(128, 128, 0, 1), #56ab2f);
+  background-color: hsla(278, 78%, 40%, 0.98);
+  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  hsl(219, 91%, 13%) 35%);
   border-radius: 0.8em;
   box-shadow: rgba(0, 0, 0, 0.2) 0 30px 18px -24px;
   position: relative;

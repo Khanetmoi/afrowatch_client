@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import logo from '../Images/logo.png';
+import { AiFillLike,AiFillDislike } from 'react-icons/ai';
 
 const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: hsla(278, 78%, 40%, 0.98);
+  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  hsl(219, 91%, 13%) 35%);
 `;
 
 const ShowComments = styled.div`
+   position: relative;
   /* Add your styles for showing comments */
 `;
 
 const InComments = styled.div`
   display: flex;
   align-items: center;
+  margin-block: 40px;
 `;
 
 const Commenter = styled.div`
@@ -27,10 +33,12 @@ const ProfileImage = styled.img`
 `;
 
 const ProfileName = styled.h4`
+color: white;
   margin: 0;
 `;
 
 const CommentText = styled.p`
+color: white;
   margin: 0;
 `;
 
@@ -38,6 +46,9 @@ const WriteComments = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
+  position: sticky;
+  // top: 1;
+  left: 0;
 `;
 
 const CommentInput = styled.input`
@@ -273,10 +284,10 @@ const Comments = (props) => {
               <CommentText>{comment.comment}</CommentText>
               <div>
                 <button onClick={() => handleLike(comment.id)}>
-                  Like ({formatNumber(comment.likes)})
+                  <AiFillLike/> ({formatNumber(comment.likes)})
                 </button>
                 <button onClick={() => handleDislike(comment.id)}>
-                  Dislike ({formatNumber(comment.dislikes)})
+                  <AiFillDislike/> ({formatNumber(comment.dislikes)})
                 </button>
                 <button onClick={() => handleReport(comment.id)}>Report</button>
               </div>

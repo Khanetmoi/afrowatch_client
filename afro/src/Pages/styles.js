@@ -42,25 +42,53 @@ const SLide = styled.div`
 `;
 
 export const Navigation = styled.div`
+position: sticky;
+top: 0;
+z-index: 100;
 display: flex;
 justify-content: space-between;
 align-items: center;
 background-color: rgba(255, 128, 0, 1);
 color: white;
-width: 95%;
 padding: 1rem 2.5%;
 font-size: 20px;
-   ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style-type: none;
+div {
+ display: flex;
+}
+  ul {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   list-style-type: none;
 
-      li {
-        margin: 0 2rem;
-      }
+     li {
+       margin: 0 2rem;
+     }
+  }
+
+  .mobile {
+   display: none;
+ }
+
+ @media (max-width: 768px) {
+   .mobile {
+     display: block;
+
+     .search {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+     }
    }
-`;
+   .Desktop {
+     display: none; 
+   }
+
+   img {
+     width: 33px;
+   }
+ }
+`
 
 export const LoginButton = styled.div`
   padding: 8px 16px;

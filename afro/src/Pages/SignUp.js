@@ -7,7 +7,9 @@ const SignUpContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: rgba(128, 128, 0, 1);
+  background-color: hsla(278, 78%, 40%, 0.98);
+  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  hsl(219, 91%, 13%) 35%);
 `;
 
 const SignUpForm = styled.form`
@@ -29,7 +31,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #4CAF50;
+  background-color: red;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -47,6 +49,7 @@ const CountryCodeSelect = styled.select`
 
 const CountryCodeOption = styled.option`
   /* Your country code option styles here */
+  background-color: white;
 `;
 
 
@@ -79,17 +82,20 @@ const SignUp = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
+      
     })
       .then((response) => response.json())
       .then((data) => {
+        props.log(true)
         // Handle the API response as needed
         console.log('API response:', data);
+
       })
       .catch((error) => {
         // Handle errors
         console.error('Error:', error);
       });
-
+    
     props.page('Subscription')
     // Handle form submission here (e.g., form validation and API call)
   };
@@ -169,14 +175,7 @@ const SignUp = (props) => {
            value={formData.password}
             onChange={handleInputChange}
             />
-        <Input
-         type="tel"
-          placeholder="Phone Number"
-          name="phoneNumber"
-           value={formData.phoneNumber}
-            onChange={handleInputChange}
-             />
-        <div>
+            <div>
           <label htmlFor="countryCode">Country Code</label>
           <CountryCodeSelect
            id="countryCode"
@@ -191,11 +190,19 @@ const SignUp = (props) => {
             ))}
           </CountryCodeSelect>
         </div>
+        <Input
+         type="tel"
+          placeholder="Phone Number"
+          name="phoneNumber"
+           value={formData.phoneNumber}
+            onChange={handleInputChange}
+             />
+        
         <Button type="submit">Sign Up</Button>
       </SignUpForm>
       <div>
-        <Button onClick={handleSignUpWithGoogle}>Sign Up with Google</Button>
-        <Button onClick={handleSignUpWithFacebook}>Sign Up with Facebook</Button>
+        <Button onClick={handleSignUpWithGoogle} style={{ backgroundColor: 'white', color: 'black' }}>Sign Up with Google</Button>
+        <Button onClick={handleSignUpWithFacebook} style={{ backgroundColor: 'white', color: 'black' }}>Sign Up with Facebook</Button>
       </div>
     </SignUpContainer>
   );
