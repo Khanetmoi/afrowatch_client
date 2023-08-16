@@ -7,8 +7,9 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  background-color: hsla(278, 78%, 40%, 0.98);
-  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  // background-color: hsla(278, 78%, 40%, 0.98);
+  // background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  background-color: #18200e;
   hsl(219, 91%, 13%) 35%);
 `;
 
@@ -57,7 +58,8 @@ const Login = (props) => {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-
+      setEmail('');
+      setPassword('');
       
 
       try {
@@ -65,19 +67,24 @@ const Login = (props) => {
         const response = await fetch('https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_login.php');
         const data = await response.json();
   
-        const match = data.map((userData) => {
+        const match = data.some((userData) => {          
           return userData.user_mail === email && userData.user_password === password;
         });
-  
+       
         if (match) {
           console.log('Login successful');
           setError('Login successful')
+          localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
           // Call the props.logged function to indicate successful login
           props.log(true);
           props.page('home');
         } else {
           console.log('Invalid username or password');
           setError('Invalid username or password')
+          setEmail('');
+          setPassword('');
+          console.log(email)
+          console.log(password)
           // Handle invalid login attempt here
         }
       } catch (error) {
@@ -85,13 +92,13 @@ const Login = (props) => {
         setError('Error fetching user credentials')
         // Handle error here
       }
+      
   
       // Reset the form
-      setEmail('');
-      setPassword('');
+      
       
       // Save the email and password in the localStorage
-      localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
+      
   
       
       // Handle login here (e.g., form validation and API call)
@@ -106,8 +113,8 @@ const Login = (props) => {
       <LoginContainer>
         <LoginForm onSubmit={handleSubmit}>
           <h2>Login</h2>
-          <Input type="email" name="email" placeholder="Email" />
-          <Input type="password" name="password" placeholder="Password" />
+          <Input type="email" name="email" placeholder="Email" onChange={handleUsernameChange}/>
+          <Input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
           <Button type="submit">Login</Button>
           <p>{error}</p>
         </LoginForm>

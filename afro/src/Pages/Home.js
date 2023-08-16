@@ -1032,6 +1032,17 @@ const removeSection = (sectionIndex) => {
   
     var settings1 = {
       dots: true,
+      customPaging: (i) => (
+        <div
+          style={{
+            width: '10px',
+            height: '10px',
+            backgroundColor: i === currentSlide ? 'black' : 'white', // Change color based on current slide
+            borderRadius: '50%', // Round the dots if you want
+            transition: 'background-color 0.3s ease', // Add transition effect
+          }}
+        ></div>
+      ),
       infinite: true,
       speed: 500,
       slidesToShow: 6,
@@ -1130,6 +1141,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1146,6 +1158,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1170,6 +1183,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1186,6 +1200,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1210,6 +1225,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1226,6 +1242,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1250,6 +1267,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1265,6 +1283,7 @@ const removeSection = (sectionIndex) => {
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1289,6 +1308,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1305,6 +1325,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1329,6 +1350,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1345,6 +1367,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1369,6 +1392,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1385,6 +1409,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1409,6 +1434,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1425,6 +1451,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1449,6 +1476,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1465,6 +1493,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1506,6 +1535,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1530,6 +1560,7 @@ const removeSection = (sectionIndex) => {
               key={index}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 
@@ -1546,6 +1577,7 @@ const removeSection = (sectionIndex) => {
               key={index*2}
               read={() => handleCardClick(slide)}
               page = { props.page}
+              log = {props.logged}
             /> 
             )
           })} 

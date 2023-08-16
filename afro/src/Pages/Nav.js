@@ -118,22 +118,13 @@ align-center: center;
 `;
 
 
-const Nav = ({ handleItemClick, handleLogInClick, log, logo, setWatching, page, returnHome })=>{
+const Nav = ({ handleItemClick, handleLogInClick, Islogged, logo, setWatching, page, returnHome })=>{
   const [navActive, setNavActive] = useState(false);
-
+  console.log("are you logged" + Islogged)
   const toggleNav = () => {
     console.log(navActive); 
     setNavActive(!navActive);
   };
-
-  // const returnHome = ()=>{
-  //   console.log("return home");
-  //   setWatching(false);
-  //   console.log(setWatching)
-  //   page("home");
-  //  }
-
-  // const returnHome = returnHome;
 
   return (
     <div>
@@ -158,7 +149,7 @@ const Nav = ({ handleItemClick, handleLogInClick, log, logo, setWatching, page, 
         </ul>
         <div className='Desktop'>
           {
-            log?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         </div>
         </div>
@@ -185,7 +176,7 @@ const Nav = ({ handleItemClick, handleLogInClick, log, logo, setWatching, page, 
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            log?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>

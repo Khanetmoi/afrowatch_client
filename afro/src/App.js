@@ -10,11 +10,12 @@ import LoginButton  from './Pages/styles';
 import Navigation from './Pages/styles';
 import styled from 'styled-components';
 import Nav from './Pages/Nav';
+import Profile from './Pages/Profile/profile';
 // const [watching , setWatching ] = useState(false);
 
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('home'); 
+  const [currentPage, setCurrentPage] = useState('Profile'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
@@ -22,16 +23,20 @@ const App = () => {
 
   
 
+ 
+console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
+
   useEffect(() => {
-    // Check if the user is logged in based on the localStorage value
-    const loggedInStatus = localStorage.getItem('isLoggedIn');
-    if (loggedInStatus === 'true') {
+    console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
+    const loggedInStatus = JSON.parse(localStorage.getItem('loggedInStatus'));
+    if (loggedInStatus && loggedInStatus.email && loggedInStatus.password) {
       setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
+      // console.log(isLoggedIn)
+      console.log("you are logged in 1"+isLoggedIn)
     }
   }, []);
 
+  console.log("you are logged in 2"+isLoggedIn)
   const genres = [
     <option key={1}>Action</option>,
     <option key={2}>Comedy</option>,
@@ -151,6 +156,14 @@ const App = () => {
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
         <Subscription page = {(cpage) => setCurrentPage(cpage)} />
+      </div>
+    );
+  }
+  else if (currentPage === 'Profile') {
+    return (
+      <div>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Profile/>
       </div>
     );
   }

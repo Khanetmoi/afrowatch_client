@@ -23,7 +23,7 @@ const SlideContainer = styled.div`
 
 const ContentContainer = styled.div`
   position: relative;
-
+  border-radius: 40px;
   .info {
     color: white;
     margin: 10px 33%;
@@ -39,6 +39,7 @@ const ContentContainer = styled.div`
 
 const Media = styled.div`
   position: relative;
+  border-radius: 20px;
   // width: 100%;
   height: 300px; /* You can adjust the height as needed */
   overflow: hidden;
@@ -124,7 +125,7 @@ const Slide = (props) => {
             </Video>
           )}
           {!hovered && <Image src={props.poster} alt={props.alter} />}
-          {!signedIn && videoTime >= 5 && hovered && (
+          {!signedIn && videoTime >= 5 && hovered && !props.log && (
             <SignInOverlay>
               <p>Sign in to continue reading</p>
               <button onClick={handleSignIn}>Sign In</button>

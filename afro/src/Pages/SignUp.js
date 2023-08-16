@@ -7,8 +7,9 @@ const SignUpContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: hsla(278, 78%, 40%, 0.98);
-  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  // background-color: hsla(278, 78%, 40%, 0.98);
+  // background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  background-color: #18200e;
   hsl(219, 91%, 13%) 35%);
 `;
 
@@ -87,6 +88,7 @@ const SignUp = (props) => {
       .then((response) => response.json())
       .then((data) => {
         props.log(true)
+        props.page('Subscription')
         // Handle the API response as needed
         console.log('API response:', data);
 
@@ -96,7 +98,7 @@ const SignUp = (props) => {
         console.error('Error:', error);
       });
     
-    props.page('Subscription')
+    
     // Handle form submission here (e.g., form validation and API call)
   };
 
@@ -175,7 +177,7 @@ const SignUp = (props) => {
            value={formData.password}
             onChange={handleInputChange}
             />
-            <div>
+            {/* <div>
           <label htmlFor="countryCode">Country Code</label>
           <CountryCodeSelect
            id="countryCode"
@@ -189,10 +191,10 @@ const SignUp = (props) => {
               </CountryCodeOption>
             ))}
           </CountryCodeSelect>
-        </div>
+        </div> */}
         <Input
          type="tel"
-          placeholder="Phone Number"
+          placeholder="Country Code + Phone Number"
           name="phoneNumber"
            value={formData.phoneNumber}
             onChange={handleInputChange}

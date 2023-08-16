@@ -144,8 +144,9 @@ const plans = [
 
 
 const SubscriptionContainer = styled.div`
-background-color: hsla(278, 78%, 40%, 0.98);
-background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+// background-color: hsla(278, 78%, 40%, 0.98);
+// background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+background-color: #18200e;
 hsl(219, 91%, 13%) 35%);
   padding: 20px;
 `;
