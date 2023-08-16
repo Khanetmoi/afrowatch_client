@@ -31,7 +31,7 @@ const NextButton = styled.button`
   cursor: pointer;
 `;
 
-const Questions = () => {
+const Questions = (props) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState("");
     const [isQuizCompleted, setIsQuizCompleted] = useState(false);

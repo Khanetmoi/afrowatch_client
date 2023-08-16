@@ -20,6 +20,7 @@ const App = () => {
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
   const [watching , setWatching ] = useState(false);
+  const [identification, setIdentification] = useState(null);
 
   
 
@@ -133,14 +134,14 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
-        <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching}/>
+        <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification}/>
       </div>
     );
   } else if (currentPage === 'log In') {
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
-        <LogIn page = {(cpage) => setCurrentPage(cpage)} log={setIsLoggedIn}/>
+        <LogIn page = {(cpage) => setCurrentPage(cpage)} log={setIsLoggedIn} identification ={setIdentification}/>
       </div>
     );
   }else if (currentPage === 'log Up') {
@@ -163,7 +164,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
-        <Profile/>
+        <Profile identity = {identification}/>
       </div>
     );
   }

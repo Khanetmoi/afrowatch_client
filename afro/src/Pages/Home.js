@@ -1115,7 +1115,7 @@ const removeSection = (sectionIndex) => {
         <div className='page'>
         
         {/* <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {props.logged} logo={logo} returnHome={returnHome}/> */}
-        {props.watchv?<Watch selectedCard={selectedCard} />:
+        {props.watchv?<Watch selectedCard={selectedCard} identity = {props.identity} />:
         <div className='HomePage'>
         {/* <Intro>
           <AfroLogo src={afrowatch} alt="Afro lofo"/>
@@ -1866,9 +1866,9 @@ const Nav = ({handleItemClick, handleLogInClick, logged, logo, returnHome})=>{
 
 
 
-const Watch = ({ selectedCard }) => {
+const Watch = ({ selectedCard, identity }) => {
   const [activeTab, setActiveTab] = useState('comments');
-
+  const identification = identity;
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -1921,14 +1921,14 @@ const Watch = ({ selectedCard }) => {
       {activeTab === 'comments' && (
         <CommentsContainer>
           {/* Render comments here */}
-          <Comments/>
+          <Comments movieId = {selectedCard.movie_id} userId = {identification}/>
         </CommentsContainer>
       )}
 
       {activeTab === 'questions' && (
         <CommentsContainer>
           {/* Render questions here */}
-          <Questions/>
+          <Questions movieId = {selectedCard.movie_id} userId = {identification}/>
         </CommentsContainer>
       )}
 

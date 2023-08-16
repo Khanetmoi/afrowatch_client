@@ -45,7 +45,7 @@ const Button = styled.button`
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const [error, setError] = useState('');
 
   const handleUsernameChange = (event) => {
@@ -55,7 +55,7 @@ const Login = (props) => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
+    
     const handleSubmit = async (event) => {
       event.preventDefault();
       setEmail('');
@@ -67,7 +67,8 @@ const Login = (props) => {
         const response = await fetch('https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_login.php');
         const data = await response.json();
   
-        const match = data.some((userData) => {          
+        const match = data.some((userData) => {
+          props.identification(userData.id);          
           return userData.user_mail === email && userData.user_password === password;
         });
        
@@ -75,7 +76,6 @@ const Login = (props) => {
           console.log('Login successful');
           setError('Login successful')
           localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
-          // Call the props.logged function to indicate successful login
           props.log(true);
           props.page('home');
         } else {
@@ -108,7 +108,7 @@ const Login = (props) => {
       props.log(true)
       props.page('log Up');
     };
-  
+    
     return (
       <LoginContainer>
         <LoginForm onSubmit={handleSubmit}>

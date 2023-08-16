@@ -1,55 +1,89 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import Movie from './Movie';
+import disney from '.././../Images/disney.jpg'
+import History from './History'
+import Info from './Info';
+import Settings from './Setting'
 
-const ProfileContainer = styled.div`
-  display: flex;
-  height: 100vh;
-  @media (min-width: 768px) {
-    // flex-direction: row; /* Switch to side-by-side layout for wider screens */
-  }
-  position: relative;
-`;
-
-const Sidebar = styled.ul`
-  list-style: none;
-  padding: 0;
-  width: 200px;
-  background-color: #f0f0f0;
-
-  @media (max-width: 767px) {
-    width: 50%; /* Take full width on smaller screens */
-    transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(-100%)')};
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    transition: transform 0.3s ease-in-out; /* Add a transition for smooth animation */
-  }
-  
-`;
-
-const TabItem = styled.li`
-  padding: 10px;
-  cursor: pointer;
-  background-color: ${props => props.active ? '#ddd' : 'transparent'};
-  &:hover {
-    background-color: #ddd;
-  }
-`;
-
-const ContentDisplay = styled.div`
-  flex: 1;
+const CommentsContainer = styled.div`
+//   width: 100%;
   padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 `;
 
-const Profile = () => {
+const TabsContainer = styled.ul`
+  display: flex;
+  
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin: 2%;
+  @media (max-width: 768px) {
+       justify-content: center;
+      }
+  li {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    @media (max-width: 768px) {
+       margin: 10px;
+       padding: 5px 10px;
+       cursor: pointer;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+       font-size: 20px;
+      }
+  }
+
+  li.active {
+    background-color: #4caf50;
+    color: #fff;
+    border-color: transparent;
+    // @media (max-width: 768px) {
+    //     width: 20vh;
+    //   }
+  }
+`;
+
+const UserInfo = styled.h2`
+  display: flex;
+  border-radius: 20px;
+  margin: 2%;
+  height: 40vh;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 40vh;
+  }
+  img {
+    @media (max-width: 768px) {
+        width: 20vh;
+      }
+  }
+    h3 {
+        color: black;
+        @media (max-width: 768px) {
+            font-size: 20px;
+          }
+    }
+`;
+
+const UserProfile = styled.div`
+background-color: white;
+`;
+const Profile = ({identity}) => {
   const [activeProfile, setActiveProfile] = useState('Home');
   const [isOpen, setIsOpen] = useState(false);
   const [startTouchX, setStartTouchX] = useState(null);
   
   const handleTabClick = (tab) => {
-    setActiveProfile(tab);
+    setActiveTab(tab);
   };
 
 
@@ -71,42 +105,62 @@ const Profile = () => {
 
     setStartTouchX(null);
   };
-  
+  const [activeTab, setActiveTab] = useState('Info');
   return (
-    <ProfileContainer>
-      <Sidebar isOpen={isOpen}>
-        <TabItem
-          active={activeProfile === 'Home'}
-          onClick={() => handleTabClick('Home')}
+    <div className='Profile'>
+        <UserProfile>
+       <UserInfo>
+            <img src={disney} alt="PofilePic" />
+            <h3>Van Inayat-khan</h3>
+        </UserInfo>
+        <TabsContainer>
+            <li
+          onClick={() => handleTabClick('Info')}
+          className={activeTab === 'Info' ? 'active' : ''}
+          style={{color: `black`}}
         >
-          Home
-        </TabItem>
-        <TabItem
-          active={activeProfile === 'Movie'}
-          onClick={() => handleTabClick('Movie')}
+          info
+        </li>
+        <li
+          onClick={() => handleTabClick('settings')}
+          className={activeTab === 'settings' ? 'active' : ''}
+          style={{color: `black`}}
         >
-          Movie
-        </TabItem>
-        <TabItem
-          active={activeProfile === 'Shows'}
-          onClick={() => handleTabClick('Shows')}
+         settings
+        </li>
+        <li
+          onClick={() => handleTabClick('history')}
+          className={activeTab === 'history' ? 'active' : ''}
+          style={{color: `black`}}
         >
-          Shows
-        </TabItem>
-        <TabItem
-          active={activeProfile === 'Subscription'}
-          onClick={() => handleTabClick('Subscription')}
-        >
-          Subscription
-        </TabItem>
-      </Sidebar>
-      <ContentDisplay onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        {activeProfile === 'Home' && <h1>Home</h1>}
-        {activeProfile === 'Movie' && <h1>Movie</h1>}
-        {activeProfile === 'Shows' && <h1>Shows</h1>}
-        {activeProfile === 'Subscription' && <h1>Subscription</h1>}
-      </ContentDisplay>
-    </ProfileContainer>
+          history
+        </li>
+        </TabsContainer>
+        </UserProfile>
+        <div>
+        
+            {activeTab === 'Info' && (
+        <CommentsContainer>
+          {/* Render comments here */}
+          <Info/>
+        </CommentsContainer>
+      )}
+
+      {activeTab === 'settings' && (
+        <CommentsContainer>
+          {/* Render questions here */}
+          <Settings/>
+        </CommentsContainer>
+      )}
+
+      {activeTab === 'history' && (
+        <CommentsContainer>
+          <History/>
+        </CommentsContainer>
+      )}
+        </div>
+    </div>
+      
   );
 };
 
