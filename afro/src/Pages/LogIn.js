@@ -45,6 +45,7 @@ const Button = styled.button`
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [identification, setIdentification] = useState('');
   
   const [error, setError] = useState('');
 
@@ -58,24 +59,37 @@ const Login = (props) => {
     
     const handleSubmit = async (event) => {
       event.preventDefault();
+      // Button
       setEmail('');
       setPassword('');
       
-
       try {
         // Make an API request to fetch user credentials
         const response = await fetch('https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_login.php');
         const data = await response.json();
-  
-        const match = data.some((userData) => {
-          props.identification(userData.id);          
-          return userData.user_mail === email && userData.user_password === password;
-        });
+
+        const match = data.some(
+          (userData) => {
+            return userData.user_mail === email && userData.user_password === password;
+          }
+        );
        
         if (match) {
+          setIdentification(match.user_id);
+          
           console.log('Login successful');
-          setError('Login successful')
-          localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
+          setError('Login successful');
+
+          localStorage.setItem('loggedInStatus', 
+            JSON.stringify(
+              { 
+                email, password, identification: match.user_id
+              }
+            )
+          );
+
+          console.log(localStorage.setItem('loggedInStatus', JSON.stringify({email, password, identification: match.user_id})));
+
           props.log(true);
           props.page('home');
         } else {
@@ -92,16 +106,6 @@ const Login = (props) => {
         setError('Error fetching user credentials')
         // Handle error here
       }
-      
-  
-      // Reset the form
-      
-      
-      // Save the email and password in the localStorage
-      
-  
-      
-      // Handle login here (e.g., form validation and API call)
     };
   
     const gotoLogUp = () => {
