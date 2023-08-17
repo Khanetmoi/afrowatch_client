@@ -80,13 +80,7 @@ const Login = (props) => {
           console.log('Login successful');
           setError('Login successful');
 
-          localStorage.setItem('loggedInStatus', 
-            JSON.stringify(
-              { 
-                email, password, identification: match.user_id
-              }
-            )
-          );
+          localStorage.setItem('loggedInStatus', JSON.stringify({email, password, identification: match.user_id}));
 
           console.log(localStorage.setItem('loggedInStatus', JSON.stringify({email, password, identification: match.user_id})));
 
