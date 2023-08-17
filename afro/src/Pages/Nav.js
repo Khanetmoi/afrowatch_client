@@ -126,6 +126,10 @@ const Nav = ({ handleItemClick, handleLogInClick, Islogged, logo, setWatching, p
     setNavActive(!navActive);
   };
 
+  const goProfilePage= ()=>{
+    page('Profile')
+  }
+
   return (
     <div>
     <Navigation>
@@ -149,7 +153,7 @@ const Nav = ({ handleItemClick, handleLogInClick, Islogged, logo, setWatching, p
         </ul>
         <div className='Desktop'>
           {
-            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            Islogged?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         </div>
         </div>
@@ -176,7 +180,7 @@ const Nav = ({ handleItemClick, handleLogInClick, Islogged, logo, setWatching, p
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            Islogged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            Islogged?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
