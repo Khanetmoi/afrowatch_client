@@ -47,7 +47,8 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   
   const [error, setError] = useState('');
-
+  const [identification, setIdentification] = useState(null);
+  let matchedUserId = null;
   const handleUsernameChange = (event) => {
     setEmail(event.target.value);
   };
@@ -68,14 +69,21 @@ const Login = (props) => {
         const data = await response.json();
   
         const match = data.some((userData) => {
-          props.identification(userData.id);          
-          return userData.user_mail === email && userData.user_password === password;
+          // console.log('the users id is :'+ userData.user_id)
+          // identification(userData.user_id);          
+          // return userData.user_mail === email && userData.user_password === password;
+          if (userData.user_mail === email && userData.user_password === password) {
+            matchedUserId = userData.user_id; 
+            localStorage.setItem('loggedInStatus', JSON.stringify({ email, password, matchedUserId }));
+            return true;
+          }
+          return false; 
         });
        
         if (match) {
           console.log('Login successful');
           setError('Login successful')
-          localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
+          // localStorage.setItem('loggedInStatus', JSON.stringify({ email, password }));
           props.log(true);
           props.page('home');
         } else {
