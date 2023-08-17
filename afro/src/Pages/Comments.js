@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from '../Images/logo.png';
 import { AiFillLike,AiFillDislike } from 'react-icons/ai';
@@ -58,262 +58,216 @@ const CommentInput = styled.input`
   border-radius: 5px;
 `;
 
-const sampleComments = [
-  {
-    id: 1,
-    profileImage: logo,
-    alter: "Profile 1",
-    profileName: "User 1",
-    comment: "This is a great post!",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 2,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 3,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 4,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 5,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 6,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 7,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 8,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 9,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  {
-    id: 10,
-    profileImage: logo,
-    alter: "Profile 2",
-    profileName: "User 2",
-    comment: "Thanks for sharing this.",
-    likes: 0,
-    dislikes: 0,
-  },
-  // Add more sample comment objects as needed
-];
-
-// const Comments = (props) => {
-//   const [newComment, setNewComment] = useState("");
-//   const [comments, setComments] = useState(sampleComments);
-
-//   const handleCommentChange = (event) => {
-//     setNewComment(event.target.value);
-//   };
-
-//   const handleAddComment = () => {
-//     if (newComment.trim() !== "") {
-//       const newCommentObject = {
-//         id: comments.length + 1,
-//         profileImage: props.image,
-//         alter: props.alter,
-//         profileName: "Your Name",
-//         comment: newComment,
-//       };
-
-//       setComments([...comments, newCommentObject]);
-//       setNewComment("");
-//     }
-//   };
-
-//   return (
-//     <CommentContainer>
-    //   <ShowComments>
-    //     {comments.map((comment) => (
-    //       <InComments key={comment.id}>
-    //         <Commenter>
-    //           <ProfileImage src={comment.profileImage} alt={comment.alter} />
-    //         </Commenter>
-    //         <div>
-    //           <ProfileName>{comment.profileName}</ProfileName>
-    //           <CommentText>{comment.comment}</CommentText>
-    //         </div>
-    //       </InComments>
-    //     ))}
-    //   </ShowComments>
-//       <WriteComments>
-//         <Commenter>
-//           {/* <ProfileImage src={props.image} alt={props.alter} /> */}
-//           <ProfileImage src={logo} alt={props.alter} />
-//         </Commenter>
-//         <div>
-//           <CommentInput
-//             type="text"
-//             placeholder="Add a comment"
-//             value={newComment}
-//             onChange={handleCommentChange}
-//           />
-//           <button onClick={handleAddComment}>Add Comment</button>
-//         </div>
-//       </WriteComments>
-//     </CommentContainer>
-//   );
-// };
-
 // ... (previous imports and styled-components definitions)
 const formatNumber = (num) => {
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-    }
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-    }
-    return num;
-  };
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  }
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  }
+  return num;
+};
 
 const Comments = (props) => {
-    const [newComment, setNewComment] = useState("");
-    const [comments, setComments] = useState(sampleComments);
-  
-    const handleCommentChange = (event) => {
-      setNewComment(event.target.value);
-    };
-  
-    const handleAddComment = () => {
-      if (newComment.trim() !== "") {
-        const newCommentObject = {
-          id: comments.length + 1,
-          profileImage: logo,
-        //   profileImage: props.image,
-          alter: props.alter,
-          profileName: "Van",
-        //   profileName: props.name,
-          comment: newComment,
-        };
-  
-        setComments([...comments, newCommentObject]);
-        setNewComment("");
-      }
-    };
-  
-    const handleKeyPress = (event) => {
-      if (event.key === "Enter") {
-        handleAddComment();
-      }
-    };
+  const storedUserId = JSON.parse(localStorage.getItem('loggedInStatus'));
 
-    const handleLike = (commentId) => {
-        setComments((prevComments) =>
-          prevComments.map((comment) =>
-            comment.id === commentId ? { ...comment, likes: comment.likes + 1 } : comment
-          )
-        );
-      };
-    
-      const handleDislike = (commentId) => {
-        setComments((prevComments) =>
-          prevComments.map((comment) =>
-            comment.id === commentId ? { ...comment, dislikes: comment.dislikes + 1 } : comment
-          )
-        );
-      };
-    
-      const handleReport = (commentId) => {
-        // Implement your report logic here
-      };
+  // Code For API POST
+  const [newComment, setNewComment] = useState("");
+
+  //Movie ID
+  const movie_id = props.movieId;
+
+  //const user_id = props.userId;
+  const user_id = storedUserId.matchedUserId;
+
+  //console.log('localValue = '+ storedUserId.matchedUserId);
+
+  const [commentCount, setCommentCount] = useState(0);
+
+  // API Link comment
+  const api_link_comment_get = 'https://myworklm.com/Afrowatch_admin/api/comments/afrowatch_api_comment_get.php?movie_id='+movie_id;
+  const api_link_comment_post = 'https://myworklm.com/Afrowatch_admin/api/comments/afrowatch_api_comment_post.php';
+
+  // API Link comment get
+  const api_link_user = 'https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_get.php?user_id='+user_id;
+
+  // Code For API GET
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
+    async function fetchComments() {
+      try {
+        const response = await fetch(api_link_comment_get);
+        const data = await response.json();
+        setComments(data); // Update the state with fetched comments
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    } 
+    fetchComments();
+  }, [commentCount]);
+
+  // user get All info
+  const [informations, setInformation] = useState([]);
+  useEffect(() => {
+    async function fetchInformation() {
+      try {
+        const response = await fetch(api_link_user);
+        const data = await response.json();
+        setInformation(data); // Update the state with fetched users
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    }
+    fetchInformation();
+  }, []);
+
   
-    return (
-      <CommentContainer>
-              <ShowComments>
-        {comments.map((comment) => (
-          <InComments key={comment.id}>
-            <Commenter>
-              <ProfileImage src={comment.profileImage} alt={comment.alter} />
-            </Commenter>
-            <div>
-              <ProfileName>{comment.profileName}</ProfileName>
-              <CommentText>{comment.comment}</CommentText>
-              <div>
-                <button onClick={() => handleLike(comment.id)}>
-                  <AiFillLike/> ({formatNumber(comment.likes)})
-                </button>
-                <button onClick={() => handleDislike(comment.id)}>
-                  <AiFillDislike/> ({formatNumber(comment.dislikes)})
-                </button>
-                <button onClick={() => handleReport(comment.id)}>Report</button>
-              </div>
-            </div>
-          </InComments>
-        ))}
-      </ShowComments>
-        <WriteComments>
-          <Commenter>
-            {/* <ProfileImage src={props.image} alt={props.alter} /> */}
-            <ProfileImage src={logo} alt={props.alter} />
-          </Commenter>
-          <div>
-            <CommentInput
-              type="text"
-              placeholder="Add a comment"
-              value={newComment}
-              onChange={handleCommentChange}
-              onKeyDown={handleKeyPress} // Trigger handleAddComment on Enter key
-            />
-          </div>
-        </WriteComments>
-      </CommentContainer>
+
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
+  
+  const handleAddComment = () => {
+    if (newComment.trim() !== "") {
+      const newCommentObject = {
+        user_id: user_id,    // Replace with the actual user ID
+        movie_id: movie_id,  // Replace with the actual movie ID
+        comment: newComment, // Replace with the actual comment text
+      };
+
+      try {
+        fetch(api_link_comment_post, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newCommentObject), // Convert the object to a JSON string
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('API response:', data);
+          setCommentCount(commentCount + 1);
+        })
+        .catch((error) => {
+          console.error('Error adding comment:', error);
+        });
+      } catch (error) {
+        console.error('Error adding comment:', error);
+      }
+    }
+  };
+  
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleAddComment();
+    }
+  };
+
+  const handleLike = (commentId) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.commentsId === commentId
+          ? {
+              ...comment,
+              commentsLikes: comment.isLiked
+                ? parseInt(comment.commentsLikes) - 1
+                : parseInt(comment.commentsLikes) + 1,
+              isLiked: !comment.isLiked,
+            }
+          : comment
+      )
     );
   };
   
-  
+  const handleDislike = (commentId) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.commentsId === commentId
+          ? {
+              ...comment,
+              commentsDislikes: comment.isDisliked
+                ? parseInt(comment.commentsDislikes) - 1
+                : parseInt(comment.commentsDislikes) + 1,
+              isDisliked: !comment.isDisliked,
+            }
+          : comment
+      )
+    );
+  };
+    
+  const handleReport = (commentId) => {
+    // Implement your report logic here
+  };
 
+  const photo_link = "https://myworklm.com/Afrowatch_admin/profiles/user/";
+  
+  return (
+    <CommentContainer>
+      <ShowComments>
+        {
+          comments.length > 0 ? (
+            comments.map(
+              (comment, index) => (
+                <InComments key={comment.commentsId}>
+                  <Commenter>
+                    <ProfileImage src={photo_link + comment.userImage} alt={comment.userFirstname} />
+                  </Commenter>
+
+                  <div>
+                    <ProfileName>{comment.userFirstname} {comment.userLastname}</ProfileName>
+                    <CommentText>{comment.commentsContents}</CommentText>
+
+                    <div>
+                      <button
+                        onClick={() => handleLike(comment.commentsId)}
+                        disabled={comment.isDisliked}
+                      >
+                        <AiFillLike /> ({formatNumber(comment.commentsLikes)})
+                      </button>
+
+                      <button
+                        onClick={() => handleDislike(comment.commentsId)}
+                        disabled={comment.isLiked}
+                      >
+                        <AiFillDislike /> ({formatNumber(comment.commentsDislikes)})
+                      </button>
+
+                      <button onClick={() => handleReport(comment.commentsId)}>Report</button>
+                    </div>
+                  </div>
+                </InComments>
+              )
+            )
+          ) : (
+            <h1 style={{ textAlign: 'center', fontSize: '24px', color: 'white' }}>No comments available.</h1>
+          )
+        }
+      </ShowComments>
+
+      <WriteComments>
+        {
+          informations.map(
+            (user, index) => (
+              <Commenter>
+                <ProfileImage src={photo_link + user.userImage} alt={props.alter} />
+              </Commenter>
+            )
+          )
+        }
+
+        <div>
+          <CommentInput
+            type="text"
+            placeholder="Add a comment"
+            value={newComment}
+            onChange={handleCommentChange}
+            onKeyDown={handleKeyPress} // Trigger handleAddComment on Enter key
+          />
+        </div>
+      </WriteComments>
+    </CommentContainer>
+  );
+};
+  
 export default Comments;
