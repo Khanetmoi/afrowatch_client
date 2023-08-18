@@ -15,7 +15,7 @@ import Profile from './Pages/Profile/profile';
 
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('Profile'); 
+  const [currentPage, setCurrentPage] = useState('home'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home")
@@ -133,21 +133,21 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   if (currentPage === 'home') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
         <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification}/>
       </div>
     );
   } else if (currentPage === 'log In') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
         <LogIn page = {(cpage) => setCurrentPage(cpage)} log={setIsLoggedIn} identification ={setIdentification}/>
       </div>
     );
   }else if (currentPage === 'log Up') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
         <SignUp page = {(cpage) => setCurrentPage(cpage) } log={setIsLoggedIn} />
       </div>
     );
@@ -155,7 +155,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   else if (currentPage === 'Subscription') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
         <Subscription page = {(cpage) => setCurrentPage(cpage)} />
       </div>
     );
@@ -163,7 +163,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   else if (currentPage === 'Profile') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} Islogged = {isLoggedIn} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
         <Profile identity = {identification}/>
       </div>
     );

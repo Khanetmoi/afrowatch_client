@@ -89,8 +89,11 @@ const SignUp = (props) => {
       .then((data) => {
         props.log(true)
         props.page('Subscription')
+        props.page('home')
         // Handle the API response as needed
-        console.log('API response:', data);
+        // console.log('API response:', data);
+        localStorage.setItem('loggedInStatus', JSON.stringify({ email: data.user_mail, password: data.user_password, matchedUserId: data.user_id }));
+        console.log(data)
 
       })
       .catch((error) => {

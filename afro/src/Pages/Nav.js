@@ -118,9 +118,9 @@ align-center: center;
 `;
 
 
-const Nav = ({ handleItemClick, handleLogInClick, Islogged, logo, setWatching, page, returnHome })=>{
+const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, returnHome })=>{
   const [navActive, setNavActive] = useState(false);
-  console.log("are you logged" + Islogged)
+  const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
   const toggleNav = () => {
     console.log(navActive); 
     setNavActive(!navActive);
@@ -136,51 +136,59 @@ const Nav = ({ handleItemClick, handleLogInClick, Islogged, logo, setWatching, p
         <img src={logo} alt="logo.png" onClick={returnHome}/>
         <div>
         <ul className='Desktop'>
-        <div>
+        {userInfo &&<div>
           <SearchBar type="text" placeholder="Search..."/>
           <BsSearch />
           {/* <SearchButton></SearchButton> */}
-          </div>
-        <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
-        <a href="#">Home</a>
-      </NavItem>
-      <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
-        <a href="#">Movie</a>
-      </NavItem>
-      <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
-        <a href="#">Show</a>
-      </NavItem>
+          </div>}
+          {userInfo && (
+              <>
+                <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
+                  <a href="#">Home</a>
+                </NavItem>
+                <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
+                  <a href="#">Movie</a>
+                </NavItem>
+                <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
+                  <a href="#">Show</a>
+                </NavItem>
+              </>
+            )}
         </ul>
         <div className='Desktop'>
           {
-            Islogged?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            userInfo?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         </div>
         </div>
-        <div className='mobile search'>
+        {userInfo &&<div className='mobile search'>
           <SearchBar type="text" placeholder="Search..."/>
           <BsSearch />
           {/* <SearchButton></SearchButton> */}
-          </div>
+          </div>}
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
         </Navigation>
         <Mobile className={`mobile ${navActive ? 'active' : ''}`}>
             
             <div>
             <ul className={`menuDisplay ${navActive ? 'active' : ''}`}>
-              <NavItem onClick={() => handleItemClick('Home')}>
-                 <a href="#">Home</a>
-              </NavItem>
-              <NavItem onClick={() => handleItemClick('Movie')}>
-                 <a href="#">Movie</a>
-              </NavItem>
-              <NavItem onClick={() => handleItemClick('Show')}>
-                 <a href="#">Show</a>
-              </NavItem>
+            {userInfo && (
+              <>
+                <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
+                  <a href="#">Home</a>
+                </NavItem>
+                <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
+                  <a href="#">Movie</a>
+                </NavItem>
+                <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
+                  <a href="#">Show</a>
+                </NavItem>
+              </>
+            )}
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            Islogged?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            userInfo?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>

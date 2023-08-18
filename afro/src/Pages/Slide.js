@@ -23,10 +23,10 @@ const SlideContainer = styled.div`
 
 const ContentContainer = styled.div`
   position: relative;
-  border-radius: 40px;
+  border-radius: 30px;
   .info {
     color: white;
-    margin: 10px 33%;
+    margin: 10px;
   }
 `;
 
@@ -41,22 +41,25 @@ const Media = styled.div`
   position: relative;
   border-radius: 20px;
   // width: 100%;
-  height: 300px; /* You can adjust the height as needed */
+  height: 120px; /* You can adjust the height as needed */
+  width: ${({ userInfo }) => (userInfo ? '80%' : '200px')};
   overflow: hidden;
-  margin: 10px;
+  margin: 5%;
+  max-width: 700px;
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 500px;
-  object-fit: cover; 
-// max-width: 100px;
+
+width: ${({ userInfo }) => (userInfo ? '100%' : '200px')};
+  // height: 100vh;
+  object-fit: contain; 
+  // max-width: 100px;
 `;
 
 const Video = styled.video`
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
+width: ${({ userInfo }) => (userInfo ? '100%' : '200px')};
+  // height: 100vh;
+  object-fit: contain;
   // max-width: 100px;
 `;
 
@@ -80,6 +83,7 @@ const Slide = (props) => {
   const [signedIn, setSignedIn] = useState(false);
   const [videoTime, setVideoTime] = useState(0);
   const videoRef = useRef(null);
+  const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
 
   const handleHover = () => {
     setHovered(true);
@@ -96,10 +100,15 @@ const Slide = (props) => {
   const handleSignIn = () => {
     // Implement your sign-in logic here
     props.page("log In")
+    
     setSignedIn(true);
   };
 
-  const handleVideoClick = () => {
+  const handleVideoClick = (e) => {
+    e.preventDefault();
+    if(!userInfo){
+      props.page("log In")
+    }
     if (!signedIn && videoTime >= 5) {
       setSignedIn(true);
     }
@@ -112,17 +121,35 @@ const Slide = (props) => {
         onMouseEnter={handleHover}
         onMouseLeave={handleLeave}
       >
-        <Media onClick={props.read}>
-          {hovered && (
+        <Media onClick={props.read} userInfo={userInfo}>
+          {hovered && (<div>
             <Video
               ref={videoRef}
               controls
               onTimeUpdate={handleVideoTimeUpdate}
               onClick={handleVideoClick}
+              // onClick={props.read}
               autoPlay
             >
               <source src={props.video} type="video/mp4" />
             </Video>
+              <button
+                onClick={handleVideoClick}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '100%',
+                  height: '100%',
+                  opacity: 0, // Make the button invisible
+                  cursor: 'pointer',
+                  zIndex: 1, // Place the button above the video
+                }}
+              >
+                {/* Content of the invisible button */}
+              </button>
+            </div>
           )}
           {!hovered && <Image src={props.poster} alt={props.alter} />}
           {!signedIn && videoTime >= 5 && hovered && !props.log && (
@@ -133,7 +160,7 @@ const Slide = (props) => {
           )}
         </Media>
         <div>
-          <h6 className='info'> title: {props.title} date: {props.date}</h6>
+          <h6 className='info'> title: {props.title} <br/> date: {props.date}</h6>
           {/* <p>{props.date}</p> */}
         </div>
       </ContentContainer>
