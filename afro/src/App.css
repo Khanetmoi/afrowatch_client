@@ -7,6 +7,10 @@ body {
   /* background-color: #4D774E; */
 }
 
+.profile {
+  font-size: 40px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;

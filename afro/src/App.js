@@ -140,14 +140,14 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   } else if (currentPage === 'log In') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
         <LogIn page = {(cpage) => setCurrentPage(cpage)} log={setIsLoggedIn} identification ={setIdentification}/>
       </div>
     );
   }else if (currentPage === 'log Up') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage) } setWatching={setWatching} />
         <SignUp page = {(cpage) => setCurrentPage(cpage) } log={setIsLoggedIn} />
       </div>
     );
@@ -155,7 +155,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   else if (currentPage === 'Subscription') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
         <Subscription page = {(cpage) => setCurrentPage(cpage)} />
       </div>
     );
@@ -163,7 +163,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   else if (currentPage === 'Profile') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
         <Profile identity = {identification}/>
       </div>
     );

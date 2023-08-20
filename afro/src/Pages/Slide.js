@@ -27,6 +27,10 @@ const ContentContainer = styled.div`
   .info {
     color: white;
     margin: 10px;
+    font-size: 20px;
+    @media (max-width: 768px) {
+      font-size: 10px;
+    }
   }
 `;
 
@@ -42,22 +46,22 @@ const Media = styled.div`
   border-radius: 20px;
   // width: 100%;
   height: 120px; /* You can adjust the height as needed */
-  width: ${({ userInfo }) => (userInfo ? '80%' : '200px')};
+  width: ${({ userInfo }) => (userInfo ? '90%' : '300px')};
   overflow: hidden;
-  margin: 5%;
+  margin: ${({ userInfo }) => (userInfo ? '5%' : '7px')};
   max-width: 700px;
 `;
 
 const Image = styled.img`
 
-width: ${({ userInfo }) => (userInfo ? '100%' : '200px')};
+width: ${({ userInfo }) => (!userInfo ? '100%' : '100px')};
   // height: 100vh;
   object-fit: contain; 
   // max-width: 100px;
 `;
 
 const Video = styled.video`
-width: ${({ userInfo }) => (userInfo ? '100%' : '200px')};
+width: ${({ userInfo }) => (!userInfo ? '100%' : '100px')};
   // height: 100vh;
   object-fit: contain;
   // max-width: 100px;

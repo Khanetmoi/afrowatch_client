@@ -7,8 +7,6 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  // background-color: hsla(278, 78%, 40%, 0.98);
-  // background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
   background-color: #18200e;
   hsl(219, 91%, 13%) 35%);
 `;
@@ -18,9 +16,11 @@ const LoginForm = styled.form`
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  padding: 20px;
+  padding: 5% 10%;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 33%;
+  // height: 50vh;
 `;
 
 const Input = styled.input`
@@ -120,7 +120,7 @@ const Login = (props) => {
     return (
       <LoginContainer>
         <LoginForm onSubmit={handleSubmit}>
-          <h2>Login</h2>
+          <h2>Sign In</h2>
           <Input type="email" name="email" placeholder="Email" onChange={handleUsernameChange}/>
           <Input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
           <Button type="submit">Login</Button>

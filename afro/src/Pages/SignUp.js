@@ -93,7 +93,7 @@ const SignUp = (props) => {
         // Handle the API response as needed
         // console.log('API response:', data);
         localStorage.setItem('loggedInStatus', JSON.stringify({ email: data.user_mail, password: data.user_password, matchedUserId: data.user_id }));
-        console.log(data)
+        console.log('dafaf'+ data)
 
       })
       .catch((error) => {

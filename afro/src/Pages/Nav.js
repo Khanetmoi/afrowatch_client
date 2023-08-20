@@ -2,7 +2,8 @@
 // import LoginButton  from "./styles";
 // import Navigation  from "./styles";
 import React, { useState, useRef, useEffect } from 'react';
-import { FaBeer, BsSearch } from 'react-icons/bs';
+import { FaBeer, BsSearch} from 'react-icons/bs';
+import { CgProfile } from 'react-icons/cg';
 import styled from 'styled-components';
 import { LiaSignInAltSolid } from 'react-icons/lia';
 
@@ -20,6 +21,7 @@ padding: 1rem 2.5%;
 font-size: 20px;
 div {
  display: flex;
+ align-items: center;
 }
   ul {
    display: flex;
@@ -63,6 +65,7 @@ const NavItem = styled.li`
   }
 
   @media (max-width: 768px) {
+    background-color: blue;
     margin: 0.5rem 0;
   }
 `;
@@ -118,7 +121,7 @@ align-center: center;
 `;
 
 
-const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, returnHome })=>{
+const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
   const [navActive, setNavActive] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
   const toggleNav = () => {
@@ -129,6 +132,12 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, return
   const goProfilePage= ()=>{
     page('Profile')
   }
+
+  const returnHome = ()=>{
+    page('home')
+    console.log("return home")
+    setWatching(false);
+   }
 
   return (
     <div>
@@ -157,7 +166,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, return
         </ul>
         <div className='Desktop'>
           {
-            userInfo?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            userInfo?<CgProfile className='profile' onClick={()=>{goProfilePage()}}/>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         </div>
         </div>
@@ -173,7 +182,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, return
             <div>
             <ul className={`menuDisplay ${navActive ? 'active' : ''}`}>
             {userInfo && (
-              <>
+              <div>
                 <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
                   <a href="#">Home</a>
                 </NavItem>
@@ -183,12 +192,12 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, return
                 <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
                   <a href="#">Show</a>
                 </NavItem>
-              </>
+              </div>
             )}
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            userInfo?<button onClick={()=>{goProfilePage()}}>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            userInfo?<CgProfile className='profile'  onClick={()=>{goProfilePage()}}/>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
