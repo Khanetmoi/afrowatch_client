@@ -3,6 +3,8 @@
 // import Navigation  from "./styles";
 import React, { useState, useRef, useEffect } from 'react';
 import { FaBeer, BsSearch} from 'react-icons/bs';
+import {GiEgyptianProfile} from 'react-icons/gi';
+import {VscSignOut} from 'react-icons/vsc';
 import { CgProfile } from 'react-icons/cg';
 import styled from 'styled-components';
 import { LiaSignInAltSolid } from 'react-icons/lia';
@@ -120,10 +122,25 @@ align-center: center;
   
 `;
 
+const ProfileFlex = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: end;
+margin: 0 50px;
+
+ span {
+  margin: 10px;
+  font-size: 15px;
+ }
+
+`;
+
 
 const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
   const [navActive, setNavActive] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
+  const [isProfileVisible, setIsProfileVisible] = useState(false);
   const toggleNav = () => {
     console.log(navActive); 
     setNavActive(!navActive);
@@ -133,11 +150,20 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
     page('Profile')
   }
 
+  const SignOut = ()=>{
+    localStorage.removeItem('loggedInStatus');
+    window.location.reload();
+    page('home')
+  }
   const returnHome = ()=>{
     page('home')
     console.log("return home")
     setWatching(false);
    }
+
+   const toggleProfileVisibility = () => {
+    setIsProfileVisible((prevState) => !prevState);
+  };
 
   return (
     <div>
@@ -166,7 +192,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
         </ul>
         <div className='Desktop'>
           {
-            userInfo?<CgProfile className='profile' onClick={()=>{goProfilePage()}}/>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
+            userInfo?<GiEgyptianProfile className='profile' onClick={toggleProfileVisibility} />:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
           }
         </div>
         </div>
@@ -197,10 +223,15 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            userInfo?<CgProfile className='profile'  onClick={()=>{goProfilePage()}}/>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            userInfo?<CgProfile className='profile' style={{color:`white`}}  onClick={toggleProfileVisibility} />:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
+        {userInfo&& isProfileVisible && <ProfileFlex>
+               <span style={{color:`white`}} onClick={()=>{goProfilePage()}}><CgProfile/>Profile</span>
+               <span style={{color:`white`}} onClick={()=>{SignOut()}}><VscSignOut/>Sign Out</span>
+        </ProfileFlex>}
+        
         </div>
         </Mobile>
         </div>
