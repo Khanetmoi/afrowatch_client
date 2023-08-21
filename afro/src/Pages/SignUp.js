@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import logoBlanc from '../Images/logoBlanc.png';
+import {FcGoogle} from 'react-icons/fc';
+import { AiFillFacebook } from 'react-icons/ai';
 
 const SignUpContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  // background-color: hsla(278, 78%, 40%, 0.98);
-  // background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
   background-color: #18200e;
-  hsl(219, 91%, 13%) 35%);
+  
+  div {
+    justify-content: center;
+    margin: 30px;
+    width: 50%;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      margin: 30px;
+      width: 90%;
+    }
+  }
 `;
 
 const SignUpForm = styled.form`
@@ -35,9 +52,14 @@ const Button = styled.button`
   background-color: red;
   color: #fff;
   padding: 10px 20px;
-  border: none;
+  border: 2px solid black;
+  width: 15%;
   border-radius: 5px;
   cursor: pointer;
+  margin: 10px;
+  @media (max-width: 768px) {
+    width: 30%;
+  }
 `;
 
 const CountryCodeSelect = styled.select`
@@ -53,6 +75,13 @@ const CountryCodeOption = styled.option`
   background-color: white;
 `;
 
+const Logo =styled.div`
+  width: 10%;
+  img {
+    font-size: 10px;
+    width: 80%;
+  }
+`;  
 
 const SignUp = (props) => {
 
@@ -150,6 +179,10 @@ const SignUp = (props) => {
 
   return (
     <SignUpContainer>
+      <Logo>
+          <img src={logoBlanc} alt="Logo" />
+        </Logo>
+        <div>
       <SignUpForm onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
         <Input
@@ -204,11 +237,15 @@ const SignUp = (props) => {
              />
         
         <Button type="submit">Sign Up</Button>
+        <h6> Or Sign Up with</h6>
+      
+        <Button onClick={handleSignUpWithGoogle} style={{ backgroundColor: 'white', color: 'black' }}> <FcGoogle/> Google</Button>
+        <Button onClick={handleSignUpWithFacebook} style={{ backgroundColor: 'white', color: 'black' }}><AiFillFacebook/> Facebook</Button>
+      
       </SignUpForm>
-      <div>
-        <Button onClick={handleSignUpWithGoogle} style={{ backgroundColor: 'white', color: 'black' }}>Sign Up with Google</Button>
-        <Button onClick={handleSignUpWithFacebook} style={{ backgroundColor: 'white', color: 'black' }}>Sign Up with Facebook</Button>
+      
       </div>
+      
     </SignUpContainer>
   );
 };
