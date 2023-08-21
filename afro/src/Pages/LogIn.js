@@ -4,12 +4,27 @@ import logoBlanc from '../Images/logoBlanc.png'
 
 const LoginContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 90vh;
   background-color: #18200e;
-  hsl(219, 91%, 13%) 35%);
+  // hsl(219, 91%, 13%) 35%);
+  div {
+    margin: 30px;
+    width: 50%;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      margin: 30px;
+      width: 90%;
+    }
+  }
 `;
 
 const LoginForm = styled.form`
@@ -20,29 +35,38 @@ const LoginForm = styled.form`
   padding: 5% 10%;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  width: 33%;
-  // height: 50vh;
+  //  width: 420px;
+   height: 40vh;
+   margin: 10px;
+   padding: 50px;
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin: 30px 0; 
 `;
 
 const Button = styled.button`
   background-color: red;
   color: #fff;
   padding: 10px 20px;
+  width: 100%;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 30px 0; 
 `;
 
-const Logo = styled.div`
-
+const Logo =styled.div`
+  width: 10%;
+  img {
+    font-size: 10px;
+    width: 80%;
+  }
 `;
 
 // ... (other imports and styles)
@@ -125,8 +149,9 @@ const Login = (props) => {
     return (
       <LoginContainer>
         <Logo>
-          <img src="logoBlanc" alt="Logo" />
+          <img src={logoBlanc} alt="Logo" />
         </Logo>
+        <div>
         <LoginForm onSubmit={handleSubmit}>
           <h2>Sign In</h2>
           <Input type="email" name="email" placeholder="Email" onChange={handleUsernameChange}/>
@@ -137,6 +162,7 @@ const Login = (props) => {
         <span style={{color: `white`}}>
           Don't have an account yet? <span onClick={() => gotoLogUp()} style={{color: `red`}}>Sign Up</span>
         </span>
+        </div>
       </LoginContainer>
     );
   };
