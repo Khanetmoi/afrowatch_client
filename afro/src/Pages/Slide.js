@@ -88,13 +88,19 @@ const Slide = (props) => {
   const [videoTime, setVideoTime] = useState(0);
   const videoRef = useRef(null);
   const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
+  const [videoPlaying, setVideoPlaying] = useState(false); 
 
   const handleHover = () => {
     setHovered(true);
   };
 
   const handleLeave = () => {
+
     setHovered(false);
+    if (videoPlaying) {
+      videoRef.current.pause(); // Pause video when mouse leaves
+      setVideoPlaying(false);
+    }
   };
 
   const handleVideoTimeUpdate = () => {
@@ -118,6 +124,14 @@ const Slide = (props) => {
     }
   };
 
+  const handleVideoPlay = () => {
+    setVideoPlaying(true);
+  };
+
+  const handleVideoPause = () => {
+    setVideoPlaying(false);
+  };
+
   return (
     <SlideContainer>
       <ContentContainer
@@ -132,6 +146,8 @@ const Slide = (props) => {
               controls
               onTimeUpdate={handleVideoTimeUpdate}
               onClick={handleVideoClick}
+              onPlay={handleVideoPlay} // Add this
+              onPause={handleVideoPause} //
               // onClick={props.read}
               autoPlay
             >

@@ -1109,7 +1109,9 @@ const removeSection = (sectionIndex) => {
 
          </div>}
         {userInfo&& <div>
-        <FeaturedMovies>
+          {props.tab === 'Home' ? (
+              <div className='homeCategory'>
+                <FeaturedMovies>
         <h2 className="title">Popular</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
@@ -1570,6 +1572,939 @@ const removeSection = (sectionIndex) => {
         }
         
       </FeaturedMovies>
+              </div>
+            ) : props.tab === 'Movie' ? (
+              <div className='movieCategory'>
+                <FeaturedMovies>
+        <h2 className="title">Popular</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Trending</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          console.log("slide", slide)
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Thriller</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Adventure</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Crime scene</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+       
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+        
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Romantic</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Horror</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+       
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Comedy</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+    
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Adventure</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+        
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Reality Show</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              log = {props.logged}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+   
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Drama</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+    
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+              </div>
+            ) : props.tab === 'show' ? (
+              <div className='showCategory'>
+                <FeaturedMovies>
+        <h2 className="title">Popular</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Trending</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          console.log("slide", slide)
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Thriller</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Adventure</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Crime scene</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+       
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+        
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Romantic</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Horror</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+          
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+       
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Comedy</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+    
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+         
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Adventure</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+        
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Reality Show</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+      
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              log = {props.logged}
+              page = { props.page}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+   
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+      <FeaturedMovies>
+        <h2 className="title">Drama</h2>
+        {
+          featuresCard.length >1?<Slider {...settings1}> 
+         {featuresCard?.map((slide, index)=>{
+
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+        </Slider>:<div> {featuredCard.map((slide, index)=>{
+    
+          return(
+            <Slide
+              poster={baseUrlimage + slide.movie_image}
+              alter={slide.movie_name}
+              video={baseUrlTrailler + slide.movie_trailler_file}
+              title = {slide.movie_name}
+              date = {slide.movie_year_release}
+              className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+              key={index*2}
+              read={() => handleCardClick(slide)}
+              page = { props.page}
+              log = {props.logged}
+            /> 
+            )
+          })} 
+          </div>
+        }
+        
+      </FeaturedMovies>
+              </div>
+            ) : (
+              <h1>No such category</h1>
+            )}
+        
     </div>}
         <MovieList>
         {/* {sections.map((section, sectionIndex) => ( */}

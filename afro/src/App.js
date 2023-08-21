@@ -133,8 +133,8 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   if (currentPage === 'home') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
-        <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching}/>
+        <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification} tab={tab}/>
       </div>
     );
   } else if (currentPage === 'log In') {

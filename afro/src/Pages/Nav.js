@@ -159,7 +159,7 @@ top: 0;
 `;
 
 
-const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
+const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab })=>{
   const [navActive, setNavActive] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
   const [isProfileVisible, setIsProfileVisible] = useState(false);
