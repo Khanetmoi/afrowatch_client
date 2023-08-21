@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import logoBlanc from '../Images/logoBlanc.png'
 
 const LoginContainer = styled.div`
   display: flex;
@@ -38,6 +39,10 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+const Logo = styled.div`
+
 `;
 
 // ... (other imports and styles)
@@ -119,6 +124,9 @@ const Login = (props) => {
     
     return (
       <LoginContainer>
+        <Logo>
+          <img src="logoBlanc" alt="Logo" />
+        </Logo>
         <LoginForm onSubmit={handleSubmit}>
           <h2>Sign In</h2>
           <Input type="email" name="email" placeholder="Email" onChange={handleUsernameChange}/>

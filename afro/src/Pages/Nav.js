@@ -1,6 +1,3 @@
-// import NavItem  from "./styles";
-// import LoginButton  from "./styles";
-// import Navigation  from "./styles";
 import React, { useState, useRef, useEffect } from 'react';
 import { FaBeer, BsSearch} from 'react-icons/bs';
 import {GiEgyptianProfile} from 'react-icons/gi';
@@ -17,10 +14,18 @@ z-index: 100;
 display: flex;
 justify-content: space-between;
 align-items: center;
-background-color: black;
+
 color: white;
-padding: 1rem 2.5%;
+
 font-size: 20px;
+.normal {
+  padding: 1rem 2.5%;
+  background-color: black;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 div {
  display: flex;
  align-items: center;
@@ -67,7 +72,7 @@ const NavItem = styled.li`
   }
 
   @media (max-width: 768px) {
-    background-color: blue;
+    // background-color: blue;
     margin: 0.5rem 0;
   }
 `;
@@ -128,11 +133,28 @@ flex-direction: column;
 justify-content: flex-end;
 align-items: end;
 margin: 0 50px;
+background-color: gray;
+width: 10%;
+position: relative;
+left: 85%;
+top: 0;
 
  span {
   margin: 10px;
   font-size: 15px;
+  cursor: pointer;
  }
+
+ @media (max-width: 768px) {
+  /* Media query for phone view */
+  display: flex; /* Display ProfileFlex in phone view */
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #333;
+  padding: 10px;
+  z-index: 10;
+}
 
 `;
 
@@ -168,6 +190,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
   return (
     <div>
     <Navigation>
+      <div className='normal'>
         <img src={logo} alt="logo.png" onClick={returnHome}/>
         <div>
         <ul className='Desktop'>
@@ -202,6 +225,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page })=>{
           {/* <SearchButton></SearchButton> */}
           </div>}
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
+        </div>
         </Navigation>
         <Mobile className={`mobile ${navActive ? 'active' : ''}`}>
             
