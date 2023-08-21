@@ -84,7 +84,7 @@ const Logo =styled.div`
 `;  
 
 const SignUp = (props) => {
-
+  const [error, setError] = useState(' ');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -102,10 +102,24 @@ const SignUp = (props) => {
     }));
   };
 
+  const haveAccount = ()=>{
+    props.page('log In')
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
+    if (
+      formData.firstName.trim() === '' ||
+      formData.lastName.trim() === '' ||
+      formData.email.trim() === '' ||
+      formData.password.trim() === '' ||
+      formData.phoneNumber.trim() === ''
+    ) {
+      setError('Please fill out all fields');
+      // console.error('Please fill out all fields');
+      return;
+    }
     fetch('https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_signup.php', {
       method: 'POST',
       headers: {
@@ -184,6 +198,7 @@ const SignUp = (props) => {
         </Logo>
         <div>
       <SignUpForm onSubmit={handleSubmit}>
+        <p style={{color: `red`}}>{error}</p>
         <h2>Sign Up</h2>
         <Input
          type="text"
@@ -237,7 +252,8 @@ const SignUp = (props) => {
              />
         
         <Button type="submit">Sign Up</Button>
-        <h6> Or Sign Up with</h6>
+        <span>already have an account? <button onClick={haveAccount}>sign In</button></span>
+        <h4> Or Sign Up with</h4>
       
         <Button onClick={handleSignUpWithGoogle} style={{ backgroundColor: 'white', color: 'black' }}> <FcGoogle/> Google</Button>
         <Button onClick={handleSignUpWithFacebook} style={{ backgroundColor: 'white', color: 'black' }}><AiFillFacebook/> Facebook</Button>
