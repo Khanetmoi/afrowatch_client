@@ -22,7 +22,7 @@ const LoginContainer = styled.div`
 
     div {
       margin: 30px;
-      width: 90%;
+      width: 95%;
     }
   }
 `;
@@ -31,6 +31,7 @@ const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: #fff;
   padding: 5% 10%;
   border-radius: 10px;
@@ -39,6 +40,22 @@ const LoginForm = styled.form`
    height: 40vh;
    margin: 10px;
    padding: 50px;
+
+   div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      margin-block: 10px;
+      h4 {
+        display: none;
+      }
+    }
+   }
+
+   
 `;
 
 const Input = styled.input`
@@ -47,18 +64,21 @@ const Input = styled.input`
   // margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 30px 0; 
+  // margin: 30px ; 
+  width: 180px;
 `;
 
 const Button = styled.button`
   background-color: red;
   color: #fff;
   padding: 10px 20px;
-  width: 100%;
+  width: 50%;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 30px 0; 
+  margin: 30px 0;
+  @media (max-width: 768px) {
+    width: 80%;
 `;
 
 const Logo =styled.div`
@@ -150,12 +170,19 @@ const Login = (props) => {
       <LoginContainer>
         <Logo>
           <img src={logoBlanc} alt="Logo" />
+          
         </Logo>
         <div>
         <LoginForm onSubmit={handleSubmit}>
           <h2>Sign In</h2>
-          <Input type="email" name="email" placeholder="Email" onChange={handleUsernameChange}/>
+          <div>
+            <h4>email: </h4>
+             <Input type="email" name="email" placeholder="Email" onChange={handleUsernameChange}/>
+           </div>
+           <div>
+           <h4>password: </h4>
           <Input type="password" name="password" placeholder="Password" onChange={handlePasswordChange} />
+          </div>
           <Button type="submit">Login</Button>
           <p>{error}</p>
         </LoginForm>

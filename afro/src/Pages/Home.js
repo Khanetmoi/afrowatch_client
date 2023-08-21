@@ -1104,7 +1104,7 @@ const removeSection = (sectionIndex) => {
       />
     );
   }
-  return null; // Don't render anything for elements beyond the first three
+  return null; 
 })}
 
          </div>}
