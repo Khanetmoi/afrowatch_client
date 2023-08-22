@@ -102,6 +102,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     setCurrentPage('home')
     if(item === "Home")
      {
+      console.log('home clicked')
       setTab("Home")
       setCategories(home)
       setCategoryTitle("Home Page")
@@ -109,12 +110,14 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
      }
      else if(item === "Movie"){
       setTab("Movie")
+      console.log('movie clicked')
       setCategories(genres)
         setCategoryTitle("Movie")
         setWatching(false)
       
      }
      else if(item === "show"){
+      console.log('movie clicked')
         setTab("show")
         setCategories(genres)
         setCategoryTitle("Show")

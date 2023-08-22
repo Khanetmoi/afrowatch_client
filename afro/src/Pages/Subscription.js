@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const categoriesData = [
-    { title: 'HEARTMARMING', elements: ['Romance', 'Family'] },
+    { title: 'HEARTWARMING', elements: ['Romance', 'Family'] },
     { title: 'THRILLING', elements: ['Thriller', 'Suspense', 'Psychological', 'Action'] },
     { title: 'HUMOROUSE', elements: ['Comedy'] },
     { title: 'SCARY', elements: ['Horror'] },
@@ -14,8 +14,6 @@ const categoriesData = [
     { title: 'COURAGEOUS', elements: ['War'] },
     { title: 'MYSTERIOUS', elements: ['Mystery', 'Crime', 'Spy/Espionage'] },
     { title: 'FASCINATING', elements: ['Sci-Fi'] },
-    // { title: 'REFLECTIVE', elements: ['Biographical'] },
-    // { title: 'SPIRITUAL', elements: ['Drama'] },
     { title: 'GLAMOROUSE', elements: ['Musical'] },
 
     // Add other categories here...

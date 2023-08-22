@@ -1576,7 +1576,7 @@ const removeSection = (sectionIndex) => {
             ) : props.tab === 'Movie' ? (
               <div className='movieCategory'>
                 <FeaturedMovies>
-        <h2 className="title">Popular</h2>
+        <h2 className="title">HEARTMARMING</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1618,7 +1618,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Trending</h2>
+        <h2 className="title">THRILLING</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1660,7 +1660,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Thriller</h2>
+        <h2 className="title">HUMOROUSE</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1702,7 +1702,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Adventure</h2>
+        <h2 className="title">SCARY</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1743,7 +1743,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Crime scene</h2>
+        <h2 className="title">THOUGHT-PROVOKING</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1785,7 +1785,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Romantic</h2>
+        <h2 className="title">TIMELESS</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1827,7 +1827,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Horror</h2>
+        <h2 className="title">MYSTICAL</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1869,7 +1869,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Comedy</h2>
+        <h2 className="title">EMPOWERING</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1911,7 +1911,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Adventure</h2>
+        <h2 className="title">HOPEFUL</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1953,7 +1953,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Reality Show</h2>
+        <h2 className="title">COURAGEOUS</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -1995,7 +1995,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Drama</h2>
+        <h2 className="title">MYSTERIOUS</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -2040,7 +2040,7 @@ const removeSection = (sectionIndex) => {
             ) : props.tab === 'show' ? (
               <div className='showCategory'>
                 <FeaturedMovies>
-        <h2 className="title">Popular</h2>
+        <h2 className="title">FASCINATING</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
@@ -2082,7 +2082,7 @@ const removeSection = (sectionIndex) => {
         
       </FeaturedMovies>
       <FeaturedMovies>
-        <h2 className="title">Trending</h2>
+        <h2 className="title">GLAMOROUSE</h2>
         {
           featuresCard.length >1?<Slider {...settings1}> 
          {featuresCard?.map((slide, index)=>{
