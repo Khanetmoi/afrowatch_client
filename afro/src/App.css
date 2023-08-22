@@ -120,12 +120,12 @@ body {
 .show-poster-bg {
   position: absolute;
   overflow: hidden;
-  top: -20%;
+  top: -30%;
   bottom: -20%;
   left: -20%;
   width: 100%;
   height: 150%;
-  transform: rotate(5deg);
+  transform: rotate(3deg);
 }
 
 .show-poster-bg img {

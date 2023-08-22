@@ -474,8 +474,8 @@ const Home = (props)=>{
   
     const featuredCard = userData?.filter((slide) => slide.movie_actuality === 'Featured');
     const featuresCard = userData?.filter((slide) => slide.movie_actuality === 'Popular');
-    const featureZCard = userData?.filter((slide) => slide.movie_actuality === 'New Movies');
-    const featureACard = userData?.filter((slide) => slide.movie_actuality === 'New Movies');
+    const featureZCard = userData?.filter((slide) => slide.movie_category === 'Heartmarming');
+    const featureACard = userData?.filter((slide) => slide.movie_category === 'Thrilling');
 
   const handleCategoryChange = () => {
     // const newSelectedOption = event.target.value;
@@ -1579,8 +1579,8 @@ const removeSection = (sectionIndex) => {
         <FeaturedMovies>
         <h2 className="title">HEARTMARMING</h2>
         {
-          featuresCard.length >1?<Slider {...settings1}> 
-         {featuresCard?.map((slide, index)=>{
+          featureZCard.length >1?<Slider {...settings1}> 
+         {featureZCard?.map((slide, index)=>{
           
           return(
             <Slide
@@ -1621,8 +1621,8 @@ const removeSection = (sectionIndex) => {
       <FeaturedMovies>
         <h2 className="title">THRILLING</h2>
         {
-          featuresCard.length >1?<Slider {...settings1}> 
-         {featuresCard?.map((slide, index)=>{
+          featureACard.length >1?<Slider {...settings1}> 
+         {featureACard?.map((slide, index)=>{
          
           return(
             <Slide
@@ -2797,7 +2797,6 @@ const Modal = (props)=>{
       
       <div className='show-content'>
         <i class="show-close fas fa-times" onClick={props.closePop} >X</i>
-        
         <div className='show-poster'>
           <span className='show-poster-bg' onClick={handlePlayClick}>
             <img src={props.Poster !== 'N/A' ? props.Poster : 'https://via.placeholder.com/163x240/111217/FFFFFF/?text=No%20Image'} alt={props.Title} />
