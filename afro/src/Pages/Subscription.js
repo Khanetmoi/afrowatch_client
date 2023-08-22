@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsCheck2All } from 'react-icons/bs';
 import styled from 'styled-components';
 
 const categoriesData = [
@@ -15,7 +16,6 @@ const categoriesData = [
     { title: 'MYSTERIOUS', elements: ['Mystery', 'Crime', 'Spy/Espionage'] },
     { title: 'FASCINATING', elements: ['Sci-Fi'] },
     { title: 'GLAMOROUSE', elements: ['Musical'] },
-
     // Add other categories here...
   ];
 
@@ -142,11 +142,16 @@ const plans = [
 
 
 const SubscriptionContainer = styled.div`
-// background-color: hsla(278, 78%, 40%, 0.98);
-// background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
 background-color: #18200e;
 hsl(219, 91%, 13%) 35%);
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const PlansContainer = styled.div`
@@ -154,124 +159,63 @@ const PlansContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-`;
-
-const PlanCard = styled.div`
-  background-color: black;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
-  min-width: 280px;
-  margin: 10px;
-`;
-
-const PlanTitle = styled.h5`
-  text-align: center;
-`;
-
-const PlanPrice = styled.p`
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-`;
-
-const PlanCategories = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 5px;
-`;
-
-const CategoryItem = styled.li`
-  text-align: center;
-  background-color: #f5f5f5;
-  padding: 8px;
-  border-radius: 5px;
-  list-style-type: none;
-`;
-
-const SubscribeButton = styled.button`
-  background-color: orange;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-`;
-
-const CategoryTitle = styled.h4`
-  color: white;
-  font-size: 16px;
+  width: 90%;
+  margin-top: 50px;
 `;
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 5px;
-  margin-bottom: 40px 0;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  // gap: 50px;
+  grid-column-gap: 200px;
+  @media (max-width: 768px) {
+    // gap: 1px;
+    grid-column-gap: 2px;
+    margin: 10px;
+  }
+  width:100%;
 `;
 
 const GridItem = styled.div`
-  text-align: center;
-  background-color: ${({ color }) => color};
-  padding: 8px;
-  border-radius: 5px;
-  margin: 20px 10px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  color: white;
+  border: 0px;
+  padding: 20px;
 `;
 
-const Subscription = () => {
+const Subscription = ({page}) => {
+  const gohome = ()=>{
+     page('home')
+  }
   return (
     <SubscriptionContainer>
-        <h1 style={{color: `white`}}>Categories</h1>
-        <GridContainer>
-        {categoriesData.map((category, index) => (
-          <GridItem 
-          key={index}
-            color={'black'}
-           >
-            <CategoryTitle>{category.title}</CategoryTitle>
-            {category.elements.map((element, elementIdx) => (
-              <CategoryItem key={elementIdx}>{element}</CategoryItem>
-            ))}
-          </GridItem>
-        ))}
-      </GridContainer>
+        <h1 style={{color: `white`}}>Choose the Plan that's right for you</h1>
+        <ul>
+          <li style={{color:`white`}}><BsCheck2All style={{color:`red`}}/> Watch all you want add free</li>
+          <li style={{color:`white`}}><BsCheck2All style={{color:`red`}}/> Recommandations just for you</li>
+          <li style={{color:`white`}}><BsCheck2All style={{color:`red`}}/> change Or cancel your plan anytime</li>
+        </ul>
         <PlansContainer>
-          {plans.map((plan, index) => (
-            <PlanCard key={index}>
-              <PlanTitle>{plan.title}</PlanTitle>
-              <h3>Duration: {plan.time}</h3>
-              <h3>Price: {plan.price}</h3>
-              <SubscribeButton>Subscribe</SubscribeButton>
-              {/* <GridContainer>
-               <GridItem>Item 1</GridItem>
-               <GridItem>{plan.title}</GridItem>
-               <GridItem>{plan.title}</GridItem>
-               <GridItem>{plan.title}</GridItem>
-               <GridItem>Item 5</GridItem>
-               <GridItem>Item 6</GridItem>
-               <GridItem>Item 7</GridItem>
-               <GridItem>Item 8</GridItem>
-              <GridItem>Item 9</GridItem>
-              <GridItem>Item 10</GridItem>
-              <GridItem>Item 11</GridItem>
-              <GridItem>Item 12</GridItem>
-              <GridItem>Item 13</GridItem>
-              <GridItem>Item 14</GridItem>
-              <GridItem>Item 15</GridItem>
-              <GridItem>Item 16</GridItem>
-    </GridContainer> */}
-            </PlanCard>
-          ))}
+        <GridContainer>
+          <GridItem> </GridItem>
+          <GridItem style={{backgroundColor: `red`}}>{plans[0].title}</GridItem>
+          <GridItem style={{backgroundColor: `red`}}>{plans[1].title}</GridItem>
+          <GridItem style={{backgroundColor: `red`}}>{plans[2].title}</GridItem>
+          <GridItem>Monthly price</GridItem>
+          <GridItem>{plans[0].price}</GridItem>
+          <GridItem>{plans[1].price}</GridItem>
+          <GridItem>{plans[2].price}</GridItem>
+          <GridItem>Duration</GridItem>
+          <GridItem>{plans[0].time}</GridItem>
+          <GridItem>{plans[1].time}</GridItem>
+          <GridItem>{plans[2].time}</GridItem>
+          <GridItem></GridItem>
+          <GridItem><button onClick={gohome}>Suscribe</button></GridItem>
+          <GridItem><button onClick={gohome}>Suscribe</button></GridItem>
+          <GridItem><button onClick={gohome}>Suscribe</button></GridItem>
+          </GridContainer>
         </PlansContainer>
       </SubscriptionContainer>
   );
