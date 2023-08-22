@@ -198,7 +198,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         <div>
         <ul className='Desktop'>
         {userInfo &&<div>
-          <SearchBar type="text" placeholder="Search..." onChange={(e) => setSearchedMovie(e.target.value)}/>
+          <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
           <BsSearch onClick={handleSearch}/>
           {/* <SearchButton></SearchButton> */}
           </div>}

@@ -1,7 +1,15 @@
 import React from "react"
 import Slide from "./Slide";
-import comingTo from '../Images/comingTo.jpg'
+import comingTo from '../Images/comingTo.jpg';
+import styled from 'styled-components';
 
+
+const SearchedContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+`
 const SearchPage = ({searchedMovie})=>{
 
     const handleCardClick = (sMovies) => {
@@ -21,7 +29,7 @@ const SearchPage = ({searchedMovie})=>{
     //     page={props.page}
     //     log={props.logged}
     //   />
-    
+ <SearchedContent>
     <Slide
         poster={comingTo}
         alter={`hello`}
@@ -34,6 +42,164 @@ const SearchPage = ({searchedMovie})=>{
         // page={props.page}
         // log={props.logged}
       />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+
+<Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+      <Slide
+        poster={comingTo}
+        alter={`hello`}
+        video='changer.mp4'
+        title='coming to america'
+        date='2021'
+        // className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+        key={1}
+        read={() => handleCardClick()}
+        // page={props.page}
+        // log={props.logged}
+      />
+  </SearchedContent>
     // <h1>search</h1>
     )
 }
