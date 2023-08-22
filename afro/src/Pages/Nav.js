@@ -133,7 +133,6 @@ flex-direction: column;
 justify-content: flex-end;
 align-items: end;
 margin: 0 50px;
-background-color: gray;
 width: 10%;
 position: relative;
 left: 85%;
@@ -169,6 +168,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab
   };
 
   const goProfilePage= ()=>{
+    setIsProfileVisible((prevState) => !prevState);
     page('Profile')
   }
 
@@ -207,7 +207,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab
                 <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
                   <a href="#">Movie</a>
                 </NavItem>
-                <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
+                <NavItem onClick={() => handleItemClick('show')} className='Desktop'>
                   <a href="#">Show</a>
                 </NavItem>
               </>
@@ -239,7 +239,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab
                 <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
                   <a href="#">Movie</a>
                 </NavItem>
-                <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
+                <NavItem onClick={() => handleItemClick('show')} className='Desktop'>
                   <a href="#">Show</a>
                 </NavItem>
               </div>

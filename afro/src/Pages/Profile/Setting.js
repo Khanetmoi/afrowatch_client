@@ -5,7 +5,7 @@ const Flex = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin: 2px;
+margin-right: 40%;
 `;
 
 const UserInfo = styled.div`
@@ -49,7 +49,7 @@ const Settings = ()=>{
                 <input type="text" placeholder="+233 55 711 1234"/>
             </Flex>
         </UserInfo>
-        <PaymentInfo>
+        {/* <PaymentInfo>
             <h2>Payment Info</h2>
             <Flex>
                 <h3>First Name</h3>
@@ -76,7 +76,7 @@ const Settings = ()=>{
                 <h3>Security code</h3>
                 <input type="text" placeholder="2034887"/>
             </Flex>
-        </PaymentInfo>
+        </PaymentInfo> */}
         <Subscription>
             <h2>Subscription</h2>
             <Flex>

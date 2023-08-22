@@ -117,7 +117,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
       
      }
      else if(item === "show"){
-      console.log('movie clicked')
+      console.log('show clicked')
         setTab("show")
         setCategories(genres)
         setCategoryTitle("Show")

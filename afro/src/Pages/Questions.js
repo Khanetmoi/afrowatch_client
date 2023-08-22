@@ -10,16 +10,19 @@ const QuestionContainer = styled.div`
 
 const Question = styled.h1`
   margin-bottom: 20px;
+  color: white;
 `;
 
 const OptionLabel = styled.label`
   display: block;
   margin-bottom: 10px;
+  color: white;
   cursor: pointer;
 `;
 
 const OptionInput = styled.input`
   margin-right: 5px;
+  color: white;
 `;
 
 const NextButton = styled.button`

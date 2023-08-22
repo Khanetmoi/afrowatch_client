@@ -5,7 +5,7 @@ const Flex = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin: 2px;
+margin-right: 40%;
 `;
 
 const Info = ()=>{
@@ -68,7 +68,7 @@ const Info = ()=>{
                         )
                     }
                 </div>
-                <div className="Payment Info">
+                {/* <div className="Payment Info">
                     <h2>Payment Info</h2>
                     <Flex>
                         <h3>First Name</h3>
@@ -94,7 +94,7 @@ const Info = ()=>{
                         <h3>Security code</h3>
                         <h3>2034887</h3>
                     </Flex>
-                </div>
+                </div> */}
                 <div className="Payment Info">
                     <h2>Subscription</h2>
                     <Flex>

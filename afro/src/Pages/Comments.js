@@ -6,13 +6,17 @@ import { AiFillLike,AiFillDislike } from 'react-icons/ai';
 const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: hsla(278, 78%, 40%, 0.98);
-  background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
+  background-color: #18200e;
+  // background-color: hsla(278, 78%, 40%, 0.98);
+  // background-image: radial-gradient(650px circle at 0% 0%, hsl(219, 44%, 14%) 15%,
   hsl(219, 91%, 13%) 35%);
 `;
 
 const ShowComments = styled.div`
-   position: relative;
+position: relative;
+height: 50vh;
+max-height: 50vh; /* Restrict the maximum height */
+overflow-y: auto; /* Enable vertical scrolling */
   /* Add your styles for showing comments */
 `;
 
@@ -54,8 +58,8 @@ const WriteComments = styled.div`
 const CommentInput = styled.input`
   width: 100%;
   padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  // border: 1px solid #ccc;
+  // border-radius: 5px;
 `;
 
 // ... (previous imports and styled-components definitions)
