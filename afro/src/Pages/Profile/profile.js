@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import disney from '.././../Images/disney.jpg'
 import History from './History'
@@ -75,12 +75,36 @@ const UserInfo = styled.h2`
 `;
 
 const UserProfile = styled.div`
-background-color: white;
+  background-color: white;
 `;
 const Profile = ({identity}) => {
   const [activeProfile, setActiveProfile] = useState('Home');
   const [isOpen, setIsOpen] = useState(false);
   const [startTouchX, setStartTouchX] = useState(null);
+
+  const storedUserId = JSON.parse(localStorage.getItem('loggedInStatus'));
+  
+  //const user_id = props.userId;
+  const user_id = storedUserId.matchedUserId;
+
+  // API Link comment get
+  const api_link_user = 'https://myworklm.com/Afrowatch_admin/api/user/afrowatch_api_user_get.php?user_id='+user_id;
+
+  // user get All info
+    const [informations, setInformation] = useState([]);
+
+    useEffect(() => {
+        async function fetchInformation() {
+            try {
+                const response = await fetch(api_link_user);
+                const data = await response.json();
+                setInformation(data); // Update the state with fetched users
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        }
+        fetchInformation();
+    }, []);
   
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -106,62 +130,73 @@ const Profile = ({identity}) => {
     setStartTouchX(null);
   };
   const [activeTab, setActiveTab] = useState('Info');
+
+  const userImage = 'https://myworklm.com/Afrowatch_admin/profiles/user/'
   return (
     <div className='Profile'>
-        <UserProfile>
-       <UserInfo>
-            <img src={disney} alt="PofilePic" />
-            <h3>Van Inayat-khan</h3>
-        </UserInfo>
+      <UserProfile>
+        {
+          informations.map(
+            (user, index) => (
+              <UserInfo>
+                <img src={userImage + user.userImage} alt="PofilePic" />
+                {user.userFirstname !== null && user.userLastname !== null ? (
+                  <h3>{user.userFirstname} {user.userLastname}</h3>
+                ) : (
+                  <h3>{user.userMail}</h3>
+                )}
+              </UserInfo>
+            )
+          )
+        }
         <TabsContainer>
-            <li
-          onClick={() => handleTabClick('Info')}
-          className={activeTab === 'Info' ? 'active' : ''}
-          style={{color: `black`}}
-        >
-          info
-        </li>
-        <li
-          onClick={() => handleTabClick('settings')}
-          className={activeTab === 'settings' ? 'active' : ''}
-          style={{color: `black`}}
-        >
-         settings
-        </li>
-        <li
-          onClick={() => handleTabClick('history')}
-          className={activeTab === 'history' ? 'active' : ''}
-          style={{color: `black`}}
-        >
-          history
-        </li>
+          <li
+            onClick={() => handleTabClick('Info')}
+            className={activeTab === 'Info' ? 'active' : ''}
+            style={{color: `black`}}
+          >
+            info
+          </li>
+          <li
+            onClick={() => handleTabClick('settings')}
+            className={activeTab === 'settings' ? 'active' : ''}
+            style={{color: `black`}}
+          >
+            settings
+          </li>
+          <li
+            onClick={() => handleTabClick('history')}
+            className={activeTab === 'history' ? 'active' : ''}
+            style={{color: `black`}}
+          >
+            history
+          </li>
         </TabsContainer>
-        </UserProfile>
-        <div>
-        
-            {activeTab === 'Info' && (
-        <CommentsContainer>
-          {/* Render comments here */}
-          <Info/>
-        </CommentsContainer>
-      )}
+      </UserProfile>
 
-      {activeTab === 'settings' && (
-        <CommentsContainer>
-          {/* Render questions here */}
-          <Settings/>
-        </CommentsContainer>
-      )}
+      <div>
+        {activeTab === 'Info' && (
+          <CommentsContainer>
+            {/* Render comments here */}
+            <Info/>
+          </CommentsContainer>
+        )}
 
-      {activeTab === 'history' && (
-        <CommentsContainer>
-          <History/>
-        </CommentsContainer>
-      )}
-        </div>
-    </div>
-      
+        {activeTab === 'settings' && (
+          <CommentsContainer>
+            {/* Render questions here */}
+            <Settings/>
+          </CommentsContainer>
+        )}
+
+        {activeTab === 'history' && (
+          <CommentsContainer>
+            <History/>
+          </CommentsContainer>
+        )}
+      </div>
+    </div> 
   );
 };
 
-export default Profile;
+export default Profile;
