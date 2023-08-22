@@ -11,6 +11,7 @@ import Navigation from './Pages/styles';
 import styled from 'styled-components';
 import Nav from './Pages/Nav';
 import Profile from './Pages/Profile/profile';
+import SearchPage from './Pages/SearchPage';
 // const [watching , setWatching ] = useState(false);
 
 
@@ -21,6 +22,7 @@ const App = () => {
   const [tab, setTab] = useState("Home")
   const [watching , setWatching ] = useState(false);
   const [identification, setIdentification] = useState(null);
+  const [searchedMovie, setSearchedMovie] = useState('');
 
   
 
@@ -136,21 +138,21 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   if (currentPage === 'home') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching}/>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
         <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification} tab={tab}/>
       </div>
     );
   } else if (currentPage === 'log In') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
         <LogIn page = {(cpage) => setCurrentPage(cpage)} log={setIsLoggedIn} identification ={setIdentification}/>
       </div>
     );
   }else if (currentPage === 'log Up') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage) } setWatching={setWatching} />
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage) } setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
         <SignUp page = {(cpage) => setCurrentPage(cpage) } log={setIsLoggedIn} />
       </div>
     );
@@ -158,7 +160,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   else if (currentPage === 'Subscription') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
         <Subscription page = {(cpage) => setCurrentPage(cpage)} />
       </div>
     );
@@ -166,8 +168,16 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
   else if (currentPage === 'Profile') {
     return (
       <div>
-        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} />
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
         <Profile identity = {identification}/>
+      </div>
+    );
+  }
+  else if (currentPage === 'Search') {
+    return (
+      <div>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
+        <SearchPage searchedMovie={searchedMovie}/>
       </div>
     );
   }

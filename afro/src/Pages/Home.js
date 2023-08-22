@@ -364,7 +364,7 @@ const WatchContainer = styled.div`
 
 const Cinema = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 75vh;
   background-color: #000;
   display: flex;
   justify-content: center;

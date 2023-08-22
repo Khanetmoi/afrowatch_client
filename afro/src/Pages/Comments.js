@@ -208,6 +208,27 @@ const Comments = (props) => {
   
   return (
     <CommentContainer>
+      <WriteComments>
+        {
+          informations.map(
+            (user, index) => (
+              <Commenter>
+                <ProfileImage src={photo_link + user.userImage} alt={props.alter} />
+              </Commenter>
+            )
+          )
+        }
+
+        <div>
+          <CommentInput
+            type="text"
+            placeholder="Add a comment"
+            value={newComment}
+            onChange={handleCommentChange}
+            onKeyDown={handleKeyPress} // Trigger handleAddComment on Enter key
+          />
+        </div>
+      </WriteComments>
       <ShowComments>
         {
           comments.length > 0 ? (
@@ -244,32 +265,12 @@ const Comments = (props) => {
               )
             )
           ) : (
-            <h1 style={{ textAlign: 'center', fontSize: '24px', color: 'white' }}>No comments available.</h1>
+            <h1 style={{ textAlign: 'center', fontSize: '24px', color: 'white' }}>Be the first to comment</h1>
           )
         }
       </ShowComments>
 
-      <WriteComments>
-        {
-          informations.map(
-            (user, index) => (
-              <Commenter>
-                <ProfileImage src={photo_link + user.userImage} alt={props.alter} />
-              </Commenter>
-            )
-          )
-        }
-
-        <div>
-          <CommentInput
-            type="text"
-            placeholder="Add a comment"
-            value={newComment}
-            onChange={handleCommentChange}
-            onKeyDown={handleKeyPress} // Trigger handleAddComment on Enter key
-          />
-        </div>
-      </WriteComments>
+      
     </CommentContainer>
   );
 };

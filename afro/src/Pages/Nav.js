@@ -158,7 +158,7 @@ top: 0;
 `;
 
 
-const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab })=>{
+const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSearchedMovie})=>{
   const [navActive, setNavActive] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
   const [isProfileVisible, setIsProfileVisible] = useState(false);
@@ -187,6 +187,9 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab
     setIsProfileVisible((prevState) => !prevState);
   };
 
+  const handleSearch = () => {
+    page('Search')
+  };
   return (
     <div>
     <Navigation>
@@ -195,8 +198,8 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab
         <div>
         <ul className='Desktop'>
         {userInfo &&<div>
-          <SearchBar type="text" placeholder="Search..."/>
-          <BsSearch />
+          <SearchBar type="text" placeholder="Search..." onChange={(e) => setSearchedMovie(e.target.value)}/>
+          <BsSearch onClick={handleSearch}/>
           {/* <SearchButton></SearchButton> */}
           </div>}
           {userInfo && (
@@ -221,7 +224,10 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setTab
         </div>
         {userInfo &&<div className='mobile search'>
           <SearchBar type="text" placeholder="Search..."/>
-          <BsSearch />
+          <button>
+             <BsSearch />
+          </button>
+          
           {/* <SearchButton></SearchButton> */}
           </div>}
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
