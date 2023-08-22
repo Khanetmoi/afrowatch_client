@@ -23,6 +23,7 @@ const App = () => {
   const [watching , setWatching ] = useState(false);
   const [identification, setIdentification] = useState(null);
   const [searchedMovie, setSearchedMovie] = useState('');
+  const [selectedCard, setSelectedCard] = useState(null);
 
   
 
@@ -139,7 +140,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
-        <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification} tab={tab}/>
+        <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification} tab={tab} selectedCard={selectedCard} setSelectedCard={setSelectedCard}/>
       </div>
     );
   } else if (currentPage === 'log In') {
@@ -177,7 +178,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
-        <SearchPage searchedMovie={searchedMovie}/>
+        <SearchPage searchedMovie={searchedMovie} selectedCard={selectedCard} setSelectedCard={setSelectedCard} watch={setWatching}/>
       </div>
     );
   }

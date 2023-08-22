@@ -199,7 +199,9 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         <ul className='Desktop'>
         {userInfo &&<div>
           <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
+          {/* <button>
           <BsSearch onClick={handleSearch}/>
+          </button> */}
           {/* <SearchButton></SearchButton> */}
           </div>}
           {userInfo && (
@@ -223,10 +225,9 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         </div>
         </div>
         {userInfo &&<div className='mobile search'>
-          <SearchBar type="text" placeholder="Search..."/>
-          <button>
+          <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
              <BsSearch />
-          </button>
+          
           
           {/* <SearchButton></SearchButton> */}
           </div>}
