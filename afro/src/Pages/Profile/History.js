@@ -1,6 +1,6 @@
 const History = ()=>{
     return (
-        <h1>history</h1>
+        <h1>Library</h1>
     )
 }
 

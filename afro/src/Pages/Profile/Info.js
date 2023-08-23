@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 
-const Flex = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-right: 40%;
+const Flex = styled.table`
+// display: flex;
+// justify-content: space-around;
+// align-items: flex-start;
+// margin-right: 40%;
+width: 100%;
 `;
 
 const Title = styled.div`
@@ -20,7 +21,7 @@ border-radius: 60px;
 `;
 
 const Subscription = styled.div`
-margin: 10px;
+margin: 40px 0;
 `;
 const Info = ()=>{
     const storedUserId = JSON.parse(localStorage.getItem('loggedInStatus'));
@@ -51,7 +52,7 @@ const Info = ()=>{
     return (
         <ProfileDetails>
             <Title>
-            <h2>Profile Details</h2>
+            <h4>Profile Details</h4>
              <hr/>
             </Title>
              
@@ -60,50 +61,91 @@ const Info = ()=>{
                     informations.map(
                         (user, index) => (
                             <div>
-                                <h2>User Info</h2>
-                                <Flex>
-                                    <h3>First Name</h3>
-                                    <h3>{user.userFirstname}</h3>
+                                <h5>User Info</h5>
+                                {/* <Flex style={{backgroundColor: `#f4f7f9`}}>
+                                  <tr>
+                                    <th>Full Name</th>
+                                    <th></th>
+                                    <th>{user.userFirstname}  {user.userLastname}</th>
+                                   </tr>
+                                    
                                 </Flex>
+                                
                                 <Flex>
-                                    <h3>Last Name</h3>
-                                    <h3>{user.userLastname}</h3>
+                                <tr>
+                                    <th>Email</th>
+                                    <th></th>
+                                    <th>{user.userMail}</th>
+                                   </tr>
                                 </Flex>
-                                <Flex>
-                                    <h3>Email</h3>
-                                    <h3>{user.userMail}</h3>
-                                </Flex>
-                                <Flex>
+                                <Flex style={{backgroundColor: `#f4f7f9`}}>
                                     <h3>password</h3>
                                     <h3>{user.userPassword}</h3>
                                 </Flex>
                                 <Flex>
                                     <h3>Phone number</h3>
                                     <h3>{user.userCode} {user.userPhone}</h3>
-                                </Flex>
+                                </Flex> */}
+                                <table style={{width: `100%`}}>
+                                <tr style={{backgroundColor: `#f4f7f9`}}>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>Full Name</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}>{user.userFirstname}  {user.userLastname}</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                <tr>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>Email</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}>{user.userMail}</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                <tr style={{backgroundColor: `#f4f7f9`}}>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>password</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}>{user.userPassword}</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                <tr>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>Phone number</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}>{user.userCode} {user.userPhone}</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                </table>
                             </div>
                             )
                         )
                     }
                 </Subscription>
                 <Subscription className="Subscription">
-                    <h2>Subscription</h2>
-                    <Flex>
-                        <h3>First Name</h3>
-                        <h3>Bitsindou Van</h3>
-                    </Flex>
-                    <Flex>
-                        <h3>Last Name</h3>
-                        <h3>Inyat-khan</h3>
-                    </Flex>
-                    <Flex>
-                        <h3>Formula</h3>
-                        <h3>1 month</h3>
-                    </Flex>
-                    <Flex>
-                        <h3>Time Left</h3>
-                        <h3>23 days</h3>
-                    </Flex>
+                    <h5>Subscription</h5>
+                    <table style={{width: `100%`}}>
+                                <tr style={{backgroundColor: `#f4f7f9`}}>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>Full Name</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}> Bitsindou Van Inyat-khan</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                <tr>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>Formula</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}>Basic</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                <tr style={{backgroundColor: `#f4f7f9`}}>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`19%`}}>Time Left</td>
+                                  <td style={{width:`18%`}}></td>
+                                  <td style={{width:`27%`}}>23 days</td>
+                                  <td style={{width:`18%`}}></td>
+                                </tr>
+                                </table>
                 </Subscription>
                 
                 {/* <div className="Payment Info">

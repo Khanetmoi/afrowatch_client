@@ -53,7 +53,7 @@ const UserInfo = styled.h2`
   display: flex;
   border-radius: 20px;
   margin: 0 2%;
-  height: 40vh;
+  height: 30vh;
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;
@@ -63,7 +63,7 @@ const UserInfo = styled.h2`
   }
   img {
     margin: 20px;
-    border-radius: 20px;
+    border-radius: 50%;
     @media (max-width: 768px) {
         width: 20vh;
       }
@@ -185,7 +185,7 @@ const Profile = () => {
             className={activeTab === 'history' ? 'active' : ''}
             style={{color: `black`}}
           >
-            history
+            library
           </li>
         </TabsContainer>
       </UserProfile>
