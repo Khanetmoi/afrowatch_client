@@ -114,7 +114,7 @@ border-radius: 50px;
 
 @media (max-width: 768px) {
   height: 2vh;
-  width: 50vw;
+  width: 40vw;
 }
  
 `;
@@ -140,21 +140,27 @@ display: flex;
 flex-direction: column;
 justify-content: flex-end;
 align-items: end;
-margin: 0 50px;
-width: 10%;
-position: relative;
-left: 85%;
-top: 0;
+margin: 0;
+width: 7%;
+// position: relative;
+left: 90%;
+// top: 0;
+background-color: black;
+color: black;
+position: absolute;
 
  span {
-  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  // margin: 10px;
   font-size: 15px;
   cursor: pointer;
+  width: 100%;
  }
 
  @media (max-width: 768px) {
-  /* Media query for phone view */
-  display: flex; /* Display ProfileFlex in phone view */
+  display: flex; 
   position: absolute;
   top: 50px;
   right: 0;
@@ -264,7 +270,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         </div>
         {userInfo &&<div className='mobile search'>
           <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
-             <BsSearch />
+             {/* <BsSearch /> */}
           
           
           {/* <SearchButton></SearchButton> */}
@@ -272,6 +278,10 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
         </div>
         </Navigation>
+        {userInfo&& isProfileVisible && <ProfileFlex className='Desktop'>
+               <span style={{color:`white`}} onClick={()=>{goProfilePage()}}><CgProfile/><h5>Profile</h5></span>
+               <span style={{color:`white`}} onClick={()=>{SignOut()}}><VscSignOut/><h5>Sign Out</h5></span>
+        </ProfileFlex>}
         <Mobile className={`mobile ${navActive ? 'active' : ''}`}>
             
             <div>
@@ -287,22 +297,22 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
                 <NavItem onClick={() => handleItemClick('show')} className='Desktop'>
                   <a href="#">Show</a>
                 </NavItem>
+                <NavItem onClick={()=>{goProfilePage()}} className='Desktop'>
+                  <a><CgProfile/>Profile</a>
+                </NavItem>
+                <NavItem onClick={()=>{SignOut()}} className='Desktop'>
+                  <a><VscSignOut/>Log out</a>
+                </NavItem>
               </div>
             )}
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            userInfo?<ProfileFlex1>
-            <span style={{color:`white`}} onClick={()=>{goProfilePage()}}><CgProfile/>Profile</span>
-            <span style={{color:`white`}} onClick={()=>{SignOut()}}><VscSignOut/>Sign Out</span>
-            </ProfileFlex1>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            !userInfo && <LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
-        {userInfo&& isProfileVisible && <ProfileFlex className='Desktop'>
-               <span style={{color:`white`}} onClick={()=>{goProfilePage()}}><CgProfile/>Profile</span>
-               <span style={{color:`white`}} onClick={()=>{SignOut()}}><VscSignOut/>Sign Out</span>
-        </ProfileFlex>}
+        
         
         </div>
         </Mobile>
