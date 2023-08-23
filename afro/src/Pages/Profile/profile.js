@@ -52,7 +52,7 @@ const TabsContainer = styled.ul`
 const UserInfo = styled.h2`
   display: flex;
   border-radius: 20px;
-  margin: 2%;
+  margin: 0 2%;
   height: 40vh;
   @media (max-width: 768px) {
     display: flex;
@@ -62,6 +62,8 @@ const UserInfo = styled.h2`
     height: 40vh;
   }
   img {
+    margin: 20px;
+    border-radius: 20px;
     @media (max-width: 768px) {
         width: 20vh;
       }
@@ -74,10 +76,24 @@ const UserInfo = styled.h2`
     }
 `;
 
+const ProfileHeader = styled.div`
+  background-color: #f4f7f9;
+  // background-color: blue;
+  padding: 10px 0;
+  
+`;
 const UserProfile = styled.div`
   background-color: white;
+  margin: 0 20px;
+  border-radius: 20px;
 `;
-const Profile = ({identity}) => {
+
+const SectionContent =  styled.div`
+//  background-color: blue;
+ margin: 20px;
+//  border-radius: 400px;
+`;
+const Profile = () => {
   const [activeProfile, setActiveProfile] = useState('Home');
   const [isOpen, setIsOpen] = useState(false);
   const [startTouchX, setStartTouchX] = useState(null);
@@ -133,7 +149,7 @@ const Profile = ({identity}) => {
 
   const userImage = 'https://myworklm.com/Afrowatch_admin/profiles/user/'
   return (
-    <div className='Profile'>
+    <ProfileHeader className='Profile'>
       <UserProfile>
         {
           informations.map(
@@ -174,7 +190,7 @@ const Profile = ({identity}) => {
         </TabsContainer>
       </UserProfile>
 
-      <div>
+      <SectionContent>
         {activeTab === 'Info' && (
           <CommentsContainer>
             {/* Render comments here */}
@@ -194,9 +210,9 @@ const Profile = ({identity}) => {
             <History/>
           </CommentsContainer>
         )}
-      </div>
-    </div> 
+      </SectionContent>
+    </ProfileHeader> 
   );
 };
 
-export default Profile;
+export default Profile;

@@ -23,9 +23,13 @@ const Subscription = styled.div`
 //     background-color: grey;
 //   }
 `;
+
+const Setting = styled.div`
+margin: 0 2%;
+`;
 const Settings = ()=>{
     return (
-        <div>
+        <Setting>
         <UserInfo>
             <h2>User Info</h2>
             <Flex>
@@ -96,7 +100,7 @@ const Settings = ()=>{
                 <input type="text" placeholder="23 days"/>
             </Flex>
         </Subscription>
-        </div>
+        </Setting>
     )
 }
 

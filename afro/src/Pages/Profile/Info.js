@@ -8,6 +8,20 @@ align-items: center;
 margin-right: 40%;
 `;
 
+const Title = styled.div`
+  margin: 40px 0;
+`;
+
+const ProfileDetails = styled.div`
+margin: 2%;
+border-radius: 60px;
+// background-color: green;
+
+`;
+
+const Subscription = styled.div`
+margin: 10px;
+`;
 const Info = ()=>{
     const storedUserId = JSON.parse(localStorage.getItem('loggedInStatus'));
   
@@ -35,9 +49,13 @@ const Info = ()=>{
 
 
     return (
-        <div>
-        
-            <div className="User Info">
+        <ProfileDetails>
+            <Title>
+            <h2>Profile Details</h2>
+             <hr/>
+            </Title>
+             
+            <Subscription className="User Info">
                 {
                     informations.map(
                         (user, index) => (
@@ -67,7 +85,27 @@ const Info = ()=>{
                             )
                         )
                     }
-                </div>
+                </Subscription>
+                <Subscription className="Subscription">
+                    <h2>Subscription</h2>
+                    <Flex>
+                        <h3>First Name</h3>
+                        <h3>Bitsindou Van</h3>
+                    </Flex>
+                    <Flex>
+                        <h3>Last Name</h3>
+                        <h3>Inyat-khan</h3>
+                    </Flex>
+                    <Flex>
+                        <h3>Formula</h3>
+                        <h3>1 month</h3>
+                    </Flex>
+                    <Flex>
+                        <h3>Time Left</h3>
+                        <h3>23 days</h3>
+                    </Flex>
+                </Subscription>
+                
                 {/* <div className="Payment Info">
                     <h2>Payment Info</h2>
                     <Flex>
@@ -95,27 +133,8 @@ const Info = ()=>{
                         <h3>2034887</h3>
                     </Flex>
                 </div> */}
-                <div className="Payment Info">
-                    <h2>Subscription</h2>
-                    <Flex>
-                        <h3>First Name</h3>
-                        <h3>Bitsindou Van</h3>
-                    </Flex>
-                    <Flex>
-                        <h3>Last Name</h3>
-                        <h3>Inyat-khan</h3>
-                    </Flex>
-                    <Flex>
-                        <h3>Formula</h3>
-                        <h3>1 month</h3>
-                    </Flex>
-                    <Flex>
-                        <h3>Time Left</h3>
-                        <h3>23 days</h3>
-                    </Flex>
-                </div>
             
-        </div>
+        </ProfileDetails>
     )
 }
 
