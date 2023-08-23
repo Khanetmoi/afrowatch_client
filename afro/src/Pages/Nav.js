@@ -132,6 +132,14 @@ align-center: center;
   &.active .menuDisplay {
     display: block;
   }
+
+  ul{
+    position: absolute;
+    background-color: black;
+    z-index: 1000;
+    width: 40%;
+    padding: 10px;
+  }
   
 `;
 
@@ -310,10 +318,7 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
           {
             !userInfo && <LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
-        
         </div>
-        
-        
         </div>
         </Mobile>
         </div>
