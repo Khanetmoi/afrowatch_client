@@ -14,6 +14,7 @@ import { CgProfile } from 'react-icons/cg';
 import { LiaSignInAltSolid } from 'react-icons/lia';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import Modal from './Modal'
+import Watch from './Watch';
 // import Nav from './Nav';
 import Comments from './Comments';
 import Questions from './Questions';
@@ -2913,78 +2914,78 @@ const Nav = ({handleItemClick, handleLogInClick, logged, logo, returnHome})=>{
 
 
 
-const Watch = ({ selectedCard, identity }) => {
-  const [activeTab, setActiveTab] = useState('comments');
-  const identification = identity;
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
+// const Watch = ({ selectedCard, identity }) => {
+//   const [activeTab, setActiveTab] = useState('comments');
+//   const identification = identity;
+//   const handleTabClick = (tab) => {
+//     setActiveTab(tab);
+//   };
 
-  const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
+//   const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
 
-  // Check if selectedCard is null or undefined before accessing its properties
-  if (!selectedCard) {
-     return <div>No video selected</div>;
-  }
+//   // Check if selectedCard is null or undefined before accessing its properties
+//   if (!selectedCard) {
+//      return <div>No video selected</div>;
+//   }
 
-  return (
-    <WatchContainer>
-      <Cinema>
-        <video controls>
-          <source
-            src={baseUrlMovie + selectedCard.movie_file}
-            type="video/mp4"
-          />
-          <source
-            src={baseUrlMovie + selectedCard.movie_file} 
-            type="video/ogg"/>
-        </video>
-      </Cinema>
+//   return (
+//     <WatchContainer>
+//       <Cinema>
+//         <video controls>
+//           <source
+//             src={baseUrlMovie + selectedCard.movie_file}
+//             type="video/mp4"
+//           />
+//           <source
+//             src={baseUrlMovie + selectedCard.movie_file} 
+//             type="video/ogg"/>
+//         </video>
+//       </Cinema>
 
-      <TabsContainer>
-        <li
-          onClick={() => handleTabClick('comments')}
-          className={activeTab === 'comments' ? 'active' : ''}
-          style={{color: `white`}}
-        >
-          Comments
-        </li>
-        <li
-          onClick={() => handleTabClick('questions')}
-          className={activeTab === 'questions' ? 'active' : ''}
-          style={{color: `white`}}
-        >
-          Questions
-        </li>
-        <li
-          onClick={() => handleTabClick('episodes')}
-          className={activeTab === 'episodes' ? 'active' : ''}
-          style={{color: `white`}}
-        >
-          Episodes
-        </li>
-      </TabsContainer>
+//       <TabsContainer>
+//         <li
+//           onClick={() => handleTabClick('comments')}
+//           className={activeTab === 'comments' ? 'active' : ''}
+//           style={{color: `white`}}
+//         >
+//           Comments
+//         </li>
+//         <li
+//           onClick={() => handleTabClick('questions')}
+//           className={activeTab === 'questions' ? 'active' : ''}
+//           style={{color: `white`}}
+//         >
+//           Questions
+//         </li>
+//         <li
+//           onClick={() => handleTabClick('episodes')}
+//           className={activeTab === 'episodes' ? 'active' : ''}
+//           style={{color: `white`}}
+//         >
+//           Episodes
+//         </li>
+//       </TabsContainer>
 
-      {activeTab === 'comments' && (
-        <CommentsContainer>
-          {/* Render comments here */}
-          <Comments movieId = {selectedCard.movie_id} userId = {identification}/>
-        </CommentsContainer>
-      )}
+//       {activeTab === 'comments' && (
+//         <CommentsContainer>
+//           {/* Render comments here */}
+//           <Comments movieId = {selectedCard.movie_id} userId = {identification}/>
+//         </CommentsContainer>
+//       )}
 
-      {activeTab === 'questions' && (
-        <CommentsContainer>
-          {/* Render questions here */}
-          <Questions movieId = {selectedCard.movie_id} userId = {identification}/>
-        </CommentsContainer>
-      )}
+//       {activeTab === 'questions' && (
+//         <CommentsContainer>
+//           {/* Render questions here */}
+//           <Questions movieId = {selectedCard.movie_id} userId = {identification}/>
+//         </CommentsContainer>
+//       )}
 
-      {activeTab === 'episodes' && (
-        <CommentsContainer>
-          {/* Render episodes here */}
-          <h2>Episodes</h2>
-        </CommentsContainer>
-      )}
-    </WatchContainer>
-  );
-};
+//       {activeTab === 'episodes' && (
+//         <CommentsContainer>
+//           {/* Render episodes here */}
+//           <h2>Episodes</h2>
+//         </CommentsContainer>
+//       )}
+//     </WatchContainer>
+//   );
+// };

@@ -60,11 +60,12 @@ const FeaturedMovies = styled.div`
    }
 `;
 
-const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch})=>{
+const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page})=>{
     const [currentSlide, setCurrentSlide] = useState(0);
     const [content, setContent] = useState([]);
     
     const handlePlayClick = () => {
+        page('watch')
         watch(true);
         console.log(watch)
       };
@@ -86,7 +87,7 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch})=>{
     }, [searchedMovie]);
     
     const handleCardClick = (sMovies) =>{
-      // setSelectedCard({...sMovies});
+      setSelectedCard({...sMovies});
     };
   
     const getSlidesToShow = (dataLength) => {
@@ -983,6 +984,7 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch})=>{
           title={item.movie_name}
           date={item.movie_year_release}
           read={() => handleCardClick(item)}
+          page = { page}
         />
             )
           })} 

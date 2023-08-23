@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import Nav from './Pages/Nav';
 import Profile from './Pages/Profile/profile';
 import SearchPage from './Pages/SearchPage';
+import Watch from './Pages/Watch';
 // const [watching , setWatching ] = useState(false);
 
 
@@ -178,7 +179,15 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
-        <SearchPage searchedMovie={searchedMovie} selectedCard={selectedCard} setSelectedCard={setSelectedCard} watch={setWatching}/>
+        <SearchPage searchedMovie={searchedMovie} selectedCard={selectedCard} setSelectedCard={setSelectedCard} watch={setWatching} page = {(cpage) => setCurrentPage(cpage)}/>
+      </div>
+    );
+  }
+  else if (currentPage === 'watch') {
+    return (
+      <div>
+        <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
+        <Watch selectedCard={selectedCard}/>
       </div>
     );
   }
