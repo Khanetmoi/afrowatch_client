@@ -5,6 +5,7 @@ import {VscSignOut} from 'react-icons/vsc';
 import { CgProfile } from 'react-icons/cg';
 import styled from 'styled-components';
 import { LiaSignInAltSolid } from 'react-icons/lia';
+import logoBlanc from '../Images/logoBlanc.png'
 
 
 const Navigation = styled.div`
@@ -18,6 +19,11 @@ align-items: center;
 color: white;
 
 font-size: 20px;
+img {
+  width 50px;
+  height: 2rem;
+  // background-color: red;
+ }
 .normal {
   padding: 1rem 2.5%;
   background-color: black;
@@ -25,11 +31,13 @@ font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 div {
  display: flex;
  align-items: center;
 }
+ 
   ul {
    display: flex;
    justify-content: space-between;
@@ -60,7 +68,7 @@ div {
    }
 
    img {
-     width: 33px;
+     width: 50px;
    }
  }
 `
@@ -154,6 +162,36 @@ top: 0;
   padding: 10px;
   z-index: 10;
 }
+
+`;
+
+const ProfileFlex1 = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: start;
+margin: 0 50px;
+width: 10%;
+position: relative;
+left: 85%;
+top: 0;
+
+ span {
+  margin: 10px;
+  font-size: 15px;
+  cursor: pointer;
+ }
+
+//  @media (max-width: 768px) {
+//   /* Media query for phone view */
+//   display: flex;
+//   position: absolute;
+//   top: 50px;
+//   right: 0;
+//   background-color: #333;
+//   padding: 10px;
+//   z-index: 10;
+// }
 
 `;
 
@@ -254,11 +292,14 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
             </ul>
         <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
           {
-            userInfo?<CgProfile className='profile' style={{color:`white`}}  onClick={toggleProfileVisibility} />:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
+            userInfo?<ProfileFlex1>
+            <span style={{color:`white`}} onClick={()=>{goProfilePage()}}><CgProfile/>Profile</span>
+            <span style={{color:`white`}} onClick={()=>{SignOut()}}><VscSignOut/>Sign Out</span>
+            </ProfileFlex1>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
           }
         
         </div>
-        {userInfo&& isProfileVisible && <ProfileFlex>
+        {userInfo&& isProfileVisible && <ProfileFlex className='Desktop'>
                <span style={{color:`white`}} onClick={()=>{goProfilePage()}}><CgProfile/>Profile</span>
                <span style={{color:`white`}} onClick={()=>{SignOut()}}><VscSignOut/>Sign Out</span>
         </ProfileFlex>}
