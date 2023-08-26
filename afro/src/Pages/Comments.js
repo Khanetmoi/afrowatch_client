@@ -15,6 +15,7 @@ const CommentContainer = styled.div`
 const ShowComments = styled.div`
 position: relative;
 height: 50vh;
+width: 100%;
 max-height: 50vh; /* Restrict the maximum height */
 overflow-y: auto; /* Enable vertical scrolling */
   /* Add your styles for showing comments */

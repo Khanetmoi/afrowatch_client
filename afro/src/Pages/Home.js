@@ -434,32 +434,33 @@ const Home = (props)=>{
     <option key={5}>Film of the week</option>,
   ]);
   
-  const handleItemClick = (item) => {
-  if(item === "Home")
-   {
-    setTab("Home")
-    setCategories(home)
-    setCategoryTitle("Home Page")
-   }
-   else if(item === "Movie"){
-    setTab("Movie")
-    setCategories(genres)
-      setCategoryTitle("Movie")
+  // const handleItemClick = (item) => {
+  // if(item === "Home")
+  //  {
+  //   setTab("Home")
+  //   setCategories(home)
+  //   setCategoryTitle("Home Page")
+  //  }
+  //  else if(item === "Movie"){
+  //   setTab("Movie")
+  //   setCategories(genres)
+  //     setCategoryTitle("Movie")
     
-   }
-   else if(item === "show"){
-      setTab("show")
-      setCategories(genres)
-      setCategoryTitle("Show")
-   }
-  };
+  //  }
+  //  else if(item === "show"){
+  //     setTab("show")
+  //     setCategories(genres)
+  //     setCategoryTitle("Show")
+  //  }
+  // };
 
   const [userData, setUserData] = useState([]);
+  const [readyUserData, setReadyUserData]= useState([]);
   //const [featuredCard, setFeaturedCard] = useState([])
   useEffect(() => {
     const getUserData = async() => {
       try {
-        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie.php");
+        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_page");
         const resData = await reqData.json();
         // console.log(resData);
         setUserData(resData);
@@ -472,39 +473,61 @@ const Home = (props)=>{
 
   }, []);
 
+  useEffect(() => {
+    setReadyUserData(userData)
 
-  
-    const featuredCard = userData?.filter((slide) => slide.movie_actuality === 'Featured');
-    const featuresCard = userData?.filter((slide) => slide.movie_actuality === 'Popular');
-    const featureZCard = userData?.filter((slide) => slide.movie_category === 'Heartmarming');
-    const featureACard = userData?.filter((slide) => slide.movie_category === 'Thrilling');
+  }, [userData]);
 
-  const handleCategoryChange = () => {
-    // const newSelectedOption = event.target.value;
-  
-    // const updatedSections = sections.map((section, index) =>
-    //   index === sectionIndex ? { ...section, selectedOption: newSelectedOption } : section
-    // );
-    // setSections(updatedSections);
-  
-    // Filter the cards based on the selected option for the section
-    if (tab === 'Home') {
-      const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === 'Popular');
-      setFilteredCards(filteredCards);
-      props.watch(false);
-      console.log("home" +props.watch)
-    } else if (tab === 'Movie') {
-      const filteredCards = movie.filter((sMovies) => sMovies.category === 'Action');
-      setFilteredCards(filteredCards);
-      props.watch(false);
-      console.log("Movie" +props.watch)
-    } else if (tab === 'Show') {
-      const filteredCards = show.filter((sMovies) => sMovies.category === 'Action');
-      setFilteredCards(filteredCards);
-      props.watch(false);
-      console.log(props.watch)
+
+const response = {
+  "type": {
+    "Animation": {
+      "category": {
+        "Hearthwarming": {
+          "movies": [
+            // ... movie objects
+          ]
+        }
+      }
+    },
+    "Movies": {
+      "category": {
+        "Empowering": {
+          "movies": [
+            // ... movie objects
+          ]
+        }
+      }
     }
-  };
+  }
+};
+// console.log(userData?.type)
+  console.log(Object.keys(userData?.type))
+
+  console.log(props.tab)
+    // const homeApi = userData;
+    // const featuresCard = userData?.filter((slide) => slide.movie_actuality === 'Popular');
+    // const featureZCard = userData?.filter((slide) => slide.movie_category === 'Heartmarming');
+    // const featureACard = userData?.filter((slide) => slide.movie_category === 'Thrilling');
+
+  // const handleCategoryChange = () => {
+  //   if (tab === 'Home') {
+  //     const filteredCards = userData.filter((sMovies) => sMovies.movie_actuality === 'Popular');
+  //     setFilteredCards(filteredCards);
+  //     props.watch(false);
+  //     console.log("home" +props.watch)
+  //   } else if (tab === 'Movie') {
+  //     const filteredCards = movie.filter((sMovies) => sMovies.category === 'Action');
+  //     setFilteredCards(filteredCards);
+  //     props.watch(false);
+  //     console.log("Movie" +props.watch)
+  //   } else if (tab === 'Show') {
+  //     const filteredCards = show.filter((sMovies) => sMovies.category === 'Action');
+  //     setFilteredCards(filteredCards);
+  //     props.watch(false);
+  //     console.log(props.watch)
+  //   }
+  // };
   
 
   const handlePlayClick = () => {
@@ -520,39 +543,7 @@ const Home = (props)=>{
     <option key={5}>Film of the week</option>,
   ];
 
-  const genres = [
-    <option key={1}>Action</option>,
-    <option key={2}>Comedy</option>,
-    <option key={3}>Drama</option>,
-    <option key={4}>Sci-Fi</option>,
-    <option key={5}>Fantasy</option>,
-    <option key={6}>Adventure</option>,
-    <option key={7}>Adventure</option>,
-    <option key={8}>Romance</option>,
-    <option key={9}>Thriller</option>,
-    <option key={10}>Horror</option>,
-    <option key={11}>Superhero</option>,
-    <option key={12}>Animation</option>,
-    <option key={13}>Family</option>,
-    <option key={14}>Mystery</option>,
-    <option key={15}>Crime</option>,
-    <option key={16}>Historical</option>,
-    <option key={17}>Sports</option>,
-    <option key={18}>Biographical</option>,
-    <option key={19}>Psychological</option>,
-    <option key={20}>Suspense</option>,
-    <option key={21}>Time Travel</option>,
-    <option key={22}>Documentary</option>,
-    <option key={23}>War</option>,
-    <option key={24}>Musical</option>,
-    <option key={25}>Western</option>,
-    <option key={26}>Coming of Age</option>,
-    <option key={27}>Dystopian</option>,
-    <option key={28}>Disaster</option>,
-    <option key={29}>Spy/Espionage</option>,
-    <option key={30}>Martial Arts</option>,
-    <option key={31}>Supernatural</option>,
-  ];
+  
   
   const [currentSlide, setCurrentSlide] = useState(0);
   
@@ -576,415 +567,6 @@ const Home = (props)=>{
    
   }
    const page = props.page;
-  const show = [
-    {
-      Class: 'Scard',
-      imgSrc: comingTo,
-      alter: 'Movie Poster',
-      title: 'Avengers',
-      year: 2023,
-      hours: 2, 
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'expendable',
-      year: 2023,
-      hours: 2, 
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'creators',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'godly',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'death',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'karma',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'shavir',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'chalissa',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-
-  ]
-
-  const movie = [
-    {
-      Class: 'Scard',
-      imgSrc: comingTo,
-      alter: 'Movie Poster',
-      title: 'Avengers',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'expendable',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'creators',
-      year: 2023,
-      hours: 2, // Duration of the movie in hours
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'godly',
-      year: 2023,
-      hours: 2, 
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'death',
-      year: 2023,
-      hours: 2, 
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'karma',
-      year: 2023,
-      hours: 2,
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'shavir',
-      year: 2023,
-      hours: 2, 
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-    {
-      Class: 'Scard',
-      imgSrc:  comingTo,
-      alter: 'Movie Poster',
-      title: 'chalissa',
-      year: 2023,
-      hours: 2, 
-      category: "Comedy",
-      actuality: "Popular",
-
-      country:"dd" ,
-      rated: "dd",
-      genre: "dsi",
-      production: "hdhd",
-      hours: "jjd",
-      rating: "haja",
-      director: "jjj",
-      actors: "hsg",
-      boxoffice: "jjj",
-      description: "jshd",
-      video: "hdgf",
-      comments: "adad",
-      questions: "hafa",
-      episodes: "hahsj"
-    },
-
-  ]
-
-
-
   const baseUrlimage = "https://myworklm.com/Afrowatch_admin/server/movie_images/";
 
   const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
@@ -1090,7 +672,7 @@ const removeSection = (sectionIndex) => {
         {props.watchv?<Watch selectedCard={selectedCard} identity = {props.identity} />:
         <div className='HomePage'>
         {!userInfo&& <div>
-          {featuresCard?.map((slide, index) => {
+          {userData.type.category.movies?.map((slide, index) => {
   if (index < 3) {
     return (
       <Slide
@@ -1099,6 +681,7 @@ const removeSection = (sectionIndex) => {
         video={baseUrlTrailler + slide.movie_trailler_file}
         title={slide.movie_name}
         date={slide.movie_year_release}
+        genre= {slide.movie_genre}
         className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
         key={index}
         read={() => handleCardClick(slide)}
@@ -1112,7 +695,60 @@ const removeSection = (sectionIndex) => {
 
          </div>}
         {userInfo&& <div>
-          {props.tab === 'Home' ? (
+          {props.tab ===Object.keys(readyUserData?.type)[0]? (
+            
+          <div>
+             {readyUserData.type.category.map(()=>{
+              <FeaturedMovies>
+              <h2 className="title">{readyUserData.type.category}</h2>
+              {
+                readyUserData.type.category.length >1?<Slider {...settings1}> 
+               {readyUserData.type.category.movies?.map((slide, index)=>{
+                
+                return(
+                  <Slide
+                    poster={baseUrlimage + slide.movie_image}
+                    alter={slide.movie_name}
+                    video={baseUrlTrailler + slide.movie_trailler_file}
+                    title = {slide.movie_name}
+                    date = {slide.movie_year_release}
+                    genre= {slide.movie_genre}
+                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                    key={index}
+                    read={() => handleCardClick(slide)}
+                    page = { props.page}
+                    log = {props.logged}
+                  /> 
+                  )
+                })} 
+              </Slider>:<div> {userData.type.category.movies.map((slide, index)=>{
+                
+                return(
+                  <Slide
+                    poster={baseUrlimage + slide.movie_image}
+                    alter={slide.movie_name}
+                    video={baseUrlTrailler + slide.movie_trailler_file}
+                    title = {slide.movie_name}
+                    date = {slide.movie_year_release}
+                    genre= {slide.movie_genre}
+                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                    key={index*2}
+                    read={() => handleCardClick(slide)}
+                    page = { props.page}
+                    log = {props.logged}
+                  /> 
+                  )
+                })} 
+                </div>
+              }
+              
+            </FeaturedMovies>
+             })}
+          </div>
+          ):<h1>No {props.tab} found</h1>
+
+          }
+          {/* {props.tab === 'Home' ? (
               <div className='homeCategory'>
                 <FeaturedMovies>
         <h2 className="title">Popular</h2>
@@ -1127,6 +763,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1144,6 +781,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1169,6 +807,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1186,6 +825,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1211,6 +851,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1228,6 +869,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1253,6 +895,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1270,6 +913,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1294,6 +938,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1311,6 +956,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1336,6 +982,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1353,6 +1000,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1378,6 +1026,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1395,6 +1044,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1420,6 +1070,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1437,6 +1088,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1462,6 +1114,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1479,6 +1132,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1504,6 +1158,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1521,6 +1176,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1546,6 +1202,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1563,6 +1220,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1591,6 +1249,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1608,6 +1267,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1633,6 +1293,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1650,6 +1311,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1675,6 +1337,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1692,6 +1355,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1717,6 +1381,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1734,6 +1399,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1758,6 +1424,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1775,6 +1442,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1800,6 +1468,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1817,6 +1486,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1842,6 +1512,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1859,6 +1530,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1884,6 +1556,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1901,6 +1574,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1926,6 +1600,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1943,6 +1618,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -1968,6 +1644,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -1985,6 +1662,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2010,6 +1688,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2027,6 +1706,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2052,6 +1732,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2069,6 +1750,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2094,6 +1776,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2111,6 +1794,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2136,6 +1820,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2153,6 +1838,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2181,6 +1867,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2198,6 +1885,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2223,6 +1911,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2240,6 +1929,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2265,6 +1955,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2282,6 +1973,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2307,6 +1999,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2324,6 +2017,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2348,6 +2042,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2365,6 +2060,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2390,6 +2086,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2407,6 +2104,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2432,6 +2130,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2449,6 +2148,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2474,6 +2174,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2491,6 +2192,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2516,6 +2218,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2533,6 +2236,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2558,6 +2262,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2575,6 +2280,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2600,6 +2306,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index}
               read={() => handleCardClick(slide)}
@@ -2617,6 +2324,7 @@ const removeSection = (sectionIndex) => {
               video={baseUrlTrailler + slide.movie_trailler_file}
               title = {slide.movie_name}
               date = {slide.movie_year_release}
+              genre= {slide.movie_genre}
               className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
               key={index*2}
               read={() => handleCardClick(slide)}
@@ -2633,7 +2341,7 @@ const removeSection = (sectionIndex) => {
             ) : (
               <h1>No such category</h1>
             )}
-        
+         */}
     </div>}
         <MovieList>
         {/* {sections.map((section, sectionIndex) => ( */}

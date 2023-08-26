@@ -28,6 +28,7 @@ const ContentContainer = styled.div`
     color: white;
     margin: 10px;
     font-size: 15px;
+    font-weight: lighter;
     @media (max-width: 768px) {
       font-size: 10px;
     }
@@ -180,7 +181,7 @@ const Slide = (props) => {
           )}
         </Media>
         <div>
-          <h6 className='info'> title: {props.title} <br/> date: {props.date}</h6>
+          <h6 className='info'> title: {props.title} <br/> date: {props.date} <br/> genre: {props.genre}</h6>
           {/* <p>{props.date}</p> */}
         </div>
       </ContentContainer>

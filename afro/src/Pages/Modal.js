@@ -44,7 +44,7 @@ const Modal = (props)=>{
               <p><strong>Rating:</strong> {props.imdbRating}</p>
               <p><strong>Director:</strong> {props.Director}</p>
               <p><strong>Actors:</strong> {props.Actors}</p>
-              <p><strong>BoxOffice:</strong> {props.BoxOffice || 'N/A '}</p>
+              {/* <p><strong>BoxOffice:</strong> {props.BoxOffice || 'N/A '}</p> */}
             </div>
           </div>
           {/* <button onClick={handlePlayClick}>Play</button> */}

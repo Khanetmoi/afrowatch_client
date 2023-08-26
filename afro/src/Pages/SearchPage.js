@@ -60,10 +60,10 @@ const FeaturedMovies = styled.div`
    }
 `;
 
-const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page})=>{
+const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page, currentPage })=>{
     const [currentSlide, setCurrentSlide] = useState(0);
     const [content, setContent] = useState([]);
-    
+    let pastPage = currentPage;
     const handlePlayClick = () => {
         page('watch')
         watch(true);
@@ -85,6 +85,10 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page})
         console.error("Error fetching movie data:", error);
       });
     }, [searchedMovie]);
+
+    if (!searchedMovie) {
+        page(pastPage)
+      }
     
     const handleCardClick = (sMovies) =>{
       setSelectedCard({...sMovies});
@@ -98,7 +102,7 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page})
         if (dataLength == 5) return dataLength-1;
         if (dataLength == 6) return dataLength-1;
         if (dataLength == 7) return dataLength-1;
-        if (dataLength == 8) return 8;
+        if (dataLength == 8) return 7;
         if (dataLength >= 9) return 8;
       };
     

@@ -110,7 +110,7 @@ const LoginButton = styled.div`
 
 const SearchBar = styled.input`
 width: 20vw;
-height: 5vh;
+height: 3vh;
 border-radius: 50px;
 
 @media (max-width: 768px) {
@@ -262,8 +262,17 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
                 <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
                   <a href="#">Home</a>
                 </NavItem>
+                <NavItem onClick={() => handleItemClick('Animation')} className='Desktop'>
+                  <a href="#">Animation</a>
+                </NavItem>
                 <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
                   <a href="#">Movie</a>
+                </NavItem>
+                <NavItem onClick={() => handleItemClick('Documentaries')} className='Desktop'>
+                  <a href="#">Documentaries</a>
+                </NavItem>
+                <NavItem onClick={() => handleItemClick('Series')} className='Desktop'>
+                  <a href="#">Series</a>
                 </NavItem>
                 <NavItem onClick={() => handleItemClick('show')} className='Desktop'>
                   <a href="#">Show</a>
@@ -280,8 +289,6 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         {userInfo &&<div className='mobile search'>
           <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
              {/* <BsSearch /> */}
-          
-          
           {/* <SearchButton></SearchButton> */}
           </div>}
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>

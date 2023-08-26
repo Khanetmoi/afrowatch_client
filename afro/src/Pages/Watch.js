@@ -1,21 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from 'styled-components';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Comments from './Comments';
 import Questions from './Questions';
 
 const WatchContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   align-items: center;
+
+  .hermit {
+    background-color: white;
+    height: 75vh;
+  }
 `;
 
 const Cinema = styled.div`
-  width: 100%;
+  width: 70vw;
   height: 75vh;
+  margin: 2.5vw;
   background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   position: sticky;
 
   video {
@@ -48,12 +57,15 @@ const TabsContainer = styled.ul`
 `;
 
 const CommentsContainer = styled.div`
-  width: 100%;
+  width: 20vw;
   // max-width: 800px;
   padding: 20px;
   // background-color: #f9f9f9;
   // border: 1px solid #ccc;
   // border-radius: 5px;
+`;
+
+const Description = styled.div`
 `;
 
 const Watch = ({ selectedCard, identity }) => {
@@ -63,12 +75,62 @@ const Watch = ({ selectedCard, identity }) => {
     setActiveTab(tab);
   };
 
+  const episodes = ["episode1","episode2","episode3","episode1","episode1","episode1","episode1","episode1","episode1","episode1","episode1","episode1","episode1" ]
+  const getSlidesToShow = (dataLength) => {
+    if (dataLength <= 2){
+      return 1
+    }else if(dataLength>9){
+       return 8;
+    }
+    else{
+      return dataLength-1;
+    } ;
+  };
+
+
+  var settings1 = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: getSlidesToShow (episodes.length),
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    centerMode: false,
+    // variableWidth: true,
+    centerPadding: '0',
+    // afterChange: (current) => setCurrentSlide(current),
+    responsive: [
+      {
+        breakpoint: 1024, // Screen width 1024px and above
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768, // Screen width 768px and above
+        settings: {
+          slidesToShow: 2,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480, // Screen width 480px and above
+        settings: {
+          slidesToShow: 2,
+          arrows: false,
+        },
+      },
+    ],
+  };
+
   const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
 
   // Check if selectedCard is null or undefined before accessing its properties
   if (!selectedCard) {
      return <div>No video selected</div>;
   }
+
+  
 
   return (
     <WatchContainer>
@@ -82,8 +144,17 @@ const Watch = ({ selectedCard, identity }) => {
             src={baseUrlMovie + selectedCard.movie_file} 
             type="video/ogg"/>
         </video>
+        <Slider {...settings1}>
+                {episodes.map((episode, index) => (
+                 <div key={index} value={episode} >
+                  <div style={{ backgroundColor: 'white', margin:`10px` }}>{index + 1}</div>
+                 </div>
+          ))}
+         </Slider>
+         <Description></Description>
       </Cinema>
-
+      
+      <div className="hermit">
       <TabsContainer>
         <li
           onClick={() => handleTabClick('comments')}
@@ -99,13 +170,13 @@ const Watch = ({ selectedCard, identity }) => {
         >
           Questions
         </li>
-        <li
+        {/* <li
           onClick={() => handleTabClick('episodes')}
           className={activeTab === 'episodes' ? 'active' : ''}
           style={{color: `white`}}
         >
           Episodes
-        </li>
+        </li> */}
       </TabsContainer>
 
       {activeTab === 'comments' && (
@@ -121,13 +192,7 @@ const Watch = ({ selectedCard, identity }) => {
           <Questions movieId = {selectedCard.movie_id} userId = {identification}/>
         </CommentsContainer>
       )}
-
-      {activeTab === 'episodes' && (
-        <CommentsContainer>
-          {/* Render episodes here */}
-          <h2>Episodes</h2>
-        </CommentsContainer>
-      )}
+      </div>
     </WatchContainer>
   );
 };

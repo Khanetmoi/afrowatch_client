@@ -127,7 +127,15 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
         setCategoryTitle("Show")
         setWatching(false)
      }
+     else if(item === "Animation"){
+      console.log('show clicked')
+        setTab("Animation")
+        setCategories(genres)
+        setCategoryTitle("Animation")
+        setWatching(false)
+     }
     };
+    
   // const handleItemClick = (item) => {
   //   setCurrentPage('home')
   //   };
@@ -179,7 +187,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
-        <SearchPage searchedMovie={searchedMovie} selectedCard={selectedCard} setSelectedCard={setSelectedCard} watch={setWatching} page = {(cpage) => setCurrentPage(cpage)}/>
+        <SearchPage searchedMovie={searchedMovie} selectedCard={selectedCard} setSelectedCard={setSelectedCard} watch={setWatching} page = {(cpage) => setCurrentPage(cpage)} currentPage={currentPage}/>
       </div>
     );
   }
