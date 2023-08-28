@@ -20,7 +20,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
-  const [tab, setTab] = useState("Home")
+  const [tab, setTab] = useState("Animation")
   const [watching , setWatching ] = useState(false);
   const [identification, setIdentification] = useState(null);
   const [searchedMovie, setSearchedMovie] = useState('');
@@ -113,7 +113,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
       setWatching(false)
      }
      else if(item === "Movie"){
-      setTab("Movie")
+      setTab("Movies")
       console.log('movie clicked')
       setCategories(genres)
         setCategoryTitle("Movie")
@@ -122,7 +122,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
      }
      else if(item === "show"){
       console.log('show clicked')
-        setTab("show")
+        setTab("Shows")
         setCategories(genres)
         setCategoryTitle("Show")
         setWatching(false)
@@ -132,6 +132,20 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
         setTab("Animation")
         setCategories(genres)
         setCategoryTitle("Animation")
+        setWatching(false)
+     }
+     else if(item === "Documentaries"){
+      console.log('show clicked')
+        setTab("Documentary")
+        setCategories(genres)
+        setCategoryTitle("Documentary")
+        setWatching(false)
+     }
+     else if(item === "Series"){
+      console.log('show clicked')
+        setTab("Series")
+        setCategories(genres)
+        setCategoryTitle("Series")
         setWatching(false)
      }
     };
