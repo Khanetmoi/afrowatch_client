@@ -440,7 +440,9 @@ const Home = (props)=>{
   }
 
   const [userData, setUserData] = useState({});
+  const [notLogged, setNotLogged] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoad, setIsLoad] = useState(false);
   useEffect(() => {
     setIsLoaded(false);
     const getUserData = async() => {
@@ -458,6 +460,28 @@ const Home = (props)=>{
     getUserData();
 
   }, []);
+
+  isLoaded?console.log(userData):console.log('homage to glorious samathabadra')
+
+  useEffect(() => {
+    setIsLoad(false);
+    const getUserData = async() => {
+      try {
+        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_signout");
+        const resData = await reqData.json();
+        // console.log(resData);
+        setNotLogged(resData);
+        setIsLoad(true)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    getUserData();
+
+  }, []);
+
+  isLoad?console.log('heloo not logged'+ notLogged):console.log('homage to the tri-kaya')
 
 
 
@@ -615,24 +639,24 @@ const removeSection = (sectionIndex) => {
         {props.watchv?<Watch selectedCard={selectedCard} identity = {props.identity} />:
         <div className='HomePage'>
         {!userInfo&& <div>
-          {userData.type.category.movies?.map((slide, index) => {
-  if (index < 3) {
+          {notLogged.map((slide, index) => {
+  
     return (
                  <Card
-                    poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
-                    alter={slide.movie_name}
-                    video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
-                    title={slide.movie_name}
-                    date={slide.movie_year_release}
-                    genre={slide.movie_genre}
-                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-                    key={index}
-                    read={() => handleCardClick(slide)}
-                    page={props.page}
-                    log={props.logged}
+                 poster={baseUrl + slide.movie_folder + baseLink + slide.movie_image}
+                 alter={slide.movie_name}
+                 video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer_file}
+                 title={slide.movie_name}
+                 date={slide.movie_year_release}
+                 genre={slide.movie_genre}
+                 className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                 key={index}
+                 read={() => handleCardClick(slide)}
+                 page={props.page}
+                 log={props.logged}
                   />
     );
-  }
+  
   return null; 
 })}
 
@@ -645,9 +669,9 @@ const removeSection = (sectionIndex) => {
           <div key={typeKey}>
             {Object.keys(userData.type[typeKey].category).map((categoryK) => (
                 <div>
-                { userData.type[typeKey].category[categoryK].movies> 9 || window.innerWidth <= 720?<FeaturedMovies key={categoryK}>
+                { userData.type[typeKey].category[categoryK].movies> 9 || (window.innerWidth <= 720 && userData.type[typeKey].category[categoryK].movies> 2)?<FeaturedMovies key={categoryK}>
                   <h2 className="title">{categoryK}</h2>
-                  <Slider>
+                  <Slider {...settings1}>
                 {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
                   <Slide
                     poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
