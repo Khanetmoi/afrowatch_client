@@ -1,28 +1,27 @@
 // Importing components at the top level (correct placement)
-import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
-import comingTo from '../Images/comingTo.jpg';
-import disney from '../Images/disney.jpg';
-import logo from '../Images/logo.png';
-import afrowatch from '../Images/afrowatch.png';
-import slides from './FakeApiData';
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import comingTo from "../Images/comingTo.jpg";
+import disney from "../Images/disney.jpg";
+import logo from "../Images/logo.png";
+import afrowatch from "../Images/afrowatch.png";
+import slides from "./FakeApiData";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaBeer, BsSearch } from 'react-icons/bs';
-import { CgProfile } from 'react-icons/cg';
-import { LiaSignInAltSolid } from 'react-icons/lia';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-import Modal from './Modal'
-import Watch from './Watch';
+import { FaBeer, BsSearch } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { LiaSignInAltSolid } from "react-icons/lia";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import Modal from "./Modal";
+import Watch from "./Watch";
 // import Nav from './Nav';
-import Comments from './Comments';
-import Questions from './Questions';
-import Slide from './Slide';
-import Card from './Card';
+import Comments from "./Comments";
+import Questions from "./Questions";
+import Slide from "./Slide";
+import Card from "./Card";
 
-
- const Navigation = styled.div`
+const Navigation = styled.div`
  position: sticky;
 top: 0;
 z-index: 100;
@@ -69,8 +68,7 @@ div {
       width: 33px;
     }
   }
-`
-
+`;
 
 const NavItems = styled.ul`
   display: flex;
@@ -127,7 +125,7 @@ margin: 2rem 0;
 
 `;
 
-const AfroLogo =  styled.img`
+const AfroLogo = styled.img`
 width: 33%;
  h3 {
   font-size: 25px;
@@ -155,7 +153,7 @@ const SearchButton = styled.button`
 height: 5vh;
 border-radius: 50%;
 `;
- const Category = styled.div`
+const Category = styled.div`
 
 border-radius: 10px;
 //background-color:  blue;
@@ -213,7 +211,6 @@ width: 5%;
    }
 `;
 
-
 const MovieList = styled.div`
   width: 95%;
   margin: 0 2.5%;
@@ -240,14 +237,14 @@ const MovieList = styled.div`
  
 `;
 
- const FooterContainer = styled.footer`
+const FooterContainer = styled.footer`
   // background-color: #874C3C;
   background-color: black;
   color: #fff;
   padding: 0px;
 `;
 
- const FooterLinks = styled.ul`
+const FooterLinks = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -358,7 +355,6 @@ const NavItem = styled.li`
   }
 `;
 
-
 const WatchContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -412,9 +408,8 @@ const CommentsContainer = styled.div`
   // border-radius: 5px;
 `;
 
-const Home = (props)=>{
-
-  const defaultOption = 'Default Option';
+const Home = (props) => {
+  const defaultOption = "Default Option";
   const [selectedCard, setSelectedCard] = useState(null);
   // console.log('selected', selectedCard)
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -423,10 +418,9 @@ const Home = (props)=>{
   //const [featuredCard, setFeaturedCard] = useState([]);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Home");
-  const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
-  
+  const userInfo = JSON.parse(localStorage.getItem("loggedInStatus"));
 
-  console.log("is logged"+props.logged)
+  console.log("is logged" + props.logged);
   const [categories, setCategories] = useState([
     <option key={1}>Popular</option>,
     <option key={2}>New Movies</option>,
@@ -437,7 +431,9 @@ const Home = (props)=>{
 
   function checkAndRetry(data, delay) {
     if (!data) {
-      return new Promise(resolve => setTimeout(() => resolve(checkAndRetry(data, delay)), delay));
+      return new Promise((resolve) =>
+        setTimeout(() => resolve(checkAndRetry(data, delay)), delay)
+      );
     }
     return data;
   }
@@ -446,42 +442,28 @@ const Home = (props)=>{
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     setIsLoaded(false);
-    const getUserData = async() => {
+    const getUserData = async () => {
       try {
-        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_page");
+        const reqData = await fetch(
+          "https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_page"
+        );
         const resData = await reqData.json();
         // console.log(resData);
         setUserData(resData);
-        setIsLoaded(true)
+        setIsLoaded(true);
       } catch (error) {
         console.error(error);
       }
     };
-    
-    getUserData();
 
+    getUserData();
   }, []);
 
-
-
-  // isLoaded?console.log('access data',userData.type[Object.keys(userData.type).find(typeKey => typeKey === props.tab)].category[Object.keys(userData.type[props.tab].category).find(categoryKey => categoryKey === 'Hearthwarming').movies]
-  // ): console.log('still empty')
-  
-  // isLoaded?console.log('access data',userData.type['Animation'].category['Hearthwarming'].movies[0]): console.log('still empty')
-  // useEffect(() => {
-  //   setuserData(userData)
-
-  // }, [userData]);
-
-  // console.log(userData?.type)
-  // console.log(userData?.type ? Object.keys(userData.type) : [])
-
-  console.log(props.tab)
-  
+  console.log(props.tab);
 
   const handlePlayClick = () => {
     props.watch(true);
-    console.log(props.watch)
+    console.log(props.watch);
   };
 
   const home = [
@@ -492,224 +474,274 @@ const Home = (props)=>{
     <option key={5}>Film of the week</option>,
   ];
 
-  
-  
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  const selectedCategoryRef = useRef(""); 
+
+  const selectedCategoryRef = useRef("");
 
   useEffect(() => {
-    
     if (categories.length > 0) {
-      selectedCategoryRef.current = categories[0]; 
-      setSelectedCategory(selectedCategoryRef.current); 
+      selectedCategoryRef.current = categories[0];
+      setSelectedCategory(selectedCategoryRef.current);
     }
   }, [categories]);
-  
+
   const handleCardClick = (sMovies) => {
-   
-    setSelectedCard({...sMovies});
+    setSelectedCard({ ...sMovies });
   };
 
-  const handleLogInClick = ()=>{
+  const handleLogInClick = () => {
     props.page("log In");
-   
-  }
-   const page = props.page;
+  };
+  const page = props.page;
   const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
   const baseLink = "/";
 
   const [sections, setSections] = useState([0]); // Initialize with one section
 
-const addSection = () => {
-  setSections([...sections, sections.length]);
-};
+  const addSection = () => {
+    setSections([...sections, sections.length]);
+  };
 
-const removeSection = (sectionIndex) => {
-  if (sections.length > 1) {
-    const updatedSections = sections.filter((_, index) => index !== sectionIndex);
-    setSections(updatedSections);
-  }
-};
-  
-    var settings1 = {
-      dots: true,
-      customPaging: (i) => (
-        <div
-          style={{
-            width: '10px',
-            height: '10px',
-            backgroundColor: i === currentSlide ? 'black' : 'white', // Change color based on current slide
-            borderRadius: '50%', // Round the dots if you want
-            transition: 'background-color 0.3s ease', // Add transition effect
-          }}
-        ></div>
-      ),
-      infinite: true,
-      speed: 500,
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      swipeToSlide: true,
-      centerMode: true,
-      // variableWidth: true,
-      centerPadding: '0',
-      afterChange: (current) => setCurrentSlide(current),
-      responsive: [
-        {
-          breakpoint: 1024, // Screen width 1024px and above
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-        {
-          breakpoint: 768, // Screen width 768px and above
-          settings: {
-            slidesToShow: 2,
-            arrows: false,
-          },
-        },
-        {
-          breakpoint: 480, // Screen width 480px and above
-          settings: {
-            slidesToShow: 2,
-            arrows: false,
-          },
-        },
-      ],
-    };
-    var settings2 = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      swipeToSlide: true,
-      centerMode: true,
-      centerPadding: '0',
-      arrows: true,
-      afterChange: (current) => setCurrentSlide(current),
-      // variableWidth: true,
-      responsive: [
-        {
-          breakpoint: 1024, // Screen width 1024px and above
-          settings: {
-            slidesToShow: 6,
-          },
-        },
-        {
-          breakpoint: 768, // Screen width 768px and above
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 480, // Screen width 480px and above
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-      ],
-    };
-    const handleSlideClick = (selectedCard) => {
-      setSelectedCard(selectedCard); // Set the selected card in the state
-    };
-    return (
-        <div className='page'>
-        {props.watchv?<Watch selectedCard={selectedCard} identity = {props.identity} />:
-        <div className='HomePage'>
-        {!userInfo&& <div>
-          {userData.type.category.movies?.map((slide, index) => {
-  if (index < 3) {
-    return (
-      <Slide
-        poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
-        alter={slide.movie_name}
-        video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
-        title={slide.movie_name}
-        date={slide.movie_year_release}
-        genre= {slide.movie_genre}
-        className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-        key={index}
-        read={() => handleCardClick(slide)}
-        page={props.page}
-        log={props.logged}
-      />
-    );
-  }
-  return null; 
-})}
+  const removeSection = (sectionIndex) => {
+    if (sections.length > 1) {
+      const updatedSections = sections.filter(
+        (_, index) => index !== sectionIndex
+      );
+      setSections(updatedSections);
+    }
+  };
 
-         </div>}
-         {userInfo && isLoaded && (
-  <div>
-    {Object.keys(userData.type).map((typeKey) => {
-      if (props.tab === typeKey) {
-        return (
-          <div key={typeKey}>
-            {Object.keys(userData.type[typeKey].category).map((categoryK) => (
-              <FeaturedMovies key={categoryK}>
-                <h2 className="title">{categoryK}</h2>
-                { userData.type[typeKey].category[categoryK].movies> 9? <Slider>
-                {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
-                  <Slide
-                    poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
-                    alter={slide.movie_name}
-                    video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
-                    title={slide.movie_name}
-                    date={slide.movie_year_release}
-                    genre={slide.movie_genre}
-                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-                    key={index}
-                    read={() => handleCardClick(slide)}
-                    page={props.page}
-                    log={props.logged}
-                  />
-                ))}
-            </Slider>:<div>
-          {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
-          <Category>
-                  <Card
-                    poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
-                    alter={slide.movie_name}
-                    video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
-                    title={slide.movie_name}
-                    date={slide.movie_year_release}
-                    genre={slide.movie_genre}
-                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-                    key={index}
-                    read={() => handleCardClick(slide)}
-                    page={props.page}
-                    log={props.logged}
-                  />
-          </Category>
-          ))
-         }
-         </div>}
-              </FeaturedMovies>
-            ))}
-          </div>
-        );
-      } else {
-        return <h1 key={typeKey}></h1>;
-      }
-    })}
-  </div>
-)}
+  var settings1 = {
+    dots: true,
+    customPaging: (i) => (
+      <div
+        style={{
+          width: "10px",
+          height: "10px",
+          backgroundColor: i === currentSlide ? "black" : "white", // Change color based on current slide
+          borderRadius: "50%", // Round the dots if you want
+          transition: "background-color 0.3s ease", // Add transition effect
+        }}
+      ></div>
+    ),
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    centerMode: true,
+    // variableWidth: true,
+    centerPadding: "0",
+    afterChange: (current) => setCurrentSlide(current),
+    responsive: [
+      {
+        breakpoint: 1024, // Screen width 1024px and above
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768, // Screen width 768px and above
+        settings: {
+          slidesToShow: 2,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480, // Screen width 480px and above
+        settings: {
+          slidesToShow: 2,
+          arrows: false,
+        },
+      },
+    ],
+  };
+  var settings2 = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    centerMode: true,
+    centerPadding: "0",
+    arrows: true,
+    afterChange: (current) => setCurrentSlide(current),
+    // variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1024, // Screen width 1024px and above
+        settings: {
+          slidesToShow: 6,
+        },
+      },
+      {
+        breakpoint: 768, // Screen width 768px and above
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480, // Screen width 480px and above
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
+  const handleSlideClick = (selectedCard) => {
+    setSelectedCard(selectedCard); // Set the selected card in the state
+  };
+  return (
+    <div className="page">
+      {props.watchv ? (
+        <Watch selectedCard={selectedCard} identity={props.identity} />
+      ) : (
+        <div className="HomePage">
+          {!userInfo && (
+            <div>
+              {userData.type.category.movies?.map((slide, index) => {
+                if (index < 3) {
+                  return (
+                    <Slide
+                      poster={
+                        baseUrl +
+                        slide.movie_path +
+                        baseLink +
+                        slide.movie_image
+                      }
+                      alter={slide.movie_name}
+                      video={
+                        baseUrl +
+                        slide.movie_path +
+                        baseLink +
+                        slide.movie_trailler_file
+                      }
+                      title={slide.movie_name}
+                      date={slide.movie_year_release}
+                      genre={slide.movie_genre}
+                      className={`slide ${
+                        index === currentSlide ? "slick-center" : ""
+                      }`}
+                      key={index}
+                      read={() => handleCardClick(slide)}
+                      page={props.page}
+                      log={props.logged}
+                    />
+                  );
+                }
+                return null;
+              })}
+            </div>
+          )}
+          {userInfo && isLoaded && (
+            <div>
+              {Object.keys(userData.type).map((typeKey) => {
+                if (props.tab === typeKey) {
+                  return (
+                    <div key={typeKey}>
+                      {Object.keys(userData.type[typeKey].category).map(
+                        (categoryK) => (
+                          <FeaturedMovies key={categoryK}>
+                            <h2 className="title">{categoryK}</h2>
+                            {userData.type[typeKey].category[categoryK].movies >
+                            9 ? (
+                              <Slider>
+                                {userData.type[typeKey].category[
+                                  categoryK
+                                ].movies.map((slide, index) => (
+                                  <Slide
+                                    poster={
+                                      baseUrl +
+                                      slide.movie_path +
+                                      baseLink +
+                                      slide.movie_image
+                                    }
+                                    alter={slide.movie_name}
+                                    video={
+                                      baseUrl +
+                                      slide.movie_path +
+                                      baseLink +
+                                      slide.movie_trailler_file
+                                    }
+                                    title={slide.movie_name}
+                                    date={slide.movie_year_release}
+                                    genre={slide.movie_genre}
+                                    className={`slide ${
+                                      index === currentSlide
+                                        ? "slick-center"
+                                        : ""
+                                    }`}
+                                    key={index}
+                                    read={() => handleCardClick(slide)}
+                                    page={props.page}
+                                    log={props.logged}
+                                  />
+                                ))}
+                              </Slider>
+                            ) : (
+                              <div>
+                                {userData.type[typeKey].category[
+                                  categoryK
+                                ].movies.map((slide, index) => (
+                                  <Category>
+                                    <Card
+                                      poster={
+                                        baseUrl +
+                                        slide.movie_path +
+                                        baseLink +
+                                        slide.movie_image
+                                      }
+                                      alter={slide.movie_name}
+                                      video={
+                                        baseUrl +
+                                        slide.movie_path +
+                                        baseLink +
+                                        slide.movie_trailler_file
+                                      }
+                                      title={slide.movie_name}
+                                      date={slide.movie_year_release}
+                                      genre={slide.movie_genre}
+                                      className={`slide ${
+                                        index === currentSlide
+                                          ? "slick-center"
+                                          : ""
+                                      }`}
+                                      key={index}
+                                      read={() => handleCardClick(slide)}
+                                      page={props.page}
+                                      log={props.logged}
+                                    />
+                                  </Category>
+                                ))}
+                              </div>
+                            )}
+                          </FeaturedMovies>
+                        )
+                      )}
+                    </div>
+                  );
+                } else {
+                  return <h1 key={typeKey}></h1>;
+                }
+              })}
+            </div>
+          )}
 
-        <MovieList>
-        {/* {sections.map((section, sectionIndex) => ( */}
-          <section >
-          {/* <div className='flex'> */}
-          {/* <h2 className="title">{selectedOption}</h2> */}
-          {/* <div className='flex1'> */}
-          {/* <select ref={selectRef} onChange={(event) => handleCategoryChange()}> */}
-            {/* {categories.map((option) => option)} */}
-          {/* </select> */}
-          {/* <AiOutlineMinus className='minus' onClick={() => removeSection(sectionIndex)}/>
+          <MovieList>
+            {/* {sections.map((section, sectionIndex) => ( */}
+            <section>
+              {/* <div className='flex'> */}
+              {/* <h2 className="title">{selectedOption}</h2> */}
+              {/* <div className='flex1'> */}
+              {/* <select ref={selectRef} onChange={(event) => handleCategoryChange()}> */}
+              {/* {categories.map((option) => option)} */}
+              {/* </select> */}
+              {/* <AiOutlineMinus className='minus' onClick={() => removeSection(sectionIndex)}/>
           <AiOutlinePlus className='plus' onClick={addSection}/> */}
-          {/* </div>
+              {/* </div>
           </div> */}
-          {/* {
+              {/* {
           filteredCards.length >1?<Slider {...settings2}>
             {
         filteredCards.map((sMovies, index) => (
@@ -745,61 +777,66 @@ const removeSection = (sectionIndex) => {
          }
          </div>
         } */}
-        </section>
-         {/* ))} */}
-        </MovieList>
+            </section>
+            {/* ))} */}
+          </MovieList>
 
-        {selectedCard && (
-          <Modal
-            Class='Scard'
-            identity = {selectedCard.movie_id}
-            Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
-            alter={selectedCard.movie_name}
-            Title={selectedCard.movie_name}
-            Year={selectedCard.movie_year_release}
-            hours={selectedCard.hours}
-            Country = {selectedCard.country}
-            Rated= {selectedCard.rated}
-            Genre = {selectedCard.movie_genre}
-            Production = {selectedCard.production}
-            Runtime = {selectedCard.movie_length}
-            imdbRating = {selectedCard.movie_rating}
-            Director = {selectedCard.movie_producer}
-            Actors = {selectedCard.movie_actor}
-            BoxOffice = {selectedCard.boxoffice}
-            Plot = {selectedCard.movie_description}
-            onPlayClick={handlePlayClick}
-            // watching={true}
-            closePop={() => setSelectedCard(null)} // Function to close the modal
-          />
-        )}
-        <FooterContainer>
-      <FooterLinks>
-        <FooterLink>
-          <a href="#">FAQ</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Help Center</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Account</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Media Center</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Investor Relations</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Jobs</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Ways to Watch</a>
-        </FooterLink>
-        <FooterLink>
-          <a href="#">Terms of Use</a>
-        </FooterLink>
-        {/* <FooterLink>
+          {selectedCard && (
+            <Modal
+              Class="Scard"
+              identity={selectedCard.movie_id}
+              Poster={
+                baseUrl +
+                selectedCard.movie_path +
+                baseLink +
+                selectedCard.movie_image
+              }
+              alter={selectedCard.movie_name}
+              Title={selectedCard.movie_name}
+              Year={selectedCard.movie_year_release}
+              hours={selectedCard.hours}
+              Country={selectedCard.country}
+              Rated={selectedCard.rated}
+              Genre={selectedCard.movie_genre}
+              Production={selectedCard.production}
+              Runtime={selectedCard.movie_length}
+              imdbRating={selectedCard.movie_rating}
+              Director={selectedCard.movie_producer}
+              Actors={selectedCard.movie_actor}
+              BoxOffice={selectedCard.boxoffice}
+              Plot={selectedCard.movie_description}
+              onPlayClick={handlePlayClick}
+              // watching={true}
+              closePop={() => setSelectedCard(null)} // Function to close the modal
+            />
+          )}
+          <FooterContainer>
+            <FooterLinks>
+              <FooterLink>
+                <a href="#">FAQ</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Help Center</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Account</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Media Center</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Investor Relations</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Jobs</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Ways to Watch</a>
+              </FooterLink>
+              <FooterLink>
+                <a href="#">Terms of Use</a>
+              </FooterLink>
+              {/* <FooterLink>
           <a href="#">Privacy</a>
         </FooterLink>
         <FooterLink>
@@ -820,21 +857,19 @@ const removeSection = (sectionIndex) => {
         <FooterLink>
           <a href="#">Only on Afrowatch</a>
         </FooterLink> */}
-      </FooterLinks>
-    </FooterContainer>
-    </div>
-    
-    }
+            </FooterLinks>
+          </FooterContainer>
         </div>
-    )
-}
-
+      )}
+    </div>
+  );
+};
 
 export default Home;
 
 // const Card = ({Class, imgSrc, alter, title, year, hours, onClick})=>{
 //   return (
-    
+
 //     <div className={Class} onClick={onClick}>
 //           <div>
 //             <img src={imgSrc} alt={alter}/>
@@ -856,9 +891,9 @@ export default Home;
 //     props.onPlayClick(viewMovie);
 //   };
 //   return (
-    
+
 //       <div className='show-expand'>
-      
+
 //       <div className='show-content'>
 //         <i class="show-close fas fa-times" onClick={props.closePop} >X</i>
 //         <div className='show-poster'>
@@ -869,7 +904,7 @@ export default Home;
 //             <img src={props.Poster !== 'N/A' ? props.Poster : 'https://via.placeholder.com/163x240/111217/FFFFFF/?text=No%20Image'} alt={props.Title} />
 //           </span>
 //         </div>
-        
+
 //         <div className='show-detail'>
 //           <h2>{props.Title}</h2>
 //           <ul className="show-tags">
@@ -881,7 +916,7 @@ export default Home;
 //           <div className="show-plot">
 //             <p>{props.Plot}</p>
 //           </div>
-          
+
 //           <div class="show-credits">
 //             <p><strong>Production:</strong> {props.Production || 'N/A '}</p>
 //             <p><strong>Runtime:</strong> {props.Runtime || 'N/A '} minutes</p>
@@ -893,7 +928,7 @@ export default Home;
 //         </div>
 //         {/* <button onClick={handlePlayClick}>Play</button> */}
 //       </div>
-      
+
 //     </div>
 //   )
 // }
@@ -906,75 +941,96 @@ const HamburgerButton = styled.button`
   }
 `;
 
-const Nav = ({handleItemClick, handleLogInClick, logged, logo, returnHome})=>{
+const Nav = ({
+  handleItemClick,
+  handleLogInClick,
+  logged,
+  logo,
+  returnHome,
+}) => {
   const [navActive, setNavActive] = useState(false);
 
   const toggleNav = () => {
-  
     setNavActive(!navActive);
   };
 
   return (
     <div>
-    <Navigation>
-        <img src={logo} alt="logo.png" onClick={returnHome}/>
+      <Navigation>
+        <img src={logo} alt="logo.png" onClick={returnHome} />
         <div>
-        <ul className='Desktop'>
-        <div>
-          <SearchBar type="text" placeholder="Search..."/>
-          <BsSearch />
-          {/* <SearchButton></SearchButton> */}
-          </div>
-        <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
-        <a href="#">Home</a>
-      </NavItem>
-      <NavItem onClick={() => handleItemClick('Movie')} className='Desktop'>
-        <a href="#">Movie</a>
-      </NavItem>
-      <NavItem onClick={() => handleItemClick('Show')} className='Desktop'>
-        <a href="#">Show</a>
-      </NavItem>
-        </ul>
-        <div className='Desktop'>
-          {
-            logged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}>Log In</LoginButton>
-          }
-        </div>
-        </div>
-        <div className='mobile search'>
-          <SearchBar type="text" placeholder="Search..."/>
-          <BsSearch />
-          {/* <SearchButton></SearchButton> */}
-          </div>
-        <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
-        </Navigation>
-        <Mobile className={`mobile ${navActive ? 'active' : ''}`}>
-            
+          <ul className="Desktop">
             <div>
-            <ul className={`menuDisplay ${navActive ? 'active' : ''}`}>
-              <NavItem onClick={() => handleItemClick('Home')}>
-                 <a href="#">Home</a>
-              </NavItem>
-              <NavItem onClick={() => handleItemClick('Movie')}>
-                 <a href="#">Movie</a>
-              </NavItem>
-              <NavItem onClick={() => handleItemClick('Show')}>
-                 <a href="#">Show</a>
-              </NavItem>
-            </ul>
-        <div className={`menuDisplay ${navActive ? 'active' : ''}`}>
-          {
-            logged?<button>Profile</button>:<LoginButton onClick={() => handleLogInClick()}><LiaSignInAltSolid/>Log In</LoginButton>
-          }
-        
+              <SearchBar type="text" placeholder="Search..." />
+              <BsSearch />
+              {/* <SearchButton></SearchButton> */}
+            </div>
+            <NavItem
+              onClick={() => handleItemClick("Home")}
+              className="Desktop"
+            >
+              <a href="#">Home</a>
+            </NavItem>
+            <NavItem
+              onClick={() => handleItemClick("Movie")}
+              className="Desktop"
+            >
+              <a href="#">Movie</a>
+            </NavItem>
+            <NavItem
+              onClick={() => handleItemClick("Show")}
+              className="Desktop"
+            >
+              <a href="#">Show</a>
+            </NavItem>
+          </ul>
+          <div className="Desktop">
+            {logged ? (
+              <button>Profile</button>
+            ) : (
+              <LoginButton onClick={() => handleLogInClick()}>
+                Log In
+              </LoginButton>
+            )}
+          </div>
         </div>
+        <div className="mobile search">
+          <SearchBar type="text" placeholder="Search..." />
+          <BsSearch />
+          {/* <SearchButton></SearchButton> */}
         </div>
-        </Mobile>
+        <HamburgerButton onClick={toggleNav} className="mobile">
+          ☰
+        </HamburgerButton>
+      </Navigation>
+      <Mobile className={`mobile ${navActive ? "active" : ""}`}>
+        <div>
+          <ul className={`menuDisplay ${navActive ? "active" : ""}`}>
+            <NavItem onClick={() => handleItemClick("Home")}>
+              <a href="#">Home</a>
+            </NavItem>
+            <NavItem onClick={() => handleItemClick("Movie")}>
+              <a href="#">Movie</a>
+            </NavItem>
+            <NavItem onClick={() => handleItemClick("Show")}>
+              <a href="#">Show</a>
+            </NavItem>
+          </ul>
+          <div className={`menuDisplay ${navActive ? "active" : ""}`}>
+            {logged ? (
+              <button>Profile</button>
+            ) : (
+              <LoginButton onClick={() => handleLogInClick()}>
+                <LiaSignInAltSolid />
+                Log In
+              </LoginButton>
+            )}
+          </div>
         </div>
-  )
-}
-
-
+      </Mobile>
+    </div>
+  );
+};
 
 // const Watch = ({ selectedCard, identity }) => {
 //   const [activeTab, setActiveTab] = useState('comments');
@@ -999,7 +1055,7 @@ const Nav = ({handleItemClick, handleLogInClick, logged, logo, returnHome})=>{
 //             type="video/mp4"
 //           />
 //           <source
-//             src={baseUrlMovie + selectedCard.movie_file} 
+//             src={baseUrlMovie + selectedCard.movie_file}
 //             type="video/ogg"/>
 //         </video>
 //       </Cinema>

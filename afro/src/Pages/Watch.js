@@ -1,10 +1,11 @@
+// DEFINED BUT NEVER USED
 import React, { useState, useRef, useEffect } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Comments from './Comments';
-import Questions from './Questions';
+import Comments from "./Comments";
+import Questions from "./Questions";
 
 const WatchContainer = styled.div`
   display: flex;
@@ -69,35 +70,47 @@ const Description = styled.div`
 `;
 
 const Watch = ({ selectedCard, identity }) => {
-  const [activeTab, setActiveTab] = useState('comments');
+  const [activeTab, setActiveTab] = useState("comments");
   const identification = identity;
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const episodes = ["episode1","episode2","episode3","episode1","episode1","episode1","episode1","episode1","episode1","episode1","episode1","episode1","episode1" ]
+  const episodes = [
+    "episode1",
+    "episode2",
+    "episode3",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+    "episode1",
+  ];
   const getSlidesToShow = (dataLength) => {
-    if (dataLength <= 2){
-      return 1
-    }else if(dataLength>9){
-       return 8;
+    if (dataLength <= 2) {
+      return 1;
+    } else if (dataLength > 9) {
+      return 8;
+    } else {
+      return dataLength - 1;
     }
-    else{
-      return dataLength-1;
-    } ;
   };
-
 
   var settings1 = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: getSlidesToShow (episodes.length),
+    slidesToShow: getSlidesToShow(episodes.length),
     slidesToScroll: 1,
     swipeToSlide: true,
     centerMode: false,
     // variableWidth: true,
-    centerPadding: '0',
+    centerPadding: "0",
     // afterChange: (current) => setCurrentSlide(current),
     responsive: [
       {
@@ -123,14 +136,13 @@ const Watch = ({ selectedCard, identity }) => {
     ],
   };
 
-  const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
+  const baseUrlMovie =
+    "https://myworklm.com/Afrowatch_admin/server/movie_files/";
 
   // Check if selectedCard is null or undefined before accessing its properties
   if (!selectedCard) {
-     return <div>No video selected</div>;
+    return <div>No video selected</div>;
   }
-
-  
 
   return (
     <WatchContainer>
@@ -141,57 +153,63 @@ const Watch = ({ selectedCard, identity }) => {
             type="video/mp4"
           />
           <source
-            src={baseUrlMovie + selectedCard.movie_file} 
-            type="video/ogg"/>
+            src={baseUrlMovie + selectedCard.movie_file}
+            type="video/ogg"
+          />
         </video>
         <Slider {...settings1}>
-                {episodes.map((episode, index) => (
-                 <div key={index} value={episode} >
-                  <div style={{ backgroundColor: 'white', margin:`10px` }}>{index + 1}</div>
-                 </div>
+          {episodes.map((episode, index) => (
+            <div key={index} value={episode}>
+              <div style={{ backgroundColor: "white", margin: `10px` }}>
+                {index + 1}
+              </div>
+            </div>
           ))}
-         </Slider>
-         <Description></Description>
+        </Slider>
+        <Description></Description>
       </Cinema>
-      
+
       <div className="hermit">
-      <TabsContainer>
-        <li
-          onClick={() => handleTabClick('comments')}
-          className={activeTab === 'comments' ? 'active' : ''}
-          style={{color: `white`}}
-        >
-          Comments
-        </li>
-        <li
-          onClick={() => handleTabClick('questions')}
-          className={activeTab === 'questions' ? 'active' : ''}
-          style={{color: `white`}}
-        >
-          Questions
-        </li>
-        {/* <li
+        <TabsContainer>
+          <li
+            onClick={() => handleTabClick("comments")}
+            className={activeTab === "comments" ? "active" : ""}
+            style={{ color: `white` }}
+          >
+            Comments
+          </li>
+          <li
+            onClick={() => handleTabClick("questions")}
+            className={activeTab === "questions" ? "active" : ""}
+            style={{ color: `white` }}
+          >
+            Questions
+          </li>
+          {/* <li
           onClick={() => handleTabClick('episodes')}
           className={activeTab === 'episodes' ? 'active' : ''}
           style={{color: `white`}}
         >
           Episodes
         </li> */}
-      </TabsContainer>
+        </TabsContainer>
 
-      {activeTab === 'comments' && (
-        <CommentsContainer>
-          {/* Render comments here */}
-          <Comments movieId = {selectedCard.movie_id} userId = {identification}/>
-        </CommentsContainer>
-      )}
+        {activeTab === "comments" && (
+          <CommentsContainer>
+            {/* Render comments here */}
+            <Comments movieId={selectedCard.movie_id} userId={identification} />
+          </CommentsContainer>
+        )}
 
-      {activeTab === 'questions' && (
-        <CommentsContainer>
-          {/* Render questions here */}
-          <Questions movieId = {selectedCard.movie_id} userId = {identification}/>
-        </CommentsContainer>
-      )}
+        {activeTab === "questions" && (
+          <CommentsContainer>
+            {/* Render questions here */}
+            <Questions
+              movieId={selectedCard.movie_id}
+              userId={identification}
+            />
+          </CommentsContainer>
+        )}
       </div>
     </WatchContainer>
   );
