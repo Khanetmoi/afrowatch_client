@@ -1,58 +1,74 @@
+import React, { useState, useEffect } from 'react';
 
-import React from "react";
+const Modal = (props) => {
+  const { identity, onPlayClick, closePop } = props;
+  const [movieData, setMovieData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-const Modal = (props)=>{
-    console.log(props.identity)
-    const viewMovie = {
-      video: props.movie,
-      comments: props.comments,
-      episodes: props.episodes
-    }
-    const handlePlayClick = () => {
-      props.onPlayClick(viewMovie);
+  useEffect(() => {
+    setIsLoaded(false);
+    const fetchMovieData = async () => {
+      try {
+        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_modal.php?id=${identity}`);
+        const data = await response.json();
+        console.log(data);
+        setMovieData(data);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
     };
-    return (
-      
-        <div className='show-expand'>
-        
-        <div className='show-content'>
-          <i class="show-close fas fa-times" onClick={props.closePop} >X</i>
+
+    fetchMovieData();
+  }, [identity]);
+
+  const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
+  const baseLink = "/";
+
+  const handlePlayClick = (movie) => {
+    onPlayClick({
+      video: movie.server_movie,
+      comments: movie.movie_comments,
+      episodes: movie.movie_episodes
+    });
+  };
+
+  return (
+    <div className='show-expand'>
+      {movieData.map((uData, index) => (
+        <div className='show-content' key={index}>
+          <i className="show-close fas fa-times" onClick={closePop}>X</i>
           <div className='show-poster'>
-            <span className='show-poster-bg' onClick={handlePlayClick}>
-              <img src={props.Poster !== 'N/A' ? props.Poster : 'https://via.placeholder.com/163x240/111217/FFFFFF/?text=No%20Image'} alt={props.Title} />
+            <span className='show-poster-bg' onClick={() => handlePlayClick(uData)}>
+              <img src={baseUrl + uData.movie_folder + baseLink + uData.movie_image} alt={uData.movie_name} />
             </span>
             <span className='show-poster-main'>
-              <img src={props.Poster !== 'N/A' ? props.Poster : 'https://via.placeholder.com/163x240/111217/FFFFFF/?text=No%20Image'} alt={props.Title} />
+              <img src={baseUrl + uData.movie_folder + baseLink + uData.movie_image} alt={uData.movie_name} />
             </span>
           </div>
-          
           <div className='show-detail'>
-            <h2>{props.Title}</h2>
+            <h2>{uData.movie_name}</h2>
             <ul className="show-tags">
-              <li className="show-rated">{props.Country}</li>
-              <li className="show-rated">{props.Year}</li>
-              <li className="show-year">{props.Rated}</li>
-              <li className="show-year">{props.Genre}</li>
+              {/* <li className="show-rated">{uData.Country}</li> */}
+              <li className="show-rated">{uData.movie_year_release}</li>
+              <li className="show-year">{uData.movie_rating}</li>
+              <li className="show-year">{uData.movie_genre}</li>
             </ul>
             <div className="show-plot">
-              <p>{props.Plot}</p>
+              <p>{uData.movie_description}</p>
             </div>
-            
-            <div class="show-credits">
-              <p><strong>Production:</strong> {props.Production || 'N/A '}</p>
-              <p><strong>Runtime:</strong> {props.Runtime || 'N/A '} minutes</p>
-              <p><strong>Rating:</strong> {props.imdbRating}</p>
-              <p><strong>Director:</strong> {props.Director}</p>
-              <p><strong>Actors:</strong> {props.Actors}</p>
-              {/* <p><strong>BoxOffice:</strong> {props.BoxOffice || 'N/A '}</p> */}
+            <div className="show-credits">
+              {/* <p><strong>Production:</strong> {uData.movie_producer || 'N/A'}</p> */}
+              <p><strong>Runtime:</strong> {uData.movie_length || 'N/A'} minutes</p>
+              <p><strong>Rating:</strong> {uData.movie_rating}</p>
+              <p><strong>Director:</strong> {uData.movie_producer}</p>
+              <p><strong>Actors:</strong> {uData.movie_actor}</p>
             </div>
           </div>
-          {/* <button onClick={handlePlayClick}>Play</button> */}
         </div>
-        
-      </div>
-    )
-  }
+      ))}
+    </div>
+  );
+};
 
-
-  export default Modal;
+export default Modal;

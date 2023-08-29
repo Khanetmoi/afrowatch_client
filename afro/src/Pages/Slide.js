@@ -1,6 +1,8 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
-import SLide from './styles'
+import React, { useState, useRef } from "react";
+import styled from "styled-components";
+
+// DEFINED BUT NEVER USED
+import SLide from "./styles";
 
 // const Slide = (props)=>{
 //     return (
@@ -47,22 +49,22 @@ const Media = styled.div`
   border-radius: 20px;
   // width: 100%;
   height: 120px; /* You can adjust the height as needed */
-  width: ${({ userInfo }) => (userInfo ? '90%' : '300px')};
+  width: ${({ userInfo }) => (userInfo ? "90%" : "300px")};
   overflow: hidden;
-  margin: ${({ userInfo }) => (userInfo ? '5%' : '7px')};
+  margin: ${({ userInfo }) => (userInfo ? "5%" : "7px")};
   max-width: 700px;
 `;
 
 const Image = styled.img`
 
-width: ${({ userInfo }) => (!userInfo ? '100%' : '100px')};
+width: ${({ userInfo }) => (!userInfo ? "100%" : "100px")};
   // height: 100vh;
   object-fit: contain; 
   // max-width: 100px;
 `;
 
 const Video = styled.video`
-width: ${({ userInfo }) => (!userInfo ? '100%' : '100px')};
+width: ${({ userInfo }) => (!userInfo ? "100%" : "100px")};
   // height: 100vh;
   object-fit: contain;
   // max-width: 100px;
@@ -88,15 +90,14 @@ const Slide = (props) => {
   const [signedIn, setSignedIn] = useState(false);
   const [videoTime, setVideoTime] = useState(0);
   const videoRef = useRef(null);
-  const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
-  const [videoPlaying, setVideoPlaying] = useState(false); 
+  const userInfo = JSON.parse(localStorage.getItem("loggedInStatus"));
+  const [videoPlaying, setVideoPlaying] = useState(false);
 
   const handleHover = () => {
     setHovered(true);
   };
 
   const handleLeave = () => {
-
     setHovered(false);
     if (videoPlaying) {
       videoRef.current.pause(); // Pause video when mouse leaves
@@ -110,15 +111,15 @@ const Slide = (props) => {
 
   const handleSignIn = () => {
     // Implement your sign-in logic here
-    props.page("log In")
-    
+    props.page("log In");
+
     setSignedIn(true);
   };
 
   const handleVideoClick = (e) => {
     e.preventDefault();
-    if(!userInfo){
-      props.page("log In")
+    if (!userInfo) {
+      props.page("log In");
     }
     if (!signedIn && videoTime >= 5) {
       setSignedIn(true);
@@ -136,35 +137,36 @@ const Slide = (props) => {
   return (
     <SlideContainer>
       <ContentContainer
-        className={`SPcard${hovered ? ' hovered' : ''}`}
+        className={`SPcard${hovered ? " hovered" : ""}`}
         onMouseEnter={handleHover}
         onMouseLeave={handleLeave}
       >
         <Media onClick={props.read} userInfo={userInfo}>
-          {hovered && (<div>
-            <Video
-              ref={videoRef}
-              controls
-              onTimeUpdate={handleVideoTimeUpdate}
-              onClick={handleVideoClick}
-              onPlay={handleVideoPlay} // Add this
-              onPause={handleVideoPause} //
-              // onClick={props.read}
-              autoPlay
-            >
-              <source src={props.video} type="video/mp4" />
-            </Video>
+          {hovered && (
+            <div>
+              <Video
+                ref={videoRef}
+                controls
+                onTimeUpdate={handleVideoTimeUpdate}
+                onClick={handleVideoClick}
+                onPlay={handleVideoPlay} // Add this
+                onPause={handleVideoPause} //
+                // onClick={props.read}
+                autoPlay
+              >
+                <source src={props.video} type="video/mp4" />
+              </Video>
               <button
                 onClick={handleVideoClick}
                 style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: '100%',
-                  height: '100%',
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "100%",
+                  height: "100%",
                   opacity: 0, // Make the button invisible
-                  cursor: 'pointer',
+                  cursor: "pointer",
                   zIndex: 1, // Place the button above the video
                 }}
               >
@@ -181,11 +183,15 @@ const Slide = (props) => {
           )}
         </Media>
         <div>
-          <h6 className='info'> title: {props.title} <br/> date: {props.date} <br/> genre: {props.genre}</h6>
+          <h6 className="info">
+            {" "}
+            title: {props.title} <br /> date: {props.date} <br /> genre:{" "}
+            {props.genre}
+          </h6>
           {/* <p>{props.date}</p> */}
         </div>
       </ContentContainer>
     </SlideContainer>
   );
 };
- export default Slide;
+export default Slide;

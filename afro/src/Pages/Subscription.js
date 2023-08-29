@@ -1,23 +1,29 @@
-import React from 'react';
-import { BsCheck2All } from 'react-icons/bs';
-import styled from 'styled-components';
+import React from "react";
+import { BsCheck2All } from "react-icons/bs";
+import styled from "styled-components";
 
 const categoriesData = [
-    { title: 'HEARTWARMING', elements: ['Romance', 'Family'] },
-    { title: 'THRILLING', elements: ['Thriller', 'Suspense', 'Psychological', 'Action'] },
-    { title: 'HUMOROUSE', elements: ['Comedy'] },
-    { title: 'SCARY', elements: ['Horror'] },
-    { title: 'THOUGHT-PROVOKING', elements: ['Drama (Historical, Biographical)', 'Documentary'] },
-    { title: 'TIMELESS', elements: ['Classic', 'Western'] },
-    { title: ' MYSTICAL', elements: ['Supernatural'] },
-    { title: 'EMPOWERING', elements: ['Superhero', 'Martial Arts'] },
-    { title: 'HOPEFUL', elements: ['Fantasy', 'Adventure'] },
-    { title: 'COURAGEOUS', elements: ['War'] },
-    { title: 'MYSTERIOUS', elements: ['Mystery', 'Crime', 'Spy/Espionage'] },
-    { title: 'FASCINATING', elements: ['Sci-Fi'] },
-    { title: 'GLAMOROUSE', elements: ['Musical'] },
-    // Add other categories here...
-  ];
+  { title: "HEARTWARMING", elements: ["Romance", "Family"] },
+  {
+    title: "THRILLING",
+    elements: ["Thriller", "Suspense", "Psychological", "Action"],
+  },
+  { title: "HUMOROUSE", elements: ["Comedy"] },
+  { title: "SCARY", elements: ["Horror"] },
+  {
+    title: "THOUGHT-PROVOKING",
+    elements: ["Drama (Historical, Biographical)", "Documentary"],
+  },
+  { title: "TIMELESS", elements: ["Classic", "Western"] },
+  { title: " MYSTICAL", elements: ["Supernatural"] },
+  { title: "EMPOWERING", elements: ["Superhero", "Martial Arts"] },
+  { title: "HOPEFUL", elements: ["Fantasy", "Adventure"] },
+  { title: "COURAGEOUS", elements: ["War"] },
+  { title: "MYSTERIOUS", elements: ["Mystery", "Crime", "Spy/Espionage"] },
+  { title: "FASCINATING", elements: ["Sci-Fi"] },
+  { title: "GLAMOROUSE", elements: ["Musical"] },
+  // Add other categories here...
+];
 
 // const SubscriptionContainer = styled.div`
 //   background-color: green;
@@ -29,7 +35,7 @@ const categoriesData = [
 //    justify-content: center;
 //    align-items: flex-start
 //   justify-items: center;
- 
+
 // `;
 
 // const PlanCard = styled.div`lanTitle
@@ -84,15 +90,34 @@ const categoriesData = [
 // `;
 
 const plans = [
-    { title: 'Basic',time: '1 Month ', price: '100Ghc' ,categories: categoriesData.slice(0, 5) },
-    { title: 'Standard',time: '6 Months',price: '500Ghc' , categories: categoriesData.slice(5, 10) },
-    { title: 'Premium',time: '1 year', price: '1000Ghc' ,categories: categoriesData },
-  ];
+  {
+    title: "Basic",
+    time: "1 Month ",
+    price: "100Ghc",
+    categories: categoriesData.slice(0, 5),
+  },
+  {
+    title: "Standard",
+    time: "6 Months",
+    price: "500Ghc",
+    categories: categoriesData.slice(5, 10),
+  },
+  {
+    title: "Premium",
+    time: "1 year",
+    price: "1000Ghc",
+    categories: categoriesData,
+  },
+];
 
-  const getGridColumnCount = (categories) => {
-    const categoryCount = categories.reduce((total, category) => total + category.elements.length, 0);
-    return Math.ceil(categoryCount / 4); // Adjust the number 4 to control the number of columns per grid
-  };
+// DEFINED BUT NEVER USED
+const getGridColumnCount = (categories) => {
+  const categoryCount = categories.reduce(
+    (total, category) => total + category.elements.length,
+    0
+  );
+  return Math.ceil(categoryCount / 4); // Adjust the number 4 to control the number of columns per grid
+};
 
 //   const GridContainer = styled.div`
 //   display: grid;
@@ -115,7 +140,7 @@ const plans = [
 //         <h1>Categories</h1>
 //         <GridContainer>
 //         {categoriesData.map((category, index) => (
-//           <GridItem 
+//           <GridItem
 //           key={index}
 //            color={'lightgreen'}
 //            >
@@ -138,8 +163,6 @@ const plans = [
 //       </SubscriptionContainer>
 //     );
 //   };
-
-
 
 const SubscriptionContainer = styled.div`
 background-color: #18200e;
@@ -185,24 +208,37 @@ const GridItem = styled.div`
   padding: 20px;
 `;
 
-const Subscription = ({page}) => {
-  const gohome = ()=>{
-     page('home')
-  }
+const Subscription = ({ page }) => {
+  const gohome = () => {
+    page("home");
+  };
   return (
     <SubscriptionContainer>
-        <h1 style={{color: `white`}}>Choose the Plan that's right for you</h1>
-        <ul>
-          <li style={{color:`white`}}><BsCheck2All style={{color:`red`}}/> Watch all you want add free</li>
-          <li style={{color:`white`}}><BsCheck2All style={{color:`red`}}/> Recommandations just for you</li>
-          <li style={{color:`white`}}><BsCheck2All style={{color:`red`}}/> change Or cancel your plan anytime</li>
-        </ul>
-        <PlansContainer>
+      <h1 style={{ color: `white` }}>Choose the Plan that's right for you</h1>
+      <ul>
+        <li style={{ color: `white` }}>
+          <BsCheck2All style={{ color: `red` }} /> Watch all you want add free
+        </li>
+        <li style={{ color: `white` }}>
+          <BsCheck2All style={{ color: `red` }} /> Recommandations just for you
+        </li>
+        <li style={{ color: `white` }}>
+          <BsCheck2All style={{ color: `red` }} /> change Or cancel your plan
+          anytime
+        </li>
+      </ul>
+      <PlansContainer>
         <GridContainer>
           <GridItem> </GridItem>
-          <GridItem style={{backgroundColor: `red`}}>{plans[0].title}</GridItem>
-          <GridItem style={{backgroundColor: `red`}}>{plans[1].title}</GridItem>
-          <GridItem style={{backgroundColor: `red`}}>{plans[2].title}</GridItem>
+          <GridItem style={{ backgroundColor: `red` }}>
+            {plans[0].title}
+          </GridItem>
+          <GridItem style={{ backgroundColor: `red` }}>
+            {plans[1].title}
+          </GridItem>
+          <GridItem style={{ backgroundColor: `red` }}>
+            {plans[2].title}
+          </GridItem>
           <GridItem>Monthly price</GridItem>
           <GridItem>{plans[0].price}</GridItem>
           <GridItem>{plans[1].price}</GridItem>
@@ -212,12 +248,18 @@ const Subscription = ({page}) => {
           <GridItem>{plans[1].time}</GridItem>
           <GridItem>{plans[2].time}</GridItem>
           <GridItem></GridItem>
-          <GridItem><button onClick={gohome}>Suscribe</button></GridItem>
-          <GridItem><button onClick={gohome}>Suscribe</button></GridItem>
-          <GridItem><button onClick={gohome}>Suscribe</button></GridItem>
-          </GridContainer>
-        </PlansContainer>
-      </SubscriptionContainer>
+          <GridItem>
+            <button onClick={gohome}>Suscribe</button>
+          </GridItem>
+          <GridItem>
+            <button onClick={gohome}>Suscribe</button>
+          </GridItem>
+          <GridItem>
+            <button onClick={gohome}>Suscribe</button>
+          </GridItem>
+        </GridContainer>
+      </PlansContainer>
+    </SubscriptionContainer>
   );
 };
 
