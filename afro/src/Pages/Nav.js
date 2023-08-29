@@ -251,7 +251,19 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         <div>
         <ul className='Desktop'>
         {userInfo &&<div>
-          <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
+          <SearchBar 
+          type="text"
+           placeholder="Search..." 
+          onChange={(e) => {
+            if(e.target.value.length>0){
+              setSearchedMovie(e.target.value);
+              page('Search')
+            }else {
+              page('home')
+            }
+             
+            }
+            }/>
           {/* <button>
           <BsSearch onClick={handleSearch}/>
           </button> */}
@@ -287,7 +299,15 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
         </div>
         </div>
         {userInfo &&<div className='mobile search'>
-          <SearchBar type="text" placeholder="Search..." onChange={(e) => {setSearchedMovie(e.target.value); page('Search')}}/>
+          <SearchBar type="text" placeholder="Search..." onChange={(e) => {
+            if(e.target.value.length>0){
+              setSearchedMovie(e.target.value);
+              page('Search')
+            }else {
+              page('home')
+            }
+             
+            }}/>
              {/* <BsSearch /> */}
           {/* <SearchButton></SearchButton> */}
           </div>}

@@ -1,4 +1,3 @@
-// DEFINED BUT NEVER USED
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
@@ -72,7 +71,6 @@ const Description = styled.div`
 const Watch = ({ selectedCard, identity }) => {
   const [activeTab, setActiveTab] = useState("comments");
   const identification = identity;
-  console.log('hello watch id'+selectedCard.movie_id)
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -137,8 +135,32 @@ const Watch = ({ selectedCard, identity }) => {
     ],
   };
 
-  const baseUrlMovie =
-    "https://myworklm.com/Afrowatch_admin/server/movie_files/";
+  const movieId = selectedCard.movie_id;
+
+  const [movieData, setMovieData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    const fetchMovieData = async () => {
+      try {
+        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_watch.php?id=${movieId}`);
+        const data = await response.json();
+        console.log(data);
+        setMovieData(data);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMovieData();
+  }, []);
+
+  const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
+  const baseLink = "/";
+
+  console.log('Show id: '+movieData.movie_name)
 
   // Check if selectedCard is null or undefined before accessing its properties
   if (!selectedCard) {
@@ -147,14 +169,16 @@ const Watch = ({ selectedCard, identity }) => {
 
   return (
     <WatchContainer>
+    {movieData.map((uData, index) => (
+      <div>
       <Cinema>
         <video controls>
           <source
-            src={baseUrlMovie + selectedCard.movie_file}
+            src={baseUrl+uData.movie_path+baseLink+uData.movie_movie}
             type="video/mp4"
           />
           <source
-            src={baseUrlMovie + selectedCard.movie_file}
+            src={baseUrl+uData.movie_path+baseLink+uData.movie_movie}
             type="video/ogg"
           />
         </video>
@@ -198,7 +222,7 @@ const Watch = ({ selectedCard, identity }) => {
         {activeTab === "comments" && (
           <CommentsContainer>
             {/* Render comments here */}
-            <Comments movieId={selectedCard.movie_id} userId={identification} />
+            <Comments movieId={uData.movie_id} userId={identification} />
           </CommentsContainer>
         )}
 
@@ -206,12 +230,14 @@ const Watch = ({ selectedCard, identity }) => {
           <CommentsContainer>
             {/* Render questions here */}
             <Questions
-              movieId={selectedCard.movie_id}
+              movieId={uData.movie_id}
               userId={identification}
             />
           </CommentsContainer>
         )}
       </div>
+      </div>
+      ))}
     </WatchContainer>
   );
 };

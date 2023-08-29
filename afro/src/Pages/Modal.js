@@ -44,6 +44,8 @@ const Modal = (props) => {
             </span>
             <span className='show-poster-main'>
               <img src={baseUrl + uData.movie_folder + baseLink + uData.movie_image} alt={uData.movie_name} />
+              <button>Watch Later</button>
+              <button>Play</button>
             </span>
           </div>
           <div className='show-detail'>
