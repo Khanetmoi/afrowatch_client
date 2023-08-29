@@ -159,12 +159,9 @@ border-radius: 50%;
 
 border-radius: 10px;
 //background-color:  blue;
-width: 5%;
+width: 100%;
     .Scard {
         color: white;
-       
-        
-        
         @media (max-width: 768px) {
           flex: 0 0 50%
         }
@@ -621,19 +618,19 @@ const removeSection = (sectionIndex) => {
           {userData.type.category.movies?.map((slide, index) => {
   if (index < 3) {
     return (
-      <Slide
-        poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
-        alter={slide.movie_name}
-        video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
-        title={slide.movie_name}
-        date={slide.movie_year_release}
-        genre= {slide.movie_genre}
-        className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-        key={index}
-        read={() => handleCardClick(slide)}
-        page={props.page}
-        log={props.logged}
-      />
+                 <Card
+                    poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
+                    alter={slide.movie_name}
+                    video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
+                    title={slide.movie_name}
+                    date={slide.movie_year_release}
+                    genre={slide.movie_genre}
+                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                    key={index}
+                    read={() => handleCardClick(slide)}
+                    page={props.page}
+                    log={props.logged}
+                  />
     );
   }
   return null; 
@@ -647,9 +644,10 @@ const removeSection = (sectionIndex) => {
         return (
           <div key={typeKey}>
             {Object.keys(userData.type[typeKey].category).map((categoryK) => (
-              <FeaturedMovies key={categoryK}>
-                <h2 className="title">{categoryK}</h2>
-                { userData.type[typeKey].category[categoryK].movies> 9? <Slider>
+                <div>
+                { userData.type[typeKey].category[categoryK].movies> 9 || window.innerWidth <= 720?<FeaturedMovies key={categoryK}>
+                  <h2 className="title">{categoryK}</h2>
+                  <Slider>
                 {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
                   <Slide
                     poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
@@ -665,9 +663,9 @@ const removeSection = (sectionIndex) => {
                     log={props.logged}
                   />
                 ))}
-            </Slider>:<div>
+            </Slider></FeaturedMovies>:<Category>
+            <h2 className="title">{categoryK}</h2>
           {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
-          <Category>
                   <Card
                     poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
                     alter={slide.movie_name}
@@ -681,11 +679,11 @@ const removeSection = (sectionIndex) => {
                     page={props.page}
                     log={props.logged}
                   />
-          </Category>
           ))
          }
-         </div>}
-              </FeaturedMovies>
+         </Category>}
+         </div>
+              
             ))}
           </div>
         );
