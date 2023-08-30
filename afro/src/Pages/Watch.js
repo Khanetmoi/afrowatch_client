@@ -36,7 +36,15 @@ const Cinema = styled.div`
   // justify-content: center;
   // align-items: center;
   position: sticky;
-
+  .likeName {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .like{
+      color: blue;
+      font-size: 40px;
+    }
+  }
   video {
     width: 100%;
     height: 90%;
@@ -83,6 +91,7 @@ const Description = styled.div`
 const Watch = ({ selectedCard, identity }) => {
   const [activeTab, setActiveTab] = useState("comments");
   const identification = identity;
+  const [likeColor, setLikeColor] = useState('blue');
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -131,7 +140,7 @@ const Watch = ({ selectedCard, identity }) => {
 
   var settings1 = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: getSlidesToShow(episodes.length),
     slidesToScroll: 1,
@@ -215,15 +224,18 @@ const Watch = ({ selectedCard, identity }) => {
   if (!selectedCard) {
     return <div>No video selected</div>;
   }
-
+  const liked = ()=>{
+    setLikeColor(likeColor === 'blue' ? 'red' : 'blue');
+  }
   return (
     <WatchContainer>
     {movieData.map((uData, index) => (
       <div className="combination">
       <Cinema>
-        {/* <button>Like</button> */}
-        <AiFillHeart style={{color:`white`}}/>
-        <button onClick={() => shareVideo(baseUrl + uData.movie_path + baseLink + uData.movie_movie)}>share</button>
+        <div className="likeName">
+        <span style={{color:`white`}}>{uData.movie_name}</span>
+        <AiFillHeart className="like"  onClick={liked} style={{ color: likeColor }}/>
+        </div>
         <video controls>
           <source
             src={baseUrl+uData.movie_path+baseLink+uData.movie_movie}
