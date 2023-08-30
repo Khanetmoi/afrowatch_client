@@ -775,21 +775,21 @@ const removeSection = (sectionIndex) => {
           <Modal
             Class='Scard'
             identity = {selectedCard.movie_id}
-            Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
-            alter={selectedCard.movie_name}
-            Title={selectedCard.movie_name}
-            Year={selectedCard.movie_year_release}
-            hours={selectedCard.hours}
-            Country = {selectedCard.country}
-            Rated= {selectedCard.rated}
-            Genre = {selectedCard.movie_genre}
-            Production = {selectedCard.production}
-            Runtime = {selectedCard.movie_length}
-            imdbRating = {selectedCard.movie_rating}
-            Director = {selectedCard.movie_producer}
-            Actors = {selectedCard.movie_actor}
-            BoxOffice = {selectedCard.boxoffice}
-            Plot = {selectedCard.movie_description}
+            // Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
+            // alter={selectedCard.movie_name}
+            // Title={selectedCard.movie_name}
+            // Year={selectedCard.movie_year_release}
+            // hours={selectedCard.hours}
+            // Country = {selectedCard.country}
+            // Rated= {selectedCard.rated}
+            // Genre = {selectedCard.movie_genre}
+            // Production = {selectedCard.production}
+            // Runtime = {selectedCard.movie_length}
+            // imdbRating = {selectedCard.movie_rating}
+            // Director = {selectedCard.movie_producer}
+            // Actors = {selectedCard.movie_actor}
+            // BoxOffice = {selectedCard.boxoffice}
+            // Plot = {selectedCard.movie_description}
             onPlayClick={handlePlayClick}
             // watching={true}
             closePop={() => setSelectedCard(null)} // Function to close the modal

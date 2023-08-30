@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import { AiFillHeart } from 'react-icons/ai';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,13 +8,20 @@ import Comments from "./Comments";
 import Questions from "./Questions";
 
 const WatchContainer = styled.div`
-  display: flex;
+  // display: flex;
   // flex-direction: column;
-  align-items: center;
-
+  // align-items: center;
+  .combination {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+  }
   .hermit {
-    background-color: white;
-    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    // background-color: white;
+    width: 25vw;
+    // height: 25vh;
   }
 `;
 
@@ -21,7 +29,9 @@ const Cinema = styled.div`
   width: 70vw;
   height: 75vh;
   margin: 2.5vw;
-  background-color: #000;
+  border-radius: 20px;
+  background-color: black;
+  padding: 5px;
   // display: flex;
   // justify-content: center;
   // align-items: center;
@@ -29,7 +39,7 @@ const Cinema = styled.div`
 
   video {
     width: 100%;
-    height: 100%;
+    height: 90%;
     object-fit: cover;
   }
 `;
@@ -57,14 +67,16 @@ const TabsContainer = styled.ul`
 `;
 
 const CommentsContainer = styled.div`
-  width: 20vw;
+  width: 100%;
   // max-width: 800px;
   padding: 20px;
   // background-color: #f9f9f9;
   // border: 1px solid #ccc;
   // border-radius: 5px;
 `;
+const Suggestions = styled.div`
 
+`;
 const Description = styled.div`
 `;
 
@@ -74,6 +86,23 @@ const Watch = ({ selectedCard, identity }) => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  const shareVideo = (videoUrl) => {
+  if (navigator.share) {
+    // If the Web Share API is supported
+    navigator.share({
+      url: videoUrl,
+    })
+      .then(() => console.log('Video shared successfully'))
+      .catch((error) => console.error('Error sharing video:', error));
+  } else {
+    // Fallback for browsers that don't support the Web Share API
+    // You can replace 'navigator.share' with the specific sharing functionality you want
+    // For example, opening the video URL in a new window or showing a sharing dialog
+    window.open(videoUrl, '_blank');
+  }
+};
+
 
   const episodes = [
     "episode1",
@@ -136,9 +165,12 @@ const Watch = ({ selectedCard, identity }) => {
   };
 
   const movieId = selectedCard.movie_id;
+  const types_id = selectedCard.types_id;
+  const category_id = selectedCard.category_id;
 
   const [movieData, setMovieData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [suggestion, setSuggestion] = useState([])
 
   useEffect(() => {
     setIsLoaded(false);
@@ -146,8 +178,25 @@ const Watch = ({ selectedCard, identity }) => {
       try {
         const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_watch.php?id=${movieId}`);
         const data = await response.json();
-        console.log(data);
+        console.log('movie ',data);
         setMovieData(data);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMovieData();
+  }, []);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    const fetchMovieData = async () => {
+      try {
+        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_suggestion.php?movie_id=${movieId}&category_id=${category_id}&type_id=${types_id}`);
+        const data = await response.json();
+        console.log('suggestion',data);
+        setSuggestion(data);
         setIsLoaded(true);
       } catch (error) {
         console.error(error);
@@ -170,8 +219,11 @@ const Watch = ({ selectedCard, identity }) => {
   return (
     <WatchContainer>
     {movieData.map((uData, index) => (
-      <div>
+      <div className="combination">
       <Cinema>
+        {/* <button>Like</button> */}
+        <AiFillHeart style={{color:`white`}}/>
+        <button onClick={() => shareVideo(baseUrl + uData.movie_path + baseLink + uData.movie_movie)}>share</button>
         <video controls>
           <source
             src={baseUrl+uData.movie_path+baseLink+uData.movie_movie}
@@ -191,7 +243,7 @@ const Watch = ({ selectedCard, identity }) => {
             </div>
           ))}
         </Slider>
-        <Description></Description>
+        {/* <Description></Description> */}
       </Cinema>
 
       <div className="hermit">
@@ -238,6 +290,9 @@ const Watch = ({ selectedCard, identity }) => {
       </div>
       </div>
       ))}
+      <Suggestions>
+
+      </Suggestions>
     </WatchContainer>
   );
 };

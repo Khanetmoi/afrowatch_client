@@ -176,8 +176,8 @@ const Comments = (props) => {
           ? {
               ...comment,
               commentsLikes: comment.isLiked
-                ? parseInt(comment.commentsLikes) - 1
-                : parseInt(comment.commentsLikes) + 1,
+                ? parseInt(comment.totalLikes) - 1
+                : parseInt(comment.totalLikes) + 1,
               isLiked: !comment.isLiked,
             }
           : comment
@@ -192,8 +192,8 @@ const Comments = (props) => {
           ? {
               ...comment,
               commentsDislikes: comment.isDisliked
-                ? parseInt(comment.commentsDislikes) - 1
-                : parseInt(comment.commentsDislikes) + 1,
+                ? parseInt(comment.totalDislikes) - 1
+                : parseInt(comment.totalDislikes) + 1,
               isDisliked: !comment.isDisliked,
             }
           : comment
@@ -241,7 +241,7 @@ const Comments = (props) => {
                   </Commenter>
 
                   <div>
-                    <ProfileName>{comment.userFirstname} {comment.userLastname}</ProfileName>
+                    <ProfileName>{comment.userFname} {comment.userLname}</ProfileName>
                     <CommentText>{comment.commentsContents}</CommentText>
 
                     <div>
@@ -249,14 +249,14 @@ const Comments = (props) => {
                         onClick={() => handleLike(comment.commentsId)}
                         disabled={comment.isDisliked}
                       >
-                        <AiFillLike /> ({formatNumber(comment.commentsLikes)})
+                        <AiFillLike /> ({formatNumber(comment.totalLikes)})
                       </button>
 
                       <button
                         onClick={() => handleDislike(comment.commentsId)}
                         disabled={comment.isLiked}
                       >
-                        <AiFillDislike /> ({formatNumber(comment.commentsDislikes)})
+                        <AiFillDislike /> ({formatNumber(comment.totalDislikes)})
                       </button>
 
                       <button onClick={() => handleReport(comment.commentsId)}>Report</button>
