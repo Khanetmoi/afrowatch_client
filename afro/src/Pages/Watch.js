@@ -4,6 +4,8 @@ import { AiFillHeart } from 'react-icons/ai';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Slide from "./Slide";
+import Modal from "./Modal";
 import Comments from "./Comments";
 import Questions from "./Questions";
 
@@ -180,6 +182,7 @@ const Watch = ({ selectedCard, identity }) => {
   const [movieData, setMovieData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [suggestion, setSuggestion] = useState([])
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -206,7 +209,7 @@ const Watch = ({ selectedCard, identity }) => {
         const data = await response.json();
         console.log('suggestion',data);
         setSuggestion(data);
-        setIsLoaded(true);
+        setIsLoad(true);
       } catch (error) {
         console.error(error);
       }
@@ -229,7 +232,7 @@ const Watch = ({ selectedCard, identity }) => {
   }
   return (
     <WatchContainer>
-    {movieData.map((uData, index) => (
+    {isLoaded && movieData.map((uData, index) => (
       <div className="combination">
       <Cinema>
         <div className="likeName">
@@ -303,8 +306,28 @@ const Watch = ({ selectedCard, identity }) => {
       </div>
       ))}
       <Suggestions>
-
+      <h3>suggestions</h3>
+        {isLoad && suggestion.map((suggest, index)=>{
+          return (
+            <Slide
+            poster={baseUrl + suggest.movie_folder + baseLink + suggest.movie_image}
+                    alter={suggest.movie_name}
+                    video={baseUrl + suggest.movie_folder + baseLink + suggest.movie_trailer}
+                    title={suggest.movie_name}
+                    date={suggest.movie_year_release}
+                    genre={suggest.movie_genre}
+                    // className={`suggest ${index === currentSlide ? 'slick-center' : ''}`}
+                    key={index}
+                    // read={() => handleCardClick(suggest)}
+                    // page={props.page}
+            />
+            )
+            
+        })}
       </Suggestions>
+      {/* <Modal
+      identity = {selectedCard.movie_id}
+      /> */}
     </WatchContainer>
   );
 };
