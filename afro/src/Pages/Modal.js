@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { FaPlay} from 'react-icons/fa';
 
 const Modal = (props) => {
   const { identity, onPlayClick, closePop,  Poster, alter, Title, Year, movie, hours, Country, Rated, Genre, Production, Runtime, imdbRating, Director, Actors, BoxOffice, Plot, selectedCard  } = props;
   const [movieData, setMovieData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
-  //           alter={selectedCard.movie_name}
-  //           Title={selectedCard.movie_name}
-  //           Year={selectedCard.movie_year_release}
-  //           hours={selectedCard.hours}
-  //           Country = {selectedCard.country}
-  //           Rated= {selectedCard.rated}
-  //           Genre = {selectedCard.movie_genre}
-  //           Production = {selectedCard.production}
-  //           Runtime = {selectedCard.movie_length}
-  //           imdbRating = {selectedCard.movie_rating}
-  //           Director = {selectedCard.movie_producer}
-  //           Actors = {selectedCard.movie_actor}
-  //           BoxOffice = {selectedCard.boxoffice}
-  //           Plot = {selectedCard.movie_description}
+
 
   useEffect(() => {
     setIsLoaded(false);
@@ -42,6 +29,7 @@ const Modal = (props) => {
   const baseLink = "/";
 
   const handlePlayClick = (movie) => {
+    // send watched to the Api
     onPlayClick({
       video: movie,
       // comments: movieData.movie_comments,
@@ -55,14 +43,18 @@ const Modal = (props) => {
         <div className='show-content' >
           <i className="show-close fas fa-times" onClick={closePop}>X</i>
           <div className='show-poster'>
+          
             <span className='show-poster-bg' onClick={() => handlePlayClick(selectedCard)}>
               <img src={Poster} alt={alter} />
             </span>
-            <span className='show-poster-main'>
+            
+              <span className='show-poster-main'>
               <img src={Poster} alt={alter} />
-              <button>Watch Later</button>
-              <button>Play</button>
+              
+              {/* <button>Play</button> */}
             </span>
+            {/* </div> */}
+            
           </div>
           <div className='show-detail'>
             <h2>{Title}</h2>
@@ -82,6 +74,10 @@ const Modal = (props) => {
               <p><strong>Director:</strong> {Director}</p>
               <p><strong>Actors:</strong> {Actors}</p>
             </div>
+          </div>
+          <div className='playWatchLater'>
+            <button>Watch Later</button>
+              <FaPlay/>
           </div>
         </div>
       

@@ -134,16 +134,19 @@ body {
 }
 
 .show-poster-main {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   position: relative;
   left: 56px;
-  align-self: center;
+  /* align-self: center; */
   overflow: hidden;
   margin-top: 84px;
   margin-left: 24px;
   width: 140px;
   background-color: gainsboro;
   border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.6) 0 6px 12px -6px;
+  box-shadow: rgba(197, 184, 184, 0.6) 0 6px 12px -6px;
   z-index: 1;
 }
 
@@ -152,6 +155,11 @@ body {
   vertical-align: middle;
 }
 
+.playWatchLater {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .show-detail {
   flex: 1;
   padding: 72px;
