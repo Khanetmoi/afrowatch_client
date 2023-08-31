@@ -14,6 +14,7 @@ const WatchContainer = styled.div`
   // display: flex;
   // flex-direction: column;
   // align-items: center;
+  overflow-x: hidden;
   .combination {
     height: 80vh;
     display: flex;
@@ -22,6 +23,7 @@ const WatchContainer = styled.div`
   .hermit {
     display: flex;
     flex-direction: column;
+    align-items: center;
     // background-color: white;
     width: 25vw;
     // height: 25vh;
@@ -167,6 +169,10 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   console.log('type_id ',selectedCard.types_id )
   const category_id = selectedCard.category_id;
   console.log('category_id ',selectedCard.category_id )
+  // const movieId = selectedCard.movie_id;
+  // const types_id = selectedCard.types_id;
+  // const category_id = selectedCard.category_id;
+  const userId = JSON.parse(localStorage.getItem('loggedInStatus')).matchedUserId;
 
   
 
@@ -234,9 +240,40 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   if (!selectedCard) {
     return <div>No video selected</div>;
   }
+  // const liked = ()=>{
+  //   setLikeColor(likeColor === 'blue' ? 'red' : 'blue');
+  // }
+
+  const api_video_like_post = 'https://myworklm.com/Afrowatch_admin/api/likes/afrowatch_api_video_like_post';
   const liked = ()=>{
     setLikeColor(likeColor === 'blue' ? 'red' : 'blue');
+    // Créer un objet pour représenter le nouveau commentaire
+  const newCommentObject = {
+    is_liked: 1,     // Indiquer que le commentaire est aimé (1)
+    movie_id: movieId, // L'ID du film concerné
+    user_id: userId,   // L'ID de l'utilisateur qui aime le film
+  };
+
+  // Envoyer le nouveau commentaire à l'API
+  try {
+    fetch(api_video_like_post, {
+      method: 'POST',   // Utiliser la méthode POST
+      headers: {
+        'Content-Type': 'application/json', // Définir le type de contenu
+      },
+      body: JSON.stringify(newCommentObject), // Convertir l'objet en chaîne JSON
+    })
+    .then((response) => response.json()) // Convertir la réponse en objet JSON
+    .then((data) => {
+      console.log('API response:', data); // Afficher la réponse de l'API
+    })
+    .catch((error) => {
+      console.error('Error:', error); // Gérer les erreurs
+    });
+  } catch (error) {
+    console.error('Error:', error); // Gérer les erreurs
   }
+}
 
     
 
