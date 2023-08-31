@@ -443,43 +443,40 @@ const Home = (props)=>{
   const [notLogged, setNotLogged] = useState([])
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
+
+
+
+  const getUserData = async() => {
+    try {
+      const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_signout");
+      const resData = await reqData.json();
+      // console.log(resData);
+      setNotLogged(resData);
+      setIsLoad(true)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getUserData1 = async() => {
+    try {
+      const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_page");
+      const resData = await reqData.json();
+      // console.log(resData);
+      setUserData(resData);
+      setIsLoaded(true)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    setIsLoaded(false);
-    const getUserData = async() => {
-      try {
-        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_page");
-        const resData = await reqData.json();
-        // console.log(resData);
-        setUserData(resData);
-        setIsLoaded(true)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    
+    getUserData1()
     getUserData();
 
   }, []);
 
   isLoaded?console.log(userData):console.log('homage to glorious samathabadra')
-
-  useEffect(() => {
-    setIsLoad(false);
-    const getUserData = async() => {
-      try {
-        const reqData = await fetch("https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_signout");
-        const resData = await reqData.json();
-        // console.log(resData);
-        setNotLogged(resData);
-        setIsLoad(true)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    
-    getUserData();
-
-  }, []);
 
   isLoad?console.log('heloo not logged'+ notLogged):console.log('homage to the tri-kaya')
 
@@ -775,21 +772,22 @@ const removeSection = (sectionIndex) => {
           <Modal
             Class='Scard'
             identity = {selectedCard.movie_id}
-            // Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
-            // alter={selectedCard.movie_name}
-            // Title={selectedCard.movie_name}
-            // Year={selectedCard.movie_year_release}
-            // hours={selectedCard.hours}
-            // Country = {selectedCard.country}
-            // Rated= {selectedCard.rated}
-            // Genre = {selectedCard.movie_genre}
-            // Production = {selectedCard.production}
-            // Runtime = {selectedCard.movie_length}
-            // imdbRating = {selectedCard.movie_rating}
-            // Director = {selectedCard.movie_producer}
-            // Actors = {selectedCard.movie_actor}
-            // BoxOffice = {selectedCard.boxoffice}
-            // Plot = {selectedCard.movie_description}
+            Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
+            alter={selectedCard.movie_name}
+            Title={selectedCard.movie_name}
+            Year={selectedCard.movie_year_release}
+            hours={selectedCard.hours}
+            Country = {selectedCard.country}
+            Rated= {selectedCard.rated}
+            Genre = {selectedCard.movie_genre}
+            Production = {selectedCard.production}
+            Runtime = {selectedCard.movie_length}
+            imdbRating = {selectedCard.movie_rating}
+            Director = {selectedCard.movie_producer}
+            Actors = {selectedCard.movie_actor}
+            BoxOffice = {selectedCard.boxoffice}
+            Plot = {selectedCard.movie_description}
+            movie = {selectedCard.movie_movie}
             onPlayClick={handlePlayClick}
             // watching={true}
             closePop={() => setSelectedCard(null)} // Function to close the modal

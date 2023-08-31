@@ -95,7 +95,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   const [activeTab, setActiveTab] = useState("comments");
   const identification = identity;
   const [likeColor, setLikeColor] = useState('blue');
-  const [videoPlaying, setVideoPlaying] = useState(null);
+  // const [videoPlaying, setVideoPlaying] = useState(selectedCard.movie_movie);
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -162,18 +162,20 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   };
 
   const movieId = selectedCard.movie_id;
+  console.log('movie_id ',selectedCard.movie_id )
   const types_id = selectedCard.types_id;
+  console.log('type_id ',selectedCard.types_id )
   const category_id = selectedCard.category_id;
+  console.log('category_id ',selectedCard.category_id )
 
+  
 
   const [suggestion, setSuggestion] = useState([]);
-    const [isLoad, setIsLoad] = useState(false);
-    const [suggestedCard, setSuggestedCard]= useState(null);
+  const [isLoad, setIsLoad] = useState(false);
+  const [suggestedCard, setSuggestedCard]= useState(null);
   const [movieData, setMovieData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // const [suggestion, setSuggestion] = useState([])
-  // const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -184,6 +186,26 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         console.log('movie ',data);
         setMovieData(data);
         setIsLoaded(true);
+        console.log('triad', movieId, '2nd', types_id, '3rd', category_id)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMovieData();
+  }, []);
+  
+  // setVideoPlaying(movieData);
+  useEffect(() => {
+    setIsLoad(false);
+    const fetchMovieData = async () => {
+      try {
+        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_suggestion.php?movie_id=${movieId}&category_id=${category_id}&type_id=${types_id}`);
+        const data = await response.json();
+        
+        setSuggestion(data);
+        console.log('suggestion',suggestion);
+        setIsLoad(true);
       } catch (error) {
         console.error(error);
       }
@@ -192,28 +214,10 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
     fetchMovieData();
   }, []);
 
-  setVideoPlaying(movieData);
-  useEffect(() => {
-    setIsLoad(false);
-    const fetchMovieData = async () => {
-      try {
-        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_suggestion.php?movie_id=${movieId}&category_id=${category_id}&type_id=${types_id}`);
-        const data = await response.json();
-        console.log('suggestion',data);
-        setSuggestion(data);
-        setIsLoad(true);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchMovieData();
-  }, [videoPlaying]);
-
 
   const handlePlayClick = () => {
     console.log('suggesetion', suggestion)
-    setVideoPlaying(suggestion)
+    // setVideoPlaying(suggestion)
     setSuggestedCard(null)
   };
   
@@ -239,7 +243,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
     
   return (
     <WatchContainer>
-    {isLoaded && videoPlaying.map((uData, index) => (
+    {isLoaded && movieData.map((uData, index) => (
       <div className="combination">
       <Cinema>
         <div className="likeName">
@@ -313,7 +317,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
       </div>
       ))}
       {/* <Suggestions selectedCard={selectedCard}/> */}
-      <Suggestions>
+      {/* <Suggestions>
       <h3>suggestions</h3>
         {isLoad && suggestion.map((suggest, index)=>{
           return (
@@ -336,10 +340,29 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
             Class='Scard'
             identity = {suggestedCard.movie_id}
             onPlayClick={handlePlayClick}
+            Poster={baseUrl + suggestedCard.movie_path + baseLink +suggestedCard.movie_image}
+            alter={suggestedCard.movie_name}
+            Title={suggestedCard.movie_name}
+            Year={suggestedCard.movie_year_release}
+            hours={suggestedCard.hours}
+            Country = {suggestedCard.country}
+            Rated= {suggestedCard.rated}
+            Genre = {suggestedCard.movie_genre}
+            Production = {suggestedCard.production}
+            Runtime = {suggestedCard.movie_length}
+            imdbRating = {suggestedCard.movie_rating}
+            Director = {suggestedCard.movie_producer}
+            Actors = {suggestedCard.movie_actor}
+            BoxOffice = {suggestedCard.boxoffice}
+            Plot = {suggestedCard.movie_description}
+            movie = {suggestedCard.movie_movie}
+            // onPlayClick={handlePlayClick}
+            // watching={true}
+            // closePop={() => setSelectedCard(null)}
             // watching={true}
             closePop={() => setSuggestedCard(null)} // Function to close the modal
           />}
-      </Suggestions>
+      </Suggestions> */}
       
     </WatchContainer>
   );
