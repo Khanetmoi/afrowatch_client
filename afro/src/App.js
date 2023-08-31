@@ -25,6 +25,7 @@ const App = () => {
   const [identification, setIdentification] = useState(null);
   const [searchedMovie, setSearchedMovie] = useState('');
   const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(null);
 
   
 
@@ -209,14 +210,13 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie}/>
-        <Watch selectedCard={selectedCard}/>
+        <Watch selectedCard={selectedCard} watch={setWatching} page = {(cpage) => setCurrentPage(cpage)} currentPage={currentPage} selectedSuggestion={selectedSuggestion} setSelectedSuggestion={setSelectedSuggestion}/>
       </div>
     );
   }
 
   return (
     <div>
-      {/* <Home onClick={() => {setCurrentPage}} /> */}
       <h1>404 Page Not Found</h1>
     </div>
   );

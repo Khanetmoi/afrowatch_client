@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slide from "./Slide";
 import Modal from "./Modal";
+// import Suggestions from "./Suggestions";
 import Comments from "./Comments";
 import Questions from "./Questions";
 
@@ -84,35 +85,20 @@ const CommentsContainer = styled.div`
   // border: 1px solid #ccc;
   // border-radius: 5px;
 `;
-const Suggestions = styled.div`
-
-`;
 const Description = styled.div`
 `;
 
-const Watch = ({ selectedCard, identity }) => {
+const Suggestions = styled.div`
+`;
+
+const Watch = ({ selectedCard, identity, page, watch}) => {
   const [activeTab, setActiveTab] = useState("comments");
   const identification = identity;
   const [likeColor, setLikeColor] = useState('blue');
+  const [videoPlaying, setVideoPlaying] = useState(null);
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
-  const shareVideo = (videoUrl) => {
-  if (navigator.share) {
-    // If the Web Share API is supported
-    navigator.share({
-      url: videoUrl,
-    })
-      .then(() => console.log('Video shared successfully'))
-      .catch((error) => console.error('Error sharing video:', error));
-  } else {
-    // Fallback for browsers that don't support the Web Share API
-    // You can replace 'navigator.share' with the specific sharing functionality you want
-    // For example, opening the video URL in a new window or showing a sharing dialog
-    window.open(videoUrl, '_blank');
-  }
-};
 
 
   const episodes = [
@@ -179,10 +165,15 @@ const Watch = ({ selectedCard, identity }) => {
   const types_id = selectedCard.types_id;
   const category_id = selectedCard.category_id;
 
+
+  const [suggestion, setSuggestion] = useState([]);
+    const [isLoad, setIsLoad] = useState(false);
+    const [suggestedCard, setSuggestedCard]= useState(null);
   const [movieData, setMovieData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [suggestion, setSuggestion] = useState([])
-  const [isLoad, setIsLoad] = useState(false);
+  
+  // const [suggestion, setSuggestion] = useState([])
+  // const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -201,8 +192,9 @@ const Watch = ({ selectedCard, identity }) => {
     fetchMovieData();
   }, []);
 
+  setVideoPlaying(movieData);
   useEffect(() => {
-    setIsLoaded(false);
+    setIsLoad(false);
     const fetchMovieData = async () => {
       try {
         const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_suggestion.php?movie_id=${movieId}&category_id=${category_id}&type_id=${types_id}`);
@@ -216,23 +208,38 @@ const Watch = ({ selectedCard, identity }) => {
     };
 
     fetchMovieData();
-  }, []);
+  }, [videoPlaying]);
+
+
+  const handlePlayClick = () => {
+    console.log('suggesetion', suggestion)
+    setVideoPlaying(suggestion)
+    setSuggestedCard(null)
+  };
+  
 
   const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
   const baseLink = "/";
 
   console.log('Show id: '+movieData.movie_name)
+  const handleCardClick = (sMovies) => {
+    setSuggestedCard({...sMovies});
+  };
 
-  // Check if selectedCard is null or undefined before accessing its properties
+
   if (!selectedCard) {
     return <div>No video selected</div>;
   }
   const liked = ()=>{
     setLikeColor(likeColor === 'blue' ? 'red' : 'blue');
   }
+
+    
+
+    
   return (
     <WatchContainer>
-    {isLoaded && movieData.map((uData, index) => (
+    {isLoaded && videoPlaying.map((uData, index) => (
       <div className="combination">
       <Cinema>
         <div className="likeName">
@@ -305,6 +312,7 @@ const Watch = ({ selectedCard, identity }) => {
       </div>
       </div>
       ))}
+      {/* <Suggestions selectedCard={selectedCard}/> */}
       <Suggestions>
       <h3>suggestions</h3>
         {isLoad && suggestion.map((suggest, index)=>{
@@ -318,16 +326,21 @@ const Watch = ({ selectedCard, identity }) => {
                     genre={suggest.movie_genre}
                     // className={`suggest ${index === currentSlide ? 'slick-center' : ''}`}
                     key={index}
-                    // read={() => handleCardClick(suggest)}
+                    read={() => handleCardClick(suggest)}
                     // page={props.page}
             />
             )
             
         })}
+        {suggestedCard &&<Modal
+            Class='Scard'
+            identity = {suggestedCard.movie_id}
+            onPlayClick={handlePlayClick}
+            // watching={true}
+            closePop={() => setSuggestedCard(null)} // Function to close the modal
+          />}
       </Suggestions>
-      {/* <Modal
-      identity = {selectedCard.movie_id}
-      /> */}
+      
     </WatchContainer>
   );
 };
