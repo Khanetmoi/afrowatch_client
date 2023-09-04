@@ -77,7 +77,8 @@ const Modal = (props) => {
           </div>
           <div className='playWatchLater'>
             <button>Watch Later</button>
-              <FaPlay/>
+            <div><FaPlay/></div>
+              
           </div>
         </div>
       
