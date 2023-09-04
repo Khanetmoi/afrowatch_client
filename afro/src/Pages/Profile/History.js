@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Card";
+import Modal from "../Modal";
 
-const History = () => {
+const History = ({page}) => {
   const profile = JSON.parse(localStorage.getItem('loggedInStatus'));
   const [isLoaded, setIsLoaded] = useState(false);
   const [liked, setLiked] = useState([]);
@@ -48,15 +49,22 @@ const History = () => {
   useEffect(() => {
     fetchLikedData();
     fetchWacthedMovie();
+    fetchWatchLaterMovie();
     setIsLoaded(true);
   }, []);
 
-  useEffect(() => {
-    fetchWatchLaterMovie();
-  }, []); // Fetch watch later data separately
+  // useEffect(() => {
+  //   fetchWatchLaterMovie();
+  // }, []); // Fetch watch later data separately
 
   const handleCardClick = (sMovies) => {
     setSelectedCard({ ...sMovies });
+  };
+
+  const handlePlayClick = () => {
+    // props.watch(true);
+    // console.log(props.watch)
+    page('watch')
   };
 
   return (
@@ -114,6 +122,31 @@ const History = () => {
       ) : (
         <div>No movies in watch later list.</div>
       )}
+      {selectedCard && (
+          <Modal
+            Class='Scard'
+            identity = {selectedCard.movie_id}
+            Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
+            alter={selectedCard.movie_name}
+            Title={selectedCard.movie_name}
+            Year={selectedCard.movie_year_release}
+            hours={selectedCard.hours}
+            Country = {selectedCard.country}
+            Rated= {selectedCard.rated}
+            Genre = {selectedCard.movie_genre}
+            Production = {selectedCard.production}
+            Runtime = {selectedCard.movie_length}
+            imdbRating = {selectedCard.movie_rating}
+            Director = {selectedCard.movie_producer}
+            Actors = {selectedCard.movie_actor}
+            BoxOffice = {selectedCard.boxoffice}
+            Plot = {selectedCard.movie_description}
+            movie = {selectedCard.movie_movie}
+            onPlayClick={handlePlayClick}
+            // watching={true}
+            closePop={() => setSelectedCard(null)} // Function to close the modal
+          />
+        )}
     </div>
   );
 };

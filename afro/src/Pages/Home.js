@@ -345,9 +345,15 @@ const FeaturedMovies = styled.div`
    }
 `;
 const NavItem = styled.li`
-  margin-right: 20px;
+  margin-right: 10px;
+  background-color: blue;
+  :hover {
+    background-color: blue;
+  }
   a {
-    color: white;
+    text-decoration: none;
+    color: blue;
+    
   }
 
   @media (max-width: 768px) {

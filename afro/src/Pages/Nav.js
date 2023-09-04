@@ -3,7 +3,7 @@ import { FaBeer, BsSearch} from 'react-icons/bs';
 import {GiEgyptianProfile} from 'react-icons/gi';
 import {VscSignOut} from 'react-icons/vsc';
 import { CgProfile } from 'react-icons/cg';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { LiaSignInAltSolid } from 'react-icons/lia';
 import logoBlanc from '../Images/logoBlanc.png'
 
@@ -75,15 +75,26 @@ div {
 `
 
 const NavItem = styled.li`
-  margin-right: 20px;
-  a {
-    color: white;
-  }
+margin-right: 10px;
+// background-color: blue;
+:hover {
+  background-color: blue;
+}
+a {
+  text-decoration: none;
+  color: white;
+  
+}
 
-  @media (max-width: 768px) {
-    // background-color: blue;
-    margin: 0.5rem 0;
-  }
+${({ isSelected }) =>
+    isSelected &&
+    css`
+      background-color: blue;
+    `}
+
+@media (max-width: 768px) {
+  margin: 0.5rem 0;
+}
 `;
 const HamburgerButton = styled.button`
   display: none;
@@ -211,7 +222,7 @@ top: 0;
 `;
 
 
-const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSearchedMovie})=>{
+const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSearchedMovie, tab})=>{
   const [navActive, setNavActive] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem('loggedInStatus'));
   const [isProfileVisible, setIsProfileVisible] = useState(false);
@@ -271,7 +282,9 @@ const Nav = ({ handleItemClick, handleLogInClick,logo, setWatching, page, setSea
           </div>}
           {userInfo && (
               <>
-                <NavItem onClick={() => handleItemClick('Home')} className='Desktop'>
+                <NavItem onClick={() => handleItemClick('Home') }
+                isSelected={tab === 'Documentaries'}
+                className='Desktop'>
                   <a href="#">Home</a>
                 </NavItem>
                 <NavItem onClick={() => handleItemClick('Animation')} className='Desktop'>

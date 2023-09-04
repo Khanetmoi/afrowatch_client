@@ -93,7 +93,7 @@ const SectionContent =  styled.div`
  margin: 20px;
 //  border-radius: 400px;
 `;
-const Profile = () => {
+const Profile = ({page}) => {
   const [activeProfile, setActiveProfile] = useState('Home');
   const [isOpen, setIsOpen] = useState(false);
   const [startTouchX, setStartTouchX] = useState(null);
@@ -207,7 +207,7 @@ const Profile = () => {
 
         {activeTab === 'history' && (
           <CommentsContainer>
-            <History/>
+            <History page={page}/>
           </CommentsContainer>
         )}
       </SectionContent>

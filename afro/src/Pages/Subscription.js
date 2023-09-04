@@ -25,70 +25,6 @@ const categoriesData = [
   // Add other categories here...
 ];
 
-// const SubscriptionContainer = styled.div`
-//   background-color: green;
-//   padding: 20px;
-// `;
-
-// const PlansContainer = styled.div`
-//    display: flex;
-//    justify-content: center;
-//    align-items: flex-start
-//   justify-items: center;
-
-// `;
-
-// const PlanCard = styled.div`lanTitle
-//   // background-color: #fff;
-//   background-color: orange;
-//   padding: 20px;
-//   border-radius: 10px;
-//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-//   height: 100%;
-// `;
-
-// const PlanTitle = styled.h3`
-//   text-align: center;
-//   background-color: orange;
-// `;
-
-// const PlanPrice = styled.p`
-//   font-size: 24px;
-//   font-weight: bold;
-//   text-align: center;
-// `;
-
-// const PlanCategories = styled.ul`
-//   list-style: none;
-//   padding: 0;
-//   margin: 20px 0;
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Change here */
-//   grid-gap: 5px;
-// `;
-
-// const CategoryItem = styled.li`
-//   text-align: center;
-//   background-color: #f5f5f5; /* Add background color for each category item */
-//   padding: 8px;
-//   border-radius: 5px;
-//   list-style-type: none;
-// `;
-
-// const SubscribeButton = styled.button`
-//   background-color: orange;
-//   color: #fff;
-//   padding: 10px 20px;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   width: 100%;
-// `;
-
-// const CategoryTitle = styled.h4`
-//   font-size: 16px;
-// `;
-
 const plans = [
   {
     title: "Basic",
@@ -203,9 +139,17 @@ const GridContainer = styled.div`
 const GridItem = styled.div`
   background-color: transparent;
   border: 1px solid #ccc;
-  color: white;
+  color: red;
   border: 0px;
-  padding: 20px;
+  padding-block: 5vh;
+  margin-block: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.basic:hover, &.Premium:hover, &.Standard:hover {
+    background-color: red;
+    color: white;
+  }
 `;
 
 const Subscription = ({ page }) => {
@@ -230,32 +174,32 @@ const Subscription = ({ page }) => {
       <PlansContainer>
         <GridContainer>
           <GridItem> </GridItem>
-          <GridItem style={{ backgroundColor: `red` }}>
+          <GridItem style={{ backgroundColor: `black`, color: `white` }} className="basic">
             {plans[0].title}
           </GridItem>
-          <GridItem style={{ backgroundColor: `red` }}>
+          <GridItem style={{ backgroundColor: `black`, color: `white` }} className="Standard">
             {plans[1].title}
           </GridItem>
-          <GridItem style={{ backgroundColor: `red` }}>
+          <GridItem style={{ backgroundColor: `black`, color: `white` }} className="Premium">
             {plans[2].title}
           </GridItem>
-          <GridItem>Monthly price</GridItem>
-          <GridItem>{plans[0].price}</GridItem>
-          <GridItem>{plans[1].price}</GridItem>
-          <GridItem>{plans[2].price}</GridItem>
-          <GridItem>Duration</GridItem>
-          <GridItem>{plans[0].time}</GridItem>
-          <GridItem>{plans[1].time}</GridItem>
-          <GridItem>{plans[2].time}</GridItem>
+          <GridItem style={{ backgroundColor: `black`, color: `white` }}>Monthly price</GridItem>
+          <GridItem className="basic">{plans[0].price}</GridItem>
+          <GridItem className="Standard">{plans[1].price}</GridItem>
+          <GridItem className="Premium">{plans[2].price}</GridItem>
+          <GridItem style={{ backgroundColor: `black`, color: `white` }}>Duration</GridItem>
+          <GridItem className="basic">{plans[0].time}</GridItem>
+          <GridItem className="Standard">{plans[1].time}</GridItem>
+          <GridItem className="Premium">{plans[2].time}</GridItem>
           <GridItem></GridItem>
-          <GridItem>
-            <button onClick={gohome}>Suscribe</button>
+          <GridItem className="basic">
+            <button style={{width: `100%`, height: `10vh`,color:`white`, backgroundColor:`red`}} onClick={gohome}>Suscribe</button>
           </GridItem>
-          <GridItem>
-            <button onClick={gohome}>Suscribe</button>
+          <GridItem className="Standard">
+            <button style={{width: `100%`, height: `10vh`,color:`white`, backgroundColor:`red`}} onClick={gohome}>Suscribe</button>
           </GridItem>
-          <GridItem>
-            <button onClick={gohome}>Suscribe</button>
+          <GridItem style={{width: `100%`, backgrounColor: `red`}} className="Premium">
+            <button style={{width: `100%`, height: `10vh`,color:`white`, backgroundColor:`red`}} onClick={gohome}>Suscribe</button>
           </GridItem>
         </GridContainer>
       </PlansContainer>

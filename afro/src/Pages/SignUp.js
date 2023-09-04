@@ -9,7 +9,7 @@ const SignUpContainer = styled.div`
   // flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
   background-color: #18200e;
   
   div {
@@ -41,7 +41,7 @@ const SignUpForm = styled.form`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 97%;
   padding: 10px;
   margin-block: 10px;
   border: 1px solid #ccc;
@@ -53,7 +53,7 @@ const Button = styled.button`
   color: #fff;
   padding: 10px 20px;
   border: 2px solid black;
-  width: 15%;
+  width: 100%;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px;
@@ -200,6 +200,7 @@ const SignUp = (props) => {
       <SignUpForm onSubmit={handleSubmit}>
         <p style={{color: `red`}}>{error}</p>
         <h2>Sign Up</h2>
+        <div style={{display:`flex`, justifyContent: `space-between`, width: `100%`, margin: `0`}}>
         <Input
          type="text"
           placeholder="First Name"
@@ -214,6 +215,9 @@ const SignUp = (props) => {
            value={formData.lastName}
             onChange={handleInputChange} 
            />
+        </div>
+        
+           
         <Input
          type="email"
           placeholder="Email"
@@ -254,9 +258,12 @@ const SignUp = (props) => {
         <Button type="submit">Sign Up</Button>
         <span>already have an account? <button onClick={haveAccount}>sign In</button></span>
         <h4> Or Sign Up with</h4>
-      
-        <Button onClick={handleSignUpWithGoogle} style={{ backgroundColor: 'white', color: 'black' }}> <FcGoogle/> Google</Button>
-        <Button onClick={handleSignUpWithFacebook} style={{ backgroundColor: 'white', color: 'black' }}><AiFillFacebook/> Facebook</Button>
+        <div style={{display: `flex`, justifyContent: `space-between`}}>
+          <span><FcGoogle/> Google</span>
+          <span><AiFillFacebook/> Facebook</span>
+        </div>
+        {/* <Button onClick={handleSignUpWithGoogle} style={{ backgroundColor: 'white', color: 'black' }}> <FcGoogle/> Google</Button>
+        <Button onClick={handleSignUpWithFacebook} style={{ backgroundColor: 'white', color: 'black' }}><AiFillFacebook/> Facebook</Button> */}
       
       </SignUpForm>
       
