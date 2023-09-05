@@ -315,7 +315,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
     
   return (
     <WatchContainer>
-    {isLoaded && movieData.map((uData, index) => (
+    {isLoaded? movieData.map((uData, index) => (
       <div className="combination">
       <Cinema>
         <div className="likeName">
@@ -332,7 +332,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
             type="video/ogg"
           />
         </video>
-        <Slider {...settings1}>
+        {/* <Slider {...settings1}>
           {episodes.map((episode, index) => (
             <div key={index} value={episode.link} likes={episode.likes}>
               <div style={{ backgroundColor: "white", margin: `10px` }}>
@@ -340,7 +340,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
               </div>
             </div>
           ))}
-        </Slider>
+        </Slider> */}
         {/* <Description></Description> */}
       </Cinema>
 
@@ -387,7 +387,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         )}
       </div>
       </div>
-      ))}
+      )):<h1>Loading...</h1>}
       {/* <Suggestions selectedCard={selectedCard}/> */}
       {/* <Suggestions>
       <h3>suggestions</h3>
