@@ -104,19 +104,54 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
 
 
   const episodes = [
-    "episode1",
-    "episode2",
-    "episode3",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
-    "episode1",
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_1.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_2.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_3.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_4.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_5.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_6.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_7.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_8.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_9.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_10.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_11.mp4",
+      likes: 45
+    },
+    {
+      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_12.mp4",
+      likes: 45
+    }
   ];
   const getSlidesToShow = (dataLength) => {
     if (dataLength <= 2) {
@@ -299,9 +334,9 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         </video>
         <Slider {...settings1}>
           {episodes.map((episode, index) => (
-            <div key={index} value={episode}>
+            <div key={index} value={episode.link} likes={episode.likes}>
               <div style={{ backgroundColor: "white", margin: `10px` }}>
-                {index + 1}
+                ep: {index + 1}
               </div>
             </div>
           ))}
