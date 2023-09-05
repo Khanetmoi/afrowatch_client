@@ -18,7 +18,7 @@ import Payment from './Pages/Payment';
 
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('payment'); 
+  const [currentPage, setCurrentPage] = useState('home'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
   const [tab, setTab] = useState("Animation")
