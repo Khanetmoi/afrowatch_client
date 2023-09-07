@@ -154,7 +154,7 @@ const GridItem = styled.div`
 
 const Subscription = ({ page }) => {
   const gohome = () => {
-    page("home");
+    page("payment");
   };
   return (
     <SubscriptionContainer>

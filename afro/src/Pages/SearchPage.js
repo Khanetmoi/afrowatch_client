@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Slider from "react-slick";
 import Modal from "./Modal";
 import Card from "./Card";
+import LoadingAnimation from "./Loading";
 
 
 const Category = styled.div`
@@ -224,7 +225,7 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page, 
     <SearchedContent>
       <div className='movieCategory'>
       <div>
-  {isLoaded && (content.length !=0) ? (
+  {isLoaded?  ((content.length !=0? (
     
     Object.keys(content.type).map((typeKey) => (
       <div key={typeKey}>
@@ -299,8 +300,8 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page, 
         ))}
       </div>
     ))
-  ) : (
-    <div>No result found</div>
+  ):<h1>No result found</h1>)) : (
+    <LoadingAnimation/>
   )}
 </div>
 

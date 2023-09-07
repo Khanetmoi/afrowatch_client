@@ -21,7 +21,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
-  const [tab, setTab] = useState("Animation")
+  const [tab, setTab] = useState("Movies")
   const [watching , setWatching ] = useState(false);
   const [identification, setIdentification] = useState(null);
   const [searchedMovie, setSearchedMovie] = useState('');
@@ -219,7 +219,7 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie} tab={tab}/>
-        <Payment/>
+        <Payment page = {(cpage) => setCurrentPage(cpage)}/>
       </div>
     );
   }

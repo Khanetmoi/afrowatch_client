@@ -23,7 +23,10 @@ border-color: green;
 width: 100%;
 margin-block: 1rem;
 `;
-const Payment = ()=>{
+const Payment = ({page})=>{
+const goHome = ()=>{
+   page('home')
+}
   return (
     <Pay>
          <h1 style={{color:`white`}}>Set up your Credit card or Debit card</h1>
@@ -75,7 +78,7 @@ const Payment = ()=>{
          <input type="checkbox"/> <span style={{color:`white`}}>I agree</span>
          </div>
 
-         <button style={{width:`100%`,backgroundColor:`red`,height:`2rem`}}>Start Membership</button>
+         <button style={{width:`100%`,backgroundColor:`red`,height:`2rem`}} onClick={()=>{goHome()}}>Start Membership</button>
          
     </Pay>
   )

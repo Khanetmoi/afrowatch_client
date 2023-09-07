@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { AiFillHeart } from 'react-icons/ai';
+import { BsDownload} from 'react-icons/bs';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LoadingAnimation from "./Loading";
 import Slide from "./Slide";
 import Modal from "./Modal";
 // import Suggestions from "./Suggestions";
@@ -16,31 +18,39 @@ const WatchContainer = styled.div`
   // align-items: center;
   overflow-x: hidden;
   .combination {
-    height: 80vh;
+    height: 90vh;
     display: flex;
     align-items: center;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
   }
   .hermit {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     // background-color: white;
     width: 25vw;
     // height: 25vh;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 `;
 
 const Cinema = styled.div`
-  width: 70vw;
+  width: ${props => props.commentShow ? '70vw' : '95vw'};
   height: 75vh;
   margin: 2.5vw;
   border-radius: 20px;
   background-color: black;
   padding: 5px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   position: sticky;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0 0 80px 0;
+  }
   .likeName {
     display: flex;
     align-items: center;
@@ -53,14 +63,15 @@ const Cinema = styled.div`
   video {
     width: 100%;
     height: 90%;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 
 const TabsContainer = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   list-style: none;
+  width: 100%;
   margin: 0;
   padding: 0;
 
@@ -97,6 +108,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   const [activeTab, setActiveTab] = useState("comments");
   const identification = identity;
   const [likeColor, setLikeColor] = useState('blue');
+  const [commentShow, setCommentShow] = useState(true)
   // const [videoPlaying, setVideoPlaying] = useState(selectedCard.movie_movie);
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -214,8 +226,9 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   const [suggestion, setSuggestion] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
   const [suggestedCard, setSuggestedCard]= useState(null);
-  const [movieData, setMovieData] = useState([]);
+  const [movieData, setMovieData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [episode, setEpisode] = useState(1)
   
 
   useEffect(() => {
@@ -226,16 +239,17 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         const data = await response.json();
         console.log('movie ',data);
         setMovieData(data);
+      
         setIsLoaded(true);
-        console.log('triad', movieId, '2nd', types_id, '3rd', category_id)
+        // console.log('triad', movieId, '2nd', types_id, '3rd', category_id)
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchMovieData();
-  }, []);
+  }, [movieId, episode]);
   
+  isLoaded&& console.log('movieData',movieData[0].movie_id)
   // setVideoPlaying(movieData);
   useEffect(() => {
     setIsLoad(false);
@@ -263,10 +277,10 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   };
   
 
-  const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
+  const baseUrl = "https://afrowatch-file.s3.amazonaws.com/";
   const baseLink = "/";
 
-  console.log('Show id: '+movieData.movie_name)
+  console.log('Show id: '+movieData)
   const handleCardClick = (sMovies) => {
     setSuggestedCard({...sMovies});
   };
@@ -310,41 +324,154 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   }
 }
 
+    const changeEp = (value)=>{
+      setEpisode(value)
+    }
+
+    const handleCinemaButtonClick = () => {
+      setCommentShow(false);
+    };
+  
+    const handleCommentsButtonClick = () => {
+      setCommentShow(true);
+    };
+
+    // async function handleDownloadClick() {
+    //   try {
+    //     // Request access to the directory where you want to create the folder.
+    //     const directoryHandle = await window.showDirectoryPicker();
+    
+    //     // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
+    //     const folderName = 'AfroWatchDownloaded';
+    //     const folderHandle = await directoryHandle.getDirectoryHandle(folderName, { create: true });
+    
+    //     // Get the video source URL.
+    //     const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
+    
+    //     // Fetch the video file.
+    //     const response = await fetch(videoSource);
+    //     const blob = await response.blob();
+    
+    //     // Create a file inside the folder and write the video content.
+    //     const fileHandle = await folderHandle.getFileHandle(movieData[0].movie_movie, { create: true });
+    //     const writable = await fileHandle.createWritable();
+    //     await writable.write(blob);
+    //     await writable.close();
+    
+    //     console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
+    //   } catch (error) {
+    //     console.error(`Error downloading video: ${error}`);
+    //   }
+    // }
+
+    async function handleDownloadClick() {
+      try {
+        // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
+        const folderName = 'AfroWatchDownloaded';
+    
+        // Create a link element to trigger the download.
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        document.body.appendChild(a);
+    
+        // Get the video source URL.
+        const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
+    
+        // Fetch the video file.
+        const response = await fetch(videoSource);
+        const blob = await response.blob();
+    
+        // Create a Blob URL for the video content.
+        const blobUrl = URL.createObjectURL(blob);
+    
+        // Set the download link's href and filename attributes.
+        a.href = blobUrl;
+        a.download = `${folderName}/${movieData[0].movie_movie}`;
+    
+        // Trigger the download by simulating a click on the link.
+        a.click();
+    
+        // Clean up by removing the link element and revoking the Blob URL.
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+    
+        console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
+      } catch (error) {
+        console.error(`Error downloading video: ${error}`);
+      }
+    }
     
 
+    // function DownloadButton({ movieData, baseUrl, baseLink }) {
+    //   const handleDownloadClick = () => {
+    //     // Get the video source URL.
+    //     const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
+    
+    //     // Fetch the video file.
+    //     fetch(videoSource)
+    //       .then((response) => response.blob())
+    //       .then((blob) => {
+    //         // Create a Blob URL for the video content.
+    //         const blobUrl = URL.createObjectURL(blob);
+    
+    //         // Create a temporary <a> element for downloading the video.
+    //         const a = document.createElement('a');
+    //         a.href = blobUrl;
+    //         a.download = movieData[0].movie_movie; // Set the desired file name.
+    //         a.style.display = 'none';
+    
+    //         // Add the <a> element to the DOM and trigger the download.
+    //         document.body.appendChild(a);
+    //         a.click();
+    
+    //         // Clean up by removing the <a> element and revoking the Blob URL.
+    //         document.body.removeChild(a);
+    //         URL.revokeObjectURL(blobUrl);
+    
+    //         console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
+    //       })
+    //       .catch((error) => {
+    //         console.error(`Error downloading video: ${error}`);
+    //       });
+    //   };
+    
     
   return (
     <WatchContainer>
-    {isLoaded? movieData.map((uData, index) => (
+    {isLoaded?(
       <div className="combination">
-      <Cinema>
+      <Cinema commentShow={commentShow}>
         <div className="likeName">
-        <span style={{color:`white`}}>{uData.movie_name}</span>
+        <span style={{color:`white`}}>{movieData[0].movie_name}</span>
+        <div style={{display:`flex`, justifyContent:`space-between`,alignItems:`center`,width:`30%`}}>
+        <BsDownload style={{color:`whitesmoke`,fontSize:`20px`, fontWeight:`bold`}} onClick={handleDownloadClick}/>
+        <div style={{display:`flex`,alignItems:`center`}}><span style={{color:`white`}}>240</span>
         <AiFillHeart className="like"  onClick={liked} style={{ color: likeColor }}/>
+        </div>
+        
+        {commentShow?<button onClick={handleCinemaButtonClick}>cinema</button>:<button onClick={handleCommentsButtonClick}>comments</button>}
+        </div>
         </div>
         <video controls>
           <source
-            src={baseUrl+uData.movie_path+baseLink+uData.movie_movie}
+            src={baseUrl+movieData[0].movie_path+baseLink+movieData[0].movie_movie}
             type="video/mp4"
           />
-          <source
-            src={baseUrl+uData.movie_path+baseLink+uData.movie_movie}
-            type="video/ogg"
-          />
         </video>
-        {/* <Slider {...settings1}>
-          {episodes.map((episode, index) => (
-            <div key={index} value={episode.link} likes={episode.likes}>
-              <div style={{ backgroundColor: "white", margin: `10px` }}>
-                ep: {index + 1}
-              </div>
-            </div>
-          ))}
-        </Slider> */}
+        <Slider {...settings1}>
+                  {Array.from({ length: episodes.length}, (_, index) => (
+                                <div key={index} value={`Episode ${index + 1}`} onClick={() => changeEp(`Episode ${index + 1}`)}>
+                                <div style={{ backgroundColor: "white", margin: `10px` }}>
+                                 episode: {index + 1}
+                                </div>
+                                </div>
+                  ))}
+        </Slider>
+
         {/* <Description></Description> */}
       </Cinema>
 
-      <div className="hermit">
+      <div className="hermit" style={{ display: commentShow ? 'flex' : 'none' }}>
         <TabsContainer>
           <li
             onClick={() => handleTabClick("comments")}
@@ -372,7 +499,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         {activeTab === "comments" && (
           <CommentsContainer>
             {/* Render comments here */}
-            <Comments movieId={uData.movie_id} userId={identification} />
+            <Comments movieId={movieData.movie_id} userId={identification} />
           </CommentsContainer>
         )}
 
@@ -380,14 +507,14 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
           <CommentsContainer>
             {/* Render questions here */}
             <Questions
-              movieId={uData.movie_id}
+              movieId={movieData.movie_id}
               userId={identification}
             />
           </CommentsContainer>
         )}
       </div>
       </div>
-      )):<h1>Loading...</h1>}
+      ):<LoadingAnimation/>}
       {/* <Suggestions selectedCard={selectedCard}/> */}
       {/* <Suggestions>
       <h3>suggestions</h3>

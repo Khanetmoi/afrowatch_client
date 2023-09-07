@@ -5,9 +5,6 @@ const Modal = (props) => {
   const { identity, onPlayClick, closePop,  Poster, alter, Title, Year, movie, hours, Country, Rated, Genre, Production, Runtime, imdbRating, Director, Actors, BoxOffice, Plot, selectedCard  } = props;
   const [movieData, setMovieData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-
-
   useEffect(() => {
     setIsLoaded(false);
     const fetchMovieData = async () => {
@@ -75,10 +72,9 @@ const Modal = (props) => {
               <p><strong>Actors:</strong> {Actors}</p>
             </div>
           </div>
-          <div className='playWatchLater'>
+          <div className='playWatchLater'  style={{margin:`10px 33%`, display:`flex`,justifyContent:`space-between`}}>
             <button>Watch Later</button>
-            <div><FaPlay/></div>
-              
+            <button onClick={() => handlePlayClick(selectedCard)} >Play <FaPlay/></button>
           </div>
         </div>
       

@@ -10,7 +10,7 @@ const History = ({page}) => {
   const [watchLater, setWatchLater] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
 
-  const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
+  const baseUrl = "https://afrowatch-file.s3.amazonaws.com/";
   const baseLink = "/";
 
   const fetchLikedData = async () => {
@@ -75,7 +75,7 @@ const History = ({page}) => {
           <Card
             poster={baseUrl + slide.movie_folder + baseLink + slide.movie_image}
             alter={slide.movie_name}
-            video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer_file}
+            video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer}
             title={slide.movie_name}
             date={slide.movie_year_release}
             genre={slide.movie_genre}
@@ -126,7 +126,7 @@ const History = ({page}) => {
           <Modal
             Class='Scard'
             identity = {selectedCard.movie_id}
-            Poster={baseUrl + selectedCard.movie_path + baseLink +selectedCard.movie_image}
+            Poster={baseUrl + selectedCard.movie_folder + baseLink +selectedCard.movie_image}
             alter={selectedCard.movie_name}
             Title={selectedCard.movie_name}
             Year={selectedCard.movie_year_release}

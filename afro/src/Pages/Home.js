@@ -15,6 +15,7 @@ import { LiaSignInAltSolid } from 'react-icons/lia';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import Modal from './Modal'
 import Watch from './Watch';
+import LoadingAnimation from './Loading';
 // import Nav from './Nav';
 import Comments from './Comments';
 import Questions from './Questions';
@@ -240,15 +241,22 @@ const MovieList = styled.div`
  const FooterContainer = styled.footer`
   // background-color: #874C3C;
   background-color: black;
+  width: 100%;
+  position: fixed; /* Set the position to fixed */
+  bottom: 0; /* Anchor it to the bottom of the viewport */
   color: #fff;
   padding: 0px;
 `;
 
  const FooterLinks = styled.ul`
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // display: grid;
+  padding: auto;
+  // grid-template-columns: repeat(4, 1fr);
+  // grid-gap: 0px;
   padding: 0;
 
   @media (max-width: 768px) {
@@ -540,7 +548,7 @@ const Home = (props)=>{
    
   }
    const page = props.page;
-  const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
+  const baseUrl = "https://afrowatch-file.s3.amazonaws.com/";
   const baseLink = "/";
 
   const [sections, setSections] = useState([0]); // Initialize with one section
@@ -677,9 +685,9 @@ const removeSection = (sectionIndex) => {
                   <Slider {...settings1}>
                 {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
                   <Slide
-                    poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
+                    poster={baseUrl}
                     alter={slide.movie_name}
-                    video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
+                    video={baseUrl}
                     title={slide.movie_name}
                     date={slide.movie_year_release}
                     genre={slide.movie_genre}
@@ -719,7 +727,7 @@ const removeSection = (sectionIndex) => {
       }
     })}
   </div>
-):<h1>Loading...</h1>}
+):<LoadingAnimation/>}
 
         <MovieList>
         {/* {sections.map((section, sectionIndex) => ( */}
@@ -933,81 +941,3 @@ const Nav = ({handleItemClick, handleLogInClick, logged, logo, returnHome})=>{
         </div>
   )
 }
-
-
-
-// const Watch = ({ selectedCard, identity }) => {
-//   const [activeTab, setActiveTab] = useState('comments');
-//   const identification = identity;
-//   const handleTabClick = (tab) => {
-//     setActiveTab(tab);
-//   };
-
-//   const baseUrlMovie = "https://myworklm.com/Afrowatch_admin/server/movie_files/";
-
-//   // Check if selectedCard is null or undefined before accessing its properties
-//   if (!selectedCard) {
-//      return <div>No video selected</div>;
-//   }
-
-//   return (
-//     <WatchContainer>
-//       <Cinema>
-//         <video controls>
-//           <source
-//             src={baseUrlMovie + selectedCard.movie_file}
-//             type="video/mp4"
-//           />
-//           <source
-//             src={baseUrlMovie + selectedCard.movie_file} 
-//             type="video/ogg"/>
-//         </video>
-//       </Cinema>
-
-//       <TabsContainer>
-//         <li
-//           onClick={() => handleTabClick('comments')}
-//           className={activeTab === 'comments' ? 'active' : ''}
-//           style={{color: `white`}}
-//         >
-//           Comments
-//         </li>
-//         <li
-//           onClick={() => handleTabClick('questions')}
-//           className={activeTab === 'questions' ? 'active' : ''}
-//           style={{color: `white`}}
-//         >
-//           Questions
-//         </li>
-//         <li
-//           onClick={() => handleTabClick('episodes')}
-//           className={activeTab === 'episodes' ? 'active' : ''}
-//           style={{color: `white`}}
-//         >
-//           Episodes
-//         </li>
-//       </TabsContainer>
-
-//       {activeTab === 'comments' && (
-//         <CommentsContainer>
-//           {/* Render comments here */}
-//           <Comments movieId = {selectedCard.movie_id} userId = {identification}/>
-//         </CommentsContainer>
-//       )}
-
-//       {activeTab === 'questions' && (
-//         <CommentsContainer>
-//           {/* Render questions here */}
-//           <Questions movieId = {selectedCard.movie_id} userId = {identification}/>
-//         </CommentsContainer>
-//       )}
-
-//       {activeTab === 'episodes' && (
-//         <CommentsContainer>
-//           {/* Render episodes here */}
-//           <h2>Episodes</h2>
-//         </CommentsContainer>
-//       )}
-//     </WatchContainer>
-//   );
-// };
