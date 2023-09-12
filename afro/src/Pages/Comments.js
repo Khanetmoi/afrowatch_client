@@ -82,6 +82,7 @@ const Comments = (props) => {
 
   //Movie ID
   const movie_id = props.movieId;
+  console.log(props.movieId)
 
   //const user_id = props.userId;
   const user_id = storedUserId.matchedUserId;

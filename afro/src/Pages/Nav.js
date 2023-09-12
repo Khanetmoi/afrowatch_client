@@ -78,12 +78,12 @@ const NavItem = styled.li`
 margin-right: 10px;
 // background-color: blue;
 :hover {
-  background-color: green;
+  background-color: #18200e;
+
 }
 a {
   text-decoration: none;
   color: white;
-  
 }
 
 @media (max-width: 768px) {
@@ -277,22 +277,21 @@ const [isMenuVisible, setIsMenuVisible] = useState(false);
           </div>}
           {userInfo && (
               <>
-                <NavItem style={{ backgroundColor: tab === 'Home' ? 'green' : 'transparent' }} onClick={() => handleItemClick('Home') }
+                <NavItem style={{ backgroundColor: tab === 'Home' ? 'black' : 'transparent',color: tab === 'Home' ? 'black' : 'white' }} onClick={() => handleItemClick('Home') }
                 isSelected={tab === 'Documentaries'}
-                
                 className='Desktop'>
                   <a href="#">Home</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Movies' ? 'green' : 'transparent' }} onClick={() => handleItemClick('Movie')} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Movies' ? '#18200e' : 'transparent' }} onClick={() => handleItemClick('Movie')} className='Desktop'>
                   <a href="#">Movie</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Documentary' ? 'green' : 'transparent' }} onClick={() => handleItemClick('Documentaries')} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Documentary' ? '#18200e' : 'transparent' }} onClick={() => handleItemClick('Documentaries')} className='Desktop'>
                   <a href="#">Documentaries</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Series' ? 'green' : 'transparent' }} onClick={() => handleItemClick('Series')} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Series' ? '#18200e' : 'transparent' }} onClick={() => handleItemClick('Series')} className='Desktop'>
                   <a href="#">Series</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Shows' ? 'green' : 'transparent' }} onClick={() => handleItemClick('show')} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Shows' ? '#18200e' : 'transparent' }} onClick={() => handleItemClick('show')} className='Desktop'>
                   <a href="#">Show</a>
                 </NavItem>
               </>
@@ -314,8 +313,6 @@ const [isMenuVisible, setIsMenuVisible] = useState(false);
             }
              
             }}/>
-             {/* <BsSearch /> */}
-          {/* <SearchButton></SearchButton> */}
           </div>}
         <HamburgerButton onClick={toggleNav} className='mobile'>☰</HamburgerButton>
         </div>
@@ -332,26 +329,26 @@ const [isMenuVisible, setIsMenuVisible] = useState(false);
               <div>
                 <NavItem 
                 onClick={() => handleItemClick('Home')}
-                style={{ backgroundColor: tab === 'Home' ? 'green' : 'transparent' }}
+                style={{ backgroundColor: tab === 'Home' ? '#18200e' : 'transparent' }}
                 className='Desktop'>
                   <a href="#">Home</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Movies' ? 'green' : 'transparent' }} onClick={() => {handleItemClick('Movie'); setIsMenuVisible(false);}} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Movies' ? '#18200e' : 'transparent' }} onClick={() => {handleItemClick('Movie'); setIsMenuVisible(false);}} className='Desktop'>
                   <a href="#">Movie</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Documentary' ? 'green' : 'transparent' }} onClick={() => {handleItemClick('Documentaries');setIsMenuVisible(false);}} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Documentary' ? '#18200e' : 'transparent' }} onClick={() => {handleItemClick('Documentaries');setIsMenuVisible(false);}} className='Desktop'>
                   <a href="#">Documentaries</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Series' ? 'green' : 'transparent' }} onClick={() => {handleItemClick('Series');setIsMenuVisible(false)}} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Series' ? '#18200e' : 'transparent' }} onClick={() => {handleItemClick('Series');setIsMenuVisible(false)}} className='Desktop'>
                   <a href="#">Series</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Shows' ? 'green' : 'transparent' }} onClick={() => {handleItemClick('show');setIsMenuVisible(false)}} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Shows' ? '#18200e' : 'transparent' }} onClick={() => {handleItemClick('show');setIsMenuVisible(false)}} className='Desktop'>
                   <a href="#">Show</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Profile' ? 'green' : 'transparent' }} onClick={()=>{goProfilePage(); setIsMenuVisible(false)}} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Profile' ? '#18200e' : 'transparent' }} onClick={()=>{goProfilePage(); setIsMenuVisible(false)}} className='Desktop'>
                   <a><CgProfile/>Profile</a>
                 </NavItem>
-                <NavItem style={{ backgroundColor: tab === 'Home' ? 'green' : 'transparent' }} onClick={()=>{SignOut(); setIsMenuVisible(false)}} className='Desktop'>
+                <NavItem style={{ backgroundColor: tab === 'Home' ? '#18200e' : 'transparent' }} onClick={()=>{SignOut(); setIsMenuVisible(false)}} className='Desktop'>
                   <a><VscSignOut/>Log out</a>
                 </NavItem>
               </div>

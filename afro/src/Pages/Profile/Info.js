@@ -101,13 +101,13 @@ const Info = ()=>{
                                   <td style={{width:`27%`}}>{user.userMail}</td>
                                   <td style={{width:`18%`}}></td>
                                 </tr>
-                                <tr style={{backgroundColor: `#f4f7f9`}}>
+                                {/* <tr style={{backgroundColor: `#f4f7f9`}}>
                                   <td style={{width:`18%`}}></td>
                                   <td style={{width:`19%`}}>password</td>
                                   <td style={{width:`18%`}}></td>
                                   <td style={{width:`27%`}}>{user.userPassword}</td>
                                   <td style={{width:`18%`}}></td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                   <td style={{width:`18%`}}></td>
                                   <td style={{width:`19%`}}>Phone number</td>

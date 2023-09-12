@@ -115,56 +115,6 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   };
 
 
-  const episodes = [
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_1.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_2.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_3.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_4.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_5.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_6.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_7.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_8.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_9.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_10.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_11.mp4",
-      likes: 45
-    },
-    {
-      link: "https://myworklm.com/Afrowatch_admin/server/Le_parlement_du_rire/Le_parlement_du_rire_12.mp4",
-      likes: 45
-    }
-  ];
   const getSlidesToShow = (dataLength) => {
     if (dataLength <= 2) {
       return 1;
@@ -174,12 +124,12 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
       return dataLength - 1;
     }
   };
-
+  const movie_episode = selectedCard.movie_episode;
   var settings1 = {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: getSlidesToShow(episodes.length),
+    slidesToShow: getSlidesToShow(movie_episode),
     slidesToScroll: 1,
     swipeToSlide: true,
     centerMode: false,
@@ -216,6 +166,8 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
   console.log('type_id ',selectedCard.types_id )
   const category_id = selectedCard.category_id;
   console.log('category_id ',selectedCard.category_id )
+  
+  console.log('movie episode',movie_episode)
   // const movieId = selectedCard.movie_id;
   // const types_id = selectedCard.types_id;
   // const category_id = selectedCard.category_id;
@@ -235,7 +187,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
     setIsLoaded(false);
     const fetchMovieData = async () => {
       try {
-        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_watch.php?id=${movieId}`);
+        const response = await fetch(`https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_watch.php?id=${movieId}&episode_id=${episode}`);
         const data = await response.json();
         console.log('movie ',data);
         setMovieData(data);
@@ -336,14 +288,43 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
       setCommentShow(true);
     };
 
+    async function handleDownloadClick() {
+      try {
+        // Request access to the directory where you want to create the folder.
+        const directoryHandle = await window.showDirectoryPicker();
+    
+        // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
+        const folderName = 'AfroWatchDownloaded';
+        const folderHandle = await directoryHandle.getDirectoryHandle(folderName, { create: true });
+    
+        // Get the video source URL.
+        const videoSource = movieData[0].movie_movie;
+    
+        // Fetch the video file.
+        const response = await fetch(videoSource); 
+        const blob = await response.blob();
+    
+        // Create a file inside the folder and write the video content.
+        const fileHandle = await folderHandle.getFileHandle(movieData[0].movie_movie, { create: true });
+        const writable = await fileHandle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+    
+        console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
+      } catch (error) {
+        console.error(`Error downloading video: ${error}`);
+      }
+    }
+
     // async function handleDownloadClick() {
     //   try {
-    //     // Request access to the directory where you want to create the folder.
-    //     const directoryHandle = await window.showDirectoryPicker();
-    
     //     // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
     //     const folderName = 'AfroWatchDownloaded';
-    //     const folderHandle = await directoryHandle.getDirectoryHandle(folderName, { create: true });
+    
+    //     // Create a link element to trigger the download.
+    //     const a = document.createElement('a');
+    //     a.style.display = 'none';
+    //     document.body.appendChild(a);
     
     //     // Get the video source URL.
     //     const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
@@ -352,54 +333,25 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
     //     const response = await fetch(videoSource);
     //     const blob = await response.blob();
     
-    //     // Create a file inside the folder and write the video content.
-    //     const fileHandle = await folderHandle.getFileHandle(movieData[0].movie_movie, { create: true });
-    //     const writable = await fileHandle.createWritable();
-    //     await writable.write(blob);
-    //     await writable.close();
+    //     // Create a Blob URL for the video content.
+    //     const blobUrl = URL.createObjectURL(blob);
+    
+    //     // Set the download link's href and filename attributes.
+    //     a.href = blobUrl;
+    //     a.download = `${folderName}/${movieData[0].movie_movie}`;
+    
+    //     // Trigger the download by simulating a click on the link.
+    //     a.click();
+    
+    //     // Clean up by removing the link element and revoking the Blob URL.
+    //     document.body.removeChild(a);
+    //     URL.revokeObjectURL(blobUrl);
     
     //     console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
     //   } catch (error) {
     //     console.error(`Error downloading video: ${error}`);
     //   }
     // }
-
-    async function handleDownloadClick() {
-      try {
-        // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
-        const folderName = 'AfroWatchDownloaded';
-    
-        // Create a link element to trigger the download.
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        document.body.appendChild(a);
-    
-        // Get the video source URL.
-        const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
-    
-        // Fetch the video file.
-        const response = await fetch(videoSource);
-        const blob = await response.blob();
-    
-        // Create a Blob URL for the video content.
-        const blobUrl = URL.createObjectURL(blob);
-    
-        // Set the download link's href and filename attributes.
-        a.href = blobUrl;
-        a.download = `${folderName}/${movieData[0].movie_movie}`;
-    
-        // Trigger the download by simulating a click on the link.
-        a.click();
-    
-        // Clean up by removing the link element and revoking the Blob URL.
-        document.body.removeChild(a);
-        URL.revokeObjectURL(blobUrl);
-    
-        console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
-      } catch (error) {
-        console.error(`Error downloading video: ${error}`);
-      }
-    }
     
 
     // function DownloadButton({ movieData, baseUrl, baseLink }) {
@@ -454,19 +406,20 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         </div>
         <video controls>
           <source
-            src={baseUrl+movieData[0].movie_path+baseLink+movieData[0].movie_movie}
+            src={movieData[0].movie_movie}
             type="video/mp4"
           />
         </video>
+        {movie_episode>=2?
         <Slider {...settings1}>
-                  {Array.from({ length: episodes.length}, (_, index) => (
-                                <div key={index} value={`Episode ${index + 1}`} onClick={() => changeEp(`Episode ${index + 1}`)}>
+                  {Array.from({ length: movie_episode}, (_, index) => (
+                                <div key={index} value={`Episode ${index + 1}`} onClick={() => changeEp(`${index + 1}`)}>
                                 <div style={{ backgroundColor: "white", margin: `10px` }}>
                                  episode: {index + 1}
                                 </div>
                                 </div>
                   ))}
-        </Slider>
+        </Slider>:<div></div>}
 
         {/* <Description></Description> */}
       </Cinema>
@@ -499,7 +452,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         {activeTab === "comments" && (
           <CommentsContainer>
             {/* Render comments here */}
-            <Comments movieId={movieData.movie_id} userId={identification} />
+            <Comments movieId={movieData[0].movie_id} userId={identification} />
           </CommentsContainer>
         )}
 
@@ -507,7 +460,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
           <CommentsContainer>
             {/* Render questions here */}
             <Questions
-              movieId={movieData.movie_id}
+              movieId={movieData[0].movie_id}
               userId={identification}
             />
           </CommentsContainer>

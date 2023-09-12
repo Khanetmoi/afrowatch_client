@@ -218,7 +218,7 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page, 
 
   const baseUrlimage = "https://myworklm.com/Afrowatch_admin/server/movie_images/";
   const baseUrlTrailler = "https://myworklm.com/Afrowatch_admin/server/trailer_files/";
-  const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
+  const baseUrl = "https://afrowatch-file.s3.amazonaws.com/";
   const baseLink = "/";
 
   return (
@@ -300,7 +300,7 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page, 
         ))}
       </div>
     ))
-  ):<h1>No result found</h1>)) : (
+  ):<h1 style={{color:`white`, display: `flex`, justifyContent:`center`, alignItems:`center`}}>No result found</h1>)) : (
     <LoadingAnimation/>
   )}
 </div>
@@ -334,4 +334,4 @@ const SearchPage = ({searchedMovie, selectedCard, setSelectedCard, watch, page, 
   )
 }
 
-export default SearchPage;
+export default SearchPage;
