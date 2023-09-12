@@ -492,22 +492,21 @@ const Home = (props)=>{
       const resData = await reqData.json();
       // console.log(resData);
       setUserData(resData);
-      
+      setIsLoaded(true)
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    
     getUserData1()
     getUserData();
-    getHome();
-    // setIsLoaded(true)
+    getHome()
+
   }, []);
 
   isLoaded?console.log(userData):console.log('homage to glorious samathabadra')
-  console.log(homeContent);
+
   isLoad?console.log('heloo not logged'+ notLogged):console.log('homage to the tri-kaya')
 
 
@@ -524,7 +523,7 @@ const Home = (props)=>{
   // console.log(userData?.type)
   // console.log(userData?.type ? Object.keys(userData.type) : [])
 
-  console.log('props',props.tab)
+  console.log(props.tab)
   
 
   const handlePlayClick = () => {
@@ -688,73 +687,61 @@ const removeSection = (sectionIndex) => {
 })}
 
          </div>}
-         {userInfo ? (
+         {userInfo && isLoaded? (
   <div>
-  {isLoaded &&  props.tab !== 'Home' ? (
-    
-    Object.keys(userData.type).map((typeKey) => {
+    {Object.keys(userData.type).map((typeKey) => {
       if (props.tab === typeKey) {
         return (
           <div key={typeKey}>
             {Object.keys(userData.type[typeKey].category).map((categoryK) => (
-              <div key={categoryK}>
-                {userData.type[typeKey].category[categoryK].movies > 9 || (window.innerWidth <= 720 && userData.type[typeKey].category[categoryK].movies > 2) ? (
-                  <FeaturedMovies key={categoryK}>
-                    <h2 className="title">{categoryK}</h2>
-                    <Slider {...settings1}>
-                      {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
-                        <Slide
-                          poster={baseUrl}
-                          alter={slide.movie_name}
-                          video={baseUrl}
-                          title={slide.movie_name}
-                          date={slide.movie_year_release}
-                          genre={slide.movie_genre}
-                          className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-                          key={index}
-                          read={() => handleCardClick(slide)}
-                          page={props.page}
-                          log={props.logged}
-                        />
-                      ))}
-                    </Slider>
-                  </FeaturedMovies>
-                ) : (
-                  <Category key={categoryK}>
-                    <h2 className="title">{categoryK}</h2>
-                    {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
-                      <Card
-                        poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
-                        alter={slide.movie_name}
-                        video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
-                        title={slide.movie_name}
-                        date={slide.movie_year_release}
-                        genre={slide.movie_genre}
-                        className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
-                        key={index}
-                        read={() => handleCardClick(slide)}
-                        page={props.page}
-                        log={props.logged}
-                      />
-                    ))}
-                  </Category>
-                )}
-              </div>
+                <div>
+                { userData.type[typeKey].category[categoryK].movies> 9 || (window.innerWidth <= 720 && userData.type[typeKey].category[categoryK].movies> 2)?<FeaturedMovies key={categoryK}>
+                  <h2 className="title">{categoryK}</h2>
+                  <Slider {...settings1}>
+                {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
+                  <Slide
+                    poster={baseUrl}
+                    alter={slide.movie_name}
+                    video={baseUrl}
+                    title={slide.movie_name}
+                    date={slide.movie_year_release}
+                    genre={slide.movie_genre}
+                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                    key={index}
+                    read={() => handleCardClick(slide)}
+                    page={props.page}
+                    log={props.logged}
+                  />
+                ))}
+            </Slider></FeaturedMovies>:<Category>
+            <h2 className="title">{categoryK}</h2>
+          {userData.type[typeKey].category[categoryK].movies.map((slide, index) => (
+                  <Card
+                    poster={baseUrl + slide.movie_path + baseLink + slide.movie_image}
+                    alter={slide.movie_name}
+                    video={baseUrl + slide.movie_path + baseLink + slide.movie_trailler_file}
+                    title={slide.movie_name}
+                    date={slide.movie_year_release}
+                    genre={slide.movie_genre}
+                    className={`slide ${index === currentSlide ? 'slick-center' : ''}`}
+                    key={index}
+                    read={() => handleCardClick(slide)}
+                    page={props.page}
+                    log={props.logged}
+                  />
+          ))
+         }
+         </Category>}
+         </div>
+              
             ))}
           </div>
         );
+      } else {
+        return <h1 key={typeKey}></h1>;
       }
-      // return (<h1>no such tabs</h1>); 
-      // Add this to handle cases where props.tab !== typeKey
-    })
-  ) : (<div>
-
-    {/* {homeContent.map((element, index)=>{
-      console.log('element',index, '' , element)
-    })} */}
-  </div>)}
-</div>
-
+    })}
+  </div>
 ):<LoadingAnimation/>}
 
         <MovieList>
