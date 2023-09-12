@@ -21,19 +21,71 @@ const Modal = (props) => {
 
     fetchMovieData();
   }, [identity]);
-
+  const userId = JSON.parse(localStorage.getItem('loggedInStatus')).matchedUserId;
+  console.log('user Id', userId)
+  const movieId =identity
   const baseUrl = "https://myworklm.com/Afrowatch_admin/server/";
   const baseLink = "/";
-
+  const [formData, setFormData] = useState({
+    movie_id: movieId,
+    user_id: userId,
+    
+  });
   const handlePlayClick = (movie) => {
     // send watched to the Api
+    fetch('https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_watched_movie.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('sent')
+        // Handle successful response data here
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
     onPlayClick({
       video: movie,
       // comments: movieData.movie_comments,
       // episodes: movieData.movie_episodes
     });
   };
-
+  
+  const handlewatchlater = (event) => {
+    fetch('https://myworklm.com/Afrowatch_admin/api/movie/afrowatch_api_movie_watch_later.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('sent')
+        // Handle successful response data here
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
+  
+    // Handle form submission here (e.g., form validation and additional logic)
+  };
+  
+  
   return (
     <div className='show-expand'>
       
@@ -73,7 +125,7 @@ const Modal = (props) => {
             </div>
           </div>
           <div className='playWatchLater'  style={{margin:`10px 33%`, display:`flex`,justifyContent:`space-between`}}>
-            <button>Watch Later</button>
+            <button onClick={()=>{handlewatchlater()}}>Watch Later</button>
             <button onClick={() => handlePlayClick(selectedCard)} >Play <FaPlay/></button>
           </div>
         </div>

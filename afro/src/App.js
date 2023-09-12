@@ -21,7 +21,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Home Page");
-  const [tab, setTab] = useState("Movies")
+  const [tab, setTab] = useState("Home")
   const [watching , setWatching ] = useState(false);
   const [identification, setIdentification] = useState(null);
   const [searchedMovie, setSearchedMovie] = useState('');

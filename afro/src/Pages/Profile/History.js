@@ -93,7 +93,7 @@ const History = ({page}) => {
           <Card
             poster={baseUrl + slide.movie_folder + baseLink + slide.movie_image}
             alter={slide.movie_name}
-            video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer_file}
+            video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer}
             title={slide.movie_name}
             date={slide.movie_year_release}
             genre={slide.movie_genre}
@@ -105,13 +105,13 @@ const History = ({page}) => {
         <div>No movies in watch later list.</div>
       )}
 
-     <h2>Watched Later</h2>
+     <h2>Recently Watched</h2>
       {watched.length > 0 ? (
         watched.map((slide, index) => (
           <Card
             poster={baseUrl + slide.movie_folder + baseLink + slide.movie_image}
             alter={slide.movie_name}
-            video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer_file}
+            video={baseUrl + slide.movie_folder + baseLink + slide.movie_trailer}
             title={slide.movie_name}
             date={slide.movie_year_release}
             genre={slide.movie_genre}
