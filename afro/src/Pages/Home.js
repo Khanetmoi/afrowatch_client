@@ -499,11 +499,11 @@ const Home = (props)=>{
   };
 
   useEffect(() => {
-    setIsLoaded(true)
+    
     getUserData1()
     getUserData();
     getHome();
-
+    // setIsLoaded(true)
   }, []);
 
   isLoaded?console.log(userData):console.log('homage to glorious samathabadra')
@@ -688,9 +688,9 @@ const removeSection = (sectionIndex) => {
 })}
 
          </div>}
-         {isLoaded && userInfo ? (
+         {userInfo ? (
   <div>
-  {props.tab !== 'Home' ? (
+  {isLoaded &&  props.tab !== 'Home' ? (
     
     Object.keys(userData.type).map((typeKey) => {
       if (props.tab === typeKey) {
@@ -749,9 +749,9 @@ const removeSection = (sectionIndex) => {
     })
   ) : (<div>
 
-    {homeContent.map((element, index)=>{
+    {/* {homeContent.map((element, index)=>{
       console.log('element',index, '' , element)
-    })}
+    })} */}
   </div>)}
 </div>
 
