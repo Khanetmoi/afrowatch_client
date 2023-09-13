@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import LoadingAnimation from "./Loading";
 import Slide from "./Slide";
 import Modal from "./Modal";
+import { openDB } from 'idb';
 // import Suggestions from "./Suggestions";
 import Comments from "./Comments";
 import Questions from "./Questions";
@@ -288,105 +289,61 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
       setCommentShow(true);
     };
 
-    async function handleDownloadClick() {
-      try {
-        // Request access to the directory where you want to create the folder.
-        const directoryHandle = await window.showDirectoryPicker();
-    
-        // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
-        const folderName = 'AfroWatchDownloaded';
-        const folderHandle = await directoryHandle.getDirectoryHandle(folderName, { create: true });
-    
-        // Get the video source URL.
-        const videoSource = movieData[0].movie_movie;
-    
-        // Fetch the video file.
-        const response = await fetch(videoSource); 
-        const blob = await response.blob();
-    
-        // Create a file inside the folder and write the video content.
-        const fileHandle = await folderHandle.getFileHandle(movieData[0].movie_movie, { create: true });
-        const writable = await fileHandle.createWritable();
-        await writable.write(blob);
-        await writable.close();
-    
-        console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
-      } catch (error) {
-        console.error(`Error downloading video: ${error}`);
-      }
-    }
-
     // async function handleDownloadClick() {
     //   try {
+    //     // Request access to the directory where you want to create the folder.
+    //     const directoryHandle = await window.showDirectoryPicker();
+    
     //     // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
     //     const folderName = 'AfroWatchDownloaded';
-    
-    //     // Create a link element to trigger the download.
-    //     const a = document.createElement('a');
-    //     a.style.display = 'none';
-    //     document.body.appendChild(a);
+    //     const folderHandle = await directoryHandle.getDirectoryHandle(folderName, { create: true });
     
     //     // Get the video source URL.
-    //     const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
+    //     const videoSource = movieData[0].movie_movie;
     
     //     // Fetch the video file.
-    //     const response = await fetch(videoSource);
+    //     const response = await fetch(videoSource); 
     //     const blob = await response.blob();
     
-    //     // Create a Blob URL for the video content.
-    //     const blobUrl = URL.createObjectURL(blob);
-    
-    //     // Set the download link's href and filename attributes.
-    //     a.href = blobUrl;
-    //     a.download = `${folderName}/${movieData[0].movie_movie}`;
-    
-    //     // Trigger the download by simulating a click on the link.
-    //     a.click();
-    
-    //     // Clean up by removing the link element and revoking the Blob URL.
-    //     document.body.removeChild(a);
-    //     URL.revokeObjectURL(blobUrl);
+    //     // Create a file inside the folder and write the video content.
+    //     const fileHandle = await folderHandle.getFileHandle(movieData[0].movie_movie, { create: true });
+    //     const writable = await fileHandle.createWritable();
+    //     await writable.write(blob);
+    //     await writable.close();
     
     //     console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
     //   } catch (error) {
     //     console.error(`Error downloading video: ${error}`);
     //   }
     // }
-    
+    // 1. Open IndexedDB and create a database and object store
 
-    // function DownloadButton({ movieData, baseUrl, baseLink }) {
-    //   const handleDownloadClick = () => {
-    //     // Get the video source URL.
-    //     const videoSource = baseUrl + movieData[0].movie_path + baseLink + movieData[0].movie_movie;
-    
-    //     // Fetch the video file.
-    //     fetch(videoSource)
-    //       .then((response) => response.blob())
-    //       .then((blob) => {
-    //         // Create a Blob URL for the video content.
-    //         const blobUrl = URL.createObjectURL(blob);
-    
-    //         // Create a temporary <a> element for downloading the video.
-    //         const a = document.createElement('a');
-    //         a.href = blobUrl;
-    //         a.download = movieData[0].movie_movie; // Set the desired file name.
-    //         a.style.display = 'none';
-    
-    //         // Add the <a> element to the DOM and trigger the download.
-    //         document.body.appendChild(a);
-    //         a.click();
-    
-    //         // Clean up by removing the <a> element and revoking the Blob URL.
-    //         document.body.removeChild(a);
-    //         URL.revokeObjectURL(blobUrl);
-    
-    //         console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
-    //       })
-    //       .catch((error) => {
-    //         console.error(`Error downloading video: ${error}`);
-    //       });
-    //   };
-    
+     const handleDownloadClick = async () => {
+    try {
+      const db = await openDB('myDatabase', 1); // Replace 'myDatabase' with your desired database name and 1 with the version
+
+      // Fetch the video source URL
+      const videoSrc = movieData[0].movie_movie;
+
+      // Fetch video data from the network
+      const response = await fetch(videoSrc);
+      const videoBlob = await response.blob();
+
+      // Store the video blob in IndexedDB
+      const tx = db.transaction('videos', 'readwrite');
+      const store = tx.objectStore('videos');
+      await store.put(videoBlob, movieId); // Replace 'movieId' with a unique identifier for the video
+
+      console.log('Video downloaded and stored in IndexedDB.');
+
+      // Close the database connection
+      db.close();
+    } catch (error) {
+      console.error('Error downloading and storing video:', error);
+    }
+  };
+
+
     
   return (
     <WatchContainer>
@@ -438,7 +395,7 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
             className={activeTab === "questions" ? "active" : ""}
             style={{ color: `white` }}
           >
-            Questions
+            Quiz
           </li>
           {/* <li
           onClick={() => handleTabClick('episodes')}

@@ -767,8 +767,6 @@ const removeSection = (sectionIndex) => {
                         page={props.page}
                         log={props.logged}
                       />
-                      
-              {/* Render other movie details here */}
             </div>
           ))}
           </Slider>
