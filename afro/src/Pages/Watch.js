@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { AiFillHeart } from 'react-icons/ai';
 import { BsDownload} from 'react-icons/bs';
+import { BiSolidCommentCheck} from 'react-icons/bi';
+import {FaCommentDots} from 'react-icons/fa';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -354,11 +356,12 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
         <span style={{color:`white`}}>{movieData[0].movie_name}</span>
         <div style={{display:`flex`, justifyContent:`space-between`,alignItems:`center`,width:`30%`}}>
         <BsDownload style={{color:`whitesmoke`,fontSize:`20px`, fontWeight:`bold`}} onClick={handleDownloadClick}/>
-        <div style={{display:`flex`,alignItems:`center`}}><span style={{color:`white`}}>240</span>
+        <div style={{display:`flex`,alignItems:`center`}}>
+          {/* <span style={{color:`white`}}>240</span> */}
         <AiFillHeart className="like"  onClick={liked} style={{ color: likeColor }}/>
         </div>
         
-        {commentShow?<button onClick={handleCinemaButtonClick}>cinema</button>:<button onClick={handleCommentsButtonClick}>comments</button>}
+        {commentShow?<button onClick={handleCinemaButtonClick} style={{color:`white`,backgroundColor:`transparent`}}>[[]]</button>:<button onClick={handleCommentsButtonClick} style={{backgroundColor:`transparent`}}><FaCommentDots style={{color:`white`}}/></button>}
         </div>
         </div>
         <video controls>
