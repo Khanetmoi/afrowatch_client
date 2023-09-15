@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/afrowatch_client/static/css/main.1b9ce417.css",
-    "main.js": "/afrowatch_client/static/js/main.afb61f5a.js",
+    "main.js": "/afrowatch_client/static/js/main.6b5e3696.js",
     "static/media/comingTo.jpg": "/afrowatch_client/static/media/comingTo.1b211ed53541f2920bf1.jpg",
     "static/media/afrowatch.png": "/afrowatch_client/static/media/afrowatch.6f62a6f982dba283dcbd.png",
     "static/media/logo.png": "/afrowatch_client/static/media/logo.a2f0c7c60de45a4c18a9.png",
@@ -13,10 +13,10 @@
     "static/media/slick.woff": "/afrowatch_client/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/afrowatch_client/index.html",
     "main.1b9ce417.css.map": "/afrowatch_client/static/css/main.1b9ce417.css.map",
-    "main.afb61f5a.js.map": "/afrowatch_client/static/js/main.afb61f5a.js.map"
+    "main.6b5e3696.js.map": "/afrowatch_client/static/js/main.6b5e3696.js.map"
   },
   "entrypoints": [
     "static/css/main.1b9ce417.css",
-    "static/js/main.afb61f5a.js"
+    "static/js/main.6b5e3696.js"
   ]
 }
