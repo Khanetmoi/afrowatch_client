@@ -1,9 +1,7 @@
 {
   "files": {
     "main.css": "/afrowatch_client/static/css/main.1b9ce417.css",
-    "main.js": "/afrowatch_client/static/js/main.6b5e3696.js",
-    "static/media/comingTo.jpg": "/afrowatch_client/static/media/comingTo.1b211ed53541f2920bf1.jpg",
-    "static/media/afrowatch.png": "/afrowatch_client/static/media/afrowatch.6f62a6f982dba283dcbd.png",
+    "main.js": "/afrowatch_client/static/js/main.ee25983c.js",
     "static/media/logo.png": "/afrowatch_client/static/media/logo.a2f0c7c60de45a4c18a9.png",
     "static/media/logoBlanc.png": "/afrowatch_client/static/media/logoBlanc.a2f0c7c60de45a4c18a9.png",
     "static/media/disney.jpg": "/afrowatch_client/static/media/disney.229fc508d7aff267ba4a.jpg",
@@ -13,10 +11,10 @@
     "static/media/slick.woff": "/afrowatch_client/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/afrowatch_client/index.html",
     "main.1b9ce417.css.map": "/afrowatch_client/static/css/main.1b9ce417.css.map",
-    "main.6b5e3696.js.map": "/afrowatch_client/static/js/main.6b5e3696.js.map"
+    "main.ee25983c.js.map": "/afrowatch_client/static/js/main.ee25983c.js.map"
   },
   "entrypoints": [
     "static/css/main.1b9ce417.css",
-    "static/js/main.6b5e3696.js"
+    "static/js/main.ee25983c.js"
   ]
 }
