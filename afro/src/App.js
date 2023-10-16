@@ -14,6 +14,7 @@ import Profile from './Pages/Profile/profile';
 import SearchPage from './Pages/SearchPage';
 import Watch from './Pages/Watch';
 import Payment from './Pages/Payment';
+import NotSignedIn from './Pages/notSignedIn';
 // const [watching , setWatching ] = useState(false);
 
 
@@ -29,7 +30,7 @@ const App = () => {
   const [selectedSuggestion, setSelectedSuggestion] = useState(null);
 
   
-
+console.log('the current page is'+ currentPage)
  
 console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
 
@@ -38,7 +39,6 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     const loggedInStatus = JSON.parse(localStorage.getItem('loggedInStatus'));
     if (loggedInStatus && loggedInStatus.email && loggedInStatus.password) {
       setIsLoggedIn(true);
-      // console.log(isLoggedIn)
       console.log("you are logged in 1"+isLoggedIn)
     }
   }, []);
@@ -162,12 +162,20 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
     }
   // Render different pages based on the 'currentPage' state
   if (currentPage === 'home') {
+    if(isLoggedIn){
     return (
       <div>
         <Nav handleItemClick={handleItemClick} handleLogInClick = {handleLogInClick} logo={logo} returnHome={returnHome} page = {(cpage) => setCurrentPage(cpage)} setWatching={setWatching} setSearchedMovie={setSearchedMovie} tab={tab}/>
         <Home  page = {(cpage) => setCurrentPage(cpage)} logged = {isLoggedIn} watch={setWatching} watchv= {watching} identity={identification} tab={tab} selectedCard={selectedCard} setSelectedCard={setSelectedCard}/>
       </div>
-    );
+    );}
+    else {
+      return (
+        <div>
+         <NotSignedIn page = {(cpage) => setCurrentPage(cpage) }/>
+        </div>
+      );
+    }
   } else if (currentPage === 'log In') {
     return (
       <div>

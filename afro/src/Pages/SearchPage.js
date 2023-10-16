@@ -9,7 +9,7 @@ import LoadingAnimation from "./Loading";
 
 const Category = styled.div`
 
-border-radius: 10px;
+border-radius: 5px;
 //background-color:  blue;
 width: 100%;
     .Scard {
@@ -40,7 +40,7 @@ width: 100%;
          position:relative;
         img {
             width: 90%;
-            border-radius: 20px;
+            border-radius: 5px;
 
             @media (max-width: 768px) {
               width: 90%;

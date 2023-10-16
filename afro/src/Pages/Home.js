@@ -1,11 +1,6 @@
 // Importing components at the top level (correct placement)
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import comingTo from '../Images/comingTo.jpg';
-import disney from '../Images/disney.jpg';
-import logo from '../Images/logo.png';
-import afrowatch from '../Images/afrowatch.png';
-import slides from './FakeApiData';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -101,7 +96,7 @@ const LoginButton = styled.div`
   padding: 8px 16px;
   color: #fff;
   border: 2px solid white;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -143,7 +138,7 @@ width: 33%;
 const SearchBar = styled.input`
 width: 20vw;
 height: 5vh;
-border-radius: 50px;
+border-radius: 5px;
 
 @media (max-width: 768px) {
   height: 2vh;
@@ -158,7 +153,7 @@ border-radius: 50%;
 `;
  const Category = styled.div`
 
-border-radius: 10px;
+border-radius: 5px;
 //background-color:  blue;
 width: 100%;
     .Scard {
@@ -189,7 +184,7 @@ width: 100%;
          position:relative;
         img {
             width: 90%;
-            border-radius: 20px;
+            border-radius: 5px;
 
             @media (max-width: 768px) {
               width: 90%;
@@ -221,7 +216,7 @@ const MovieList = styled.div`
     // background-color: black;
     margin: 20px 0;
     padding: 0 15px 0 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     .flex {
       display: flex;
       justify-content: space-between;
@@ -508,22 +503,6 @@ const Home = (props)=>{
   isLoaded?console.log('movie',userData):console.log('homage to glorious samathabadra')
   console.log('home.content', homeContent)
   isLoad?console.log('heloo not logged'+ notLogged):console.log('homage to the tri-kaya')
-
-
-
-  // isLoaded?console.log('access data',userData.type[Object.keys(userData.type).find(typeKey => typeKey === props.tab)].category[Object.keys(userData.type[props.tab].category).find(categoryKey => categoryKey === 'Hearthwarming').movies]
-  // ): console.log('still empty')
-  
-  // isLoaded?console.log('access data',userData.type['Animation'].category['Hearthwarming'].movies[0]): console.log('still empty')
-  // useEffect(() => {
-  //   setuserData(userData)
-
-  // }, [userData]);
-
-  // console.log(userData?.type)
-  // console.log(userData?.type ? Object.keys(userData.type) : [])
-
-  console.log(props.tab)
   
 
   const handlePlayClick = () => {

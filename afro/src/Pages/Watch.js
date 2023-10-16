@@ -46,7 +46,7 @@ const Cinema = styled.div`
   width: ${props => props.commentShow ? '70vw' : '95vw'};
   height: 75vh;
   margin: 2.5vw;
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: black;
   padding: 5px;
   position: sticky;
@@ -291,38 +291,15 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
       setCommentShow(true);
     };
 
-    // async function handleDownloadClick() {
-    //   try {
-    //     // Request access to the directory where you want to create the folder.
-    //     const directoryHandle = await window.showDirectoryPicker();
-    
-    //     // Create a folder named "AfroWatchDownloaded" if it doesn't exist.
-    //     const folderName = 'AfroWatchDownloaded';
-    //     const folderHandle = await directoryHandle.getDirectoryHandle(folderName, { create: true });
-    
-    //     // Get the video source URL.
-    //     const videoSource = movieData[0].movie_movie;
-    
-    //     // Fetch the video file.
-    //     const response = await fetch(videoSource); 
-    //     const blob = await response.blob();
-    
-    //     // Create a file inside the folder and write the video content.
-    //     const fileHandle = await folderHandle.getFileHandle(movieData[0].movie_movie, { create: true });
-    //     const writable = await fileHandle.createWritable();
-    //     await writable.write(blob);
-    //     await writable.close();
-    
-    //     console.log(`Video "${movieData[0].movie_movie}" downloaded successfully.`);
-    //   } catch (error) {
-    //     console.error(`Error downloading video: ${error}`);
-    //   }
-    // }
     // 1. Open IndexedDB and create a database and object store
 
      const handleDownloadClick = async () => {
+      const indexedDB =window.indexedDB ||window.mozIndexedDB ||window.webkitIndexedDB ||window.msIndexedDB ||window.shimIndexedDB;
+      if (!indexedDB) {
+        console.log("IndexedDB could not be found in this browser.");
+      }
     try {
-      const db = await openDB('myDatabase', 1); // Replace 'myDatabase' with your desired database name and 1 with the version
+      const db = await openDB('myDatabase', 1); 
 
       // Fetch the video source URL
       const videoSrc = movieData[0].movie_movie;
@@ -337,7 +314,6 @@ const Watch = ({ selectedCard, identity, page, watch}) => {
       await store.put(videoBlob, movieId); // Replace 'movieId' with a unique identifier for the video
 
       console.log('Video downloaded and stored in IndexedDB.');
-
       // Close the database connection
       db.close();
     } catch (error) {

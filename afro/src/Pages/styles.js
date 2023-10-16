@@ -5,7 +5,7 @@ const SLide = styled.div`
 
   position: relative;
   padding: 0;
-  border-radius: 20px;
+  border-radius: 5px;
   
   .SPcard {
     position: relative;
@@ -21,7 +21,7 @@ const SLide = styled.div`
       bottom: 0;
       display: flex;
       justify-content: center;
-      border-radius: 20px;
+      border-radius: 5px;
     
 
       img {

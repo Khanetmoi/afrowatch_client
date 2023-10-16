@@ -250,14 +250,14 @@ const Comments = (props) => {
                         onClick={() => handleLike(comment.commentsId)}
                         disabled={comment.isDisliked}
                       >
-                        <AiFillLike /> ({formatNumber(comment.totalLikes)})
+                        <AiFillLike /> {formatNumber(comment.totalLikes)}
                       </button>
 
                       <button
                         onClick={() => handleDislike(comment.commentsId)}
                         disabled={comment.isLiked}
                       >
-                        <AiFillDislike /> ({formatNumber(comment.totalDislikes)})
+                        <AiFillDislike /> {formatNumber(comment.totalDislikes)}
                       </button>
 
                       <button onClick={() => handleReport(comment.commentsId)}>Report</button>

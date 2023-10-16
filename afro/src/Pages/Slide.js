@@ -25,7 +25,7 @@ const SlideContainer = styled.div`
 
 const ContentContainer = styled.div`
   position: relative;
-  border-radius: 30px;
+  border-radius: 5px;
   .info {
     color: white;
     margin: 10px;
@@ -46,7 +46,7 @@ const ContentContainer = styled.div`
 
 const Media = styled.div`
   position: relative;
-  border-radius: 20px;
+  border-radius: 5px;
   // width: 100%;
   height: 120px; /* You can adjust the height as needed */
   width: ${({ userInfo }) => (userInfo ? "90%" : "300px")};

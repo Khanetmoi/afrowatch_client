@@ -17,14 +17,15 @@ import SLide from './styles'
 //     )
 //  }
 const SlideContainer = styled.div`
-  position: relative;
+  position: ${({ hovered }) => (hovered ? 'absolute' : 'relative')};
   display: inline-block;
-  width: 300px;
+  width: ${({ hovered }) => (hovered ? '500px' : '300px')};;
 `;
+
 
 const ContentContainer = styled.div`
   position: relative;
-  border-radius: 30px;
+  border-radius: 5px;
   .info {
     color: white;
     margin: 10px;
@@ -45,7 +46,7 @@ const ContentContainer = styled.div`
 
 const Media = styled.div`
   position: relative;
-  border-radius: 20px;
+  border-radius: 5px;
   // width: 100%;
   height: 120px; /* You can adjust the height as needed */
   width: ${({ userInfo }) => (userInfo ? '90%' : '300px')};
@@ -145,6 +146,7 @@ const Card = (props) => {
               <Video
                 ref={videoRef}
                 controls
+                muted
                 onTimeUpdate={handleVideoTimeUpdate}
                 onClick={handleVideoClick}
                 onPlay={handleVideoPlay} // Add this

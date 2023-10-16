@@ -51,7 +51,7 @@ const TabsContainer = styled.ul`
 
 const UserInfo = styled.h2`
   display: flex;
-  border-radius: 20px;
+  border-radius: 5px;
   margin: 0 2%;
   height: 30vh;
   @media (max-width: 768px) {
@@ -85,7 +85,7 @@ const ProfileHeader = styled.div`
 const UserProfile = styled.div`
   background-color: white;
   margin: 0 20px;
-  border-radius: 20px;
+  border-radius: 5px;
 `;
 
 const SectionContent =  styled.div`

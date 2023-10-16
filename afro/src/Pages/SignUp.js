@@ -36,7 +36,7 @@ const SignUpForm = styled.form`
   align-items: center;
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 `;
 
@@ -66,7 +66,7 @@ const CountryCodeSelect = styled.select`
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   margin-block: 8px;
 `;
 

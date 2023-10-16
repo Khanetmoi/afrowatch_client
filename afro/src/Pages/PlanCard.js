@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const CardWrapper = styled.div`
   padding: 20px;
   border: 2px solid ${props => (props.selected ? '#007bff' : '#ccc')};
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
 
   h2 {

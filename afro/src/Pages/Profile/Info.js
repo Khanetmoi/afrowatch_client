@@ -15,7 +15,7 @@ const Title = styled.div`
 
 const ProfileDetails = styled.div`
 margin: 2%;
-border-radius: 60px;
+border-radius: 5px;
 // background-color: green;
 
 `;

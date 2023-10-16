@@ -102,7 +102,7 @@ const LoginButton = styled.div`
   padding: 8px 16px;
   color: #fff;
   border: 2px solid white;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -116,7 +116,7 @@ const LoginButton = styled.div`
 const SearchBar = styled.input`
 width: 20vw;
 height: 3vh;
-border-radius: 50px;
+border-radius: 5px;
 
 @media (max-width: 768px) {
   height: 2vh;
