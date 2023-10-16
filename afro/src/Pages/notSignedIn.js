@@ -49,6 +49,11 @@ const FirstDiv = styled.div`
         margin:  14px;
         border: none;
     }
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 15px;
+  }
 `;
 
 const SecondDiv = styled.div`
@@ -58,31 +63,50 @@ align-items: center;
 color: white;
 background-color: black;
 height: 90vh;
-`
-const imVid = styled.div`
-position: relative;
-video {
-    position: absolute;
+@media (max-width: 768px) {
+  flex-direction: column;
+  padding: 0 15px;
 }
-`;
+
+imVid {
+  img {
+    width: 90%;
+  }
+  
+}
+`
 
 const ThirdDiv = styled.div`
 background-color: black;
 color: white;
 height: 90vh;
 display: flex;
+flex-direction: row-reverse;
 justify-content: center;
 align-items: center;
+@media (max-width: 768px) {
+  flex-direction: column;
+  padding: 0 15px; 
+}
 `;
 
 const Cane = styled.div`
 display: flex;
+justify-content: center;
 color: white;
 border: 1px solid white;
 border-radius: 5px;
 height: 90px;
 width: 40vw;
+
 `
+const Garden = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+`;
 const FourthDiv = styled.div`
 color: white;
 height: 90vh;
@@ -92,6 +116,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 0 50% 0 20%;
+@media (max-width: 768px) {
+  flex-direction: column; 
+  padding: 0 15px;
+}
 `;
 
 const FifthDiv = styled.div`
@@ -100,6 +128,10 @@ color: white;
 display: flex;
 justify-content: center;
 align-items: center;
+@media (max-width: 768px) {
+  flex-direction: column;
+  padding: 0 15px;
+}
 `;
 
 const SixthDiv = styled.div`
@@ -156,13 +188,20 @@ align-items: center;
         border: none;
     }
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 15px;
+       .card {
+        margin: 10px 10%;
+       }
+  }
 `;
 
 
 const FooterContainer = styled.footer`
 background-color: black;
 width: 100%;
-bottom: 0; /* Anchor it to the bottom of the viewport */
+bottom: 0;
 color: #fff;
 padding: 0px;
 `;
@@ -176,7 +215,7 @@ const FooterLinks = styled.ul`
   padding: auto;
   padding: 0;
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust the grid for smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 `;
 
@@ -230,7 +269,7 @@ const gotoSignUp = ()=>{
       <FirstDiv className='container1'>
         <h1>Unlimited movies, TV shows, and more</h1>
         <h3>Watch anywhere. Cancel anytime.</h3>
-        <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
+        <h4>Ready to watch? Sign In or Sign up</h4>
         <div className="sign">
         <button onClick={gotoSignIn}>Sign In</button>
         <button onClick={gotoSignUp}>Sign Up</button>
@@ -252,7 +291,12 @@ const gotoSignUp = ()=>{
 
       </SecondDiv>
       <ThirdDiv>
-         <div>
+          <div>
+            <h1>Download your shows</h1>
+            <h1> to watch offline</h1>
+            <h5>Save your favorites easily and always have something to watch.</h5>
+         </div>
+         <Garden>
             <img src='https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg'/>
             <Cane>
               <img src='https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/boxshot.png'/>
@@ -261,12 +305,8 @@ const gotoSignUp = ()=>{
                    <h6>Downloading</h6>
               </div>
             </Cane>
-         </div>
-         <div>
-            <h1>Download your shows</h1>
-            <h1> to watch offline</h1>
-            <h5>Save your favorites easily and always have something to watch.</h5>
-         </div>
+         </Garden>
+         
       </ThirdDiv>
       <FourthDiv>
             <h1>Watch everywhere</h1>
