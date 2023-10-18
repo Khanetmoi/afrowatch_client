@@ -4,7 +4,7 @@ import logo from './../Images/logo.png'
 
 
 const First = styled.div`
-background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/893a42ad-6a39-43c2-bbc1-a951ec64ed6d/342a453f-93ec-4db7-ac83-a8348a23169a/GH-en-20231002-popsignuptwoweeks-perspective_alpha_website_small.jpg');
+background-image: url('https://s3.youthkiawaaz.com/wp-content/uploads/2014/01/06102816/2014-movie-releases-1024x731.jpg');
 img {
     width: 300px;
 }
@@ -51,6 +51,8 @@ const FirstDiv = styled.div`
     }
   }
   @media (max-width: 768px) {
+    justify-coontent: center;
+    align-items: center;
     flex-direction: column;
     padding: 0 15px;
   }

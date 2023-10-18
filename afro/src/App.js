@@ -5,17 +5,13 @@ import Home from './Pages/Home';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 import Subscription from './Pages/Subscription'
-import logo from './Images/logo.png'
-import LoginButton  from './Pages/styles';
-import Navigation from './Pages/styles';
-import styled from 'styled-components';
+import logo from './Images/logo.png';
 import Nav from './Pages/Nav';
 import Profile from './Pages/Profile/profile';
 import SearchPage from './Pages/SearchPage';
 import Watch from './Pages/Watch';
 import Payment from './Pages/Payment';
 import NotSignedIn from './Pages/notSignedIn';
-// const [watching , setWatching ] = useState(false);
 
 
 const App = () => {
@@ -152,9 +148,6 @@ console.log(JSON.parse(localStorage.getItem('loggedInStatus')))
      }
     };
     
-  // const handleItemClick = (item) => {
-  //   setCurrentPage('home')
-  //   };
 
     const handleLogInClick = ()=>{
       setCurrentPage("log In");
